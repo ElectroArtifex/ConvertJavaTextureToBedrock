@@ -12,7 +12,12 @@ module.exports = {
 		libraryTarget: "umd"
 	},
 	plugins: [
-		new webpack.BannerPlugin({banner: "#!/usr/bin/env node", raw: true, exclude: "*", include: "cli.js"}),
+		new webpack.BannerPlugin({
+			banner: "#!/usr/bin/env node",
+			raw: true,
+			exclude: "*",
+			include: "cli.js"
+		}),
 	],
 	target: "node"
 };
