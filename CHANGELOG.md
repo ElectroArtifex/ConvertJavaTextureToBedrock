@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.10]
+- Missing `dist` folder
+
 ## [1.0.9]
 - Update readme
 

@@ -25,8 +25,6 @@ For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/p
 
 Be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version)
 
-I recommend to use [yarn package manager](https://yarnpkg.com), but of course you can also use `npm` (Should be included in NodeJS), if you want
-
 ## CLI
 Clone the git repo:
 ```bash
@@ -36,17 +34,6 @@ git clone https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock
 Switch to the working dir:
 ```bash
 cd ConvertMinecraftJavaTextureToBedrock
-```
-
-Install the dependencies
-
-yarn:
-```bash
-yarn
-```
-npm:
-```bash
-npm install
 ```
 
 You can now convert your texture packs like

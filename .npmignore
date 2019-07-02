@@ -2,4 +2,6 @@
 input
 node_modules
 output
+src
+tests
 tmp
