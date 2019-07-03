@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.12]
+- Replaced zip libraries
+
 ## [1.0.11]
 - Updated readme
 

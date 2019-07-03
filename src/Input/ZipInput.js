@@ -1,10 +1,7 @@
 import AbstractInput from "./AbstractInput";
-import extractZip from "extract-zip";
+import decompress from "decompress";
 import path from "path";
-import util from "util";
 import Utils from "../Utils/Utils";
-
-const extractZipPromise = util.promisify(extractZip);
 
 /**
  * Class ZipInput
@@ -16,7 +13,7 @@ class ZipInput extends AbstractInput {
 	async input() {
 		Utils.log(`Extract ${this.path} to ${this.temp}`);
 
-		await extractZipPromise(this.path, {dir: path.resolve(this.temp)});
+		await decompress(this.path, this.temp);
 	}
 
 	/**

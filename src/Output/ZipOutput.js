@@ -1,10 +1,7 @@
 import AbstractOutput from "./AbstractOutput";
 import fs from "fs-extra";
-import util from "util";
 import Utils from "../Utils/Utils";
-import zipFolder from "zip-folder";
-
-const zipFolderPromise = util.promisify(zipFolder);
+import {zip} from "zip-a-folder";
 
 /**
  * Class ZipOutput
@@ -15,7 +12,7 @@ class ZipOutput extends AbstractOutput {
 	 */
 	async output() {
 		Utils.log(`Pack ${this.temp} to ${this.path}`);
-		await zipFolderPromise(this.temp, this.path);
+		await zip(this.temp, this.path);
 
 		Utils.log(`Clean ${this.temp}`);
 		await fs.remove(this.temp);
