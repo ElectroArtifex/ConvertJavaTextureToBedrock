@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0]
+- First try to convert horse textures (Is very tricky and may buggy)
+- Note some more origin colors in `ColorizeOverlayConverter`
+
 ## [1.0.12]
 - Replaced zip libraries
 

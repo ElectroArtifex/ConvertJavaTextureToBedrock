@@ -10,6 +10,7 @@ import CopyConverter from "./CopyConverter";
 import DeleteStaticConverter from "./DeleteStaticConverter";
 import DrownedConverter from "./DrownedConverter";
 import FishHookConverter from "./FishingConverter";
+import HorseConverter from "./HorseConverter";
 import MetadataConverter from "./MetadataConverter";
 import OpaqueConverter from "./OpaqueConverter";
 import OverlayToTranslateConverter from "./OverlayToTranslateConverter";
@@ -59,6 +60,7 @@ const converters = [
 	[ChestSideConverter, []],
 	[DrownedConverter, []],
 	[FishHookConverter, []],
+	[HorseConverter, []],
 	[PistonArmConverter, []],
 	[RedstoneDustConverter, []],
 	[SheepConverter, []],

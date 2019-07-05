@@ -68,29 +68,29 @@ class ColorizeOverlayConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			// Armor
+			// Armor (Colors from px 9/1 from original cloth_1.png bedrock texture)
 			[[["textures/models/armor/leather_1.png", [167, 105, 67]]], "textures/models/armor/cloth_1.png"],
 			[[["textures/models/armor/leather_2.png", [167, 105, 67]]], "textures/models/armor/cloth_2.png"],
 
-			// Grass
-			[[["textures/blocks/double_plant_fern_top.png", [79, 156, 37]]], "textures/blocks/double_plant_fern_carried.png"],
-			[[["textures/blocks/double_plant_grass_top.png", [79, 156, 37]]], "textures/blocks/double_plant_grass_carried.png"],
-			[[["textures/blocks/fern.png", [79, 156, 37]]], "textures/blocks/fern_carried.png"],
-			[[["textures/blocks/grass_top.png", [120, 182, 66]]], "textures/blocks/grass_carried.png"],
-			[[["textures/blocks/leaves_acacia.png", [68, 177, 8]]], "textures/blocks/leaves_acacia_carried.png"],
-			[[["textures/blocks/leaves_big_oak.png", [68, 177, 8]]], "textures/blocks/leaves_big_oak_carried.png"],
-			[[["textures/blocks/leaves_birch.png", [108, 151, 71]]], "textures/blocks/leaves_birch_carried.png"],
-			[[["textures/blocks/leaves_jungle.png", [70, 176, 37]]], "textures/blocks/leaves_jungle_carried.png"],
-			[[["textures/blocks/leaves_oak.png", [68, 177, 8]]], "textures/blocks/leaves_oak_carried.png"],
-			[[["textures/blocks/leaves_spruce.png", [98, 146, 98]]], "textures/blocks/leaves_spruce_carried.png"],
-			[[["textures/blocks/tallgrass.png", [79, 156, 37]]], "textures/blocks/tallgrass_carried.png"],
-			[[["textures/blocks/waterlily.png", [30, 128, 48]]], "textures/blocks/carried_waterlily.png"],
-			[[["textures/blocks/water_flow_grey.png", [86, 132, 254]]], "textures/blocks/water_flow.png"],
-			[[["textures/blocks/water_still_grey.png", [161, 161, 161]]], "textures/blocks/cauldron_water.png"],
-			[[["textures/blocks/water_still_grey.png", [86, 132, 254]]], "textures/blocks/water_still.png"],
-			[[["textures/blocks/vine.png", [30, 128, 48]]], "textures/blocks/vine_carried.png"],
+			// Grass, fern, water & co.
+			[[["textures/blocks/double_plant_fern_top.png", [80, 121, 43]]], "textures/blocks/double_plant_fern_carried.png"], // 3/5 (double_plant_fern_carried.png)
+			[[["textures/blocks/double_plant_grass_top.png", [80, 121, 43]]], "textures/blocks/double_plant_grass_carried.png"], // 3/5 (double_plant_fern_carried.png)
+			[[["textures/blocks/fern.png", [50, 81, 44]]], "textures/blocks/fern_carried.png"], // 7/0 (fern_carried.tga)
+			[[["textures/blocks/grass_top.png", [78, 119, 42]]], "textures/blocks/grass_carried.png"], // 0/0 (grass_carried.png)
+			[[["textures/blocks/leaves_acacia.png", [42, 106, 9]]], "textures/blocks/leaves_acacia_carried.png"], // 0/0 (leaves_acacia_carried.tga)
+			[[["textures/blocks/leaves_big_oak.png", [34, 90, 9]]], "textures/blocks/leaves_big_oak_carried.png"], // 0/0 (leaves_big_oak_carried.tga)
+			[[["textures/blocks/leaves_birch.png", [71, 92, 46]]], "textures/blocks/leaves_birch_carried.png"], // 0/0 (leaves_birch_carried.tga)
+			[[["textures/blocks/leaves_jungle.png", [42, 107, 9]]], "textures/blocks/leaves_jungle_carried.png"], // 0/1 (leaves_jungle_carried.tga)
+			[[["textures/blocks/leaves_oak.png", [23, 63, 3]]], "textures/blocks/leaves_oak_carried.png"], // 0/0 (leaves_oak_carried.tga)
+			[[["textures/blocks/leaves_spruce.png", [58, 92, 58]]], "textures/blocks/leaves_spruce_carried.png"], // 0/0 (leaves_spruce_carried.tga)
+			[[["textures/blocks/tallgrass.png", [81, 123, 44]]], "textures/blocks/tallgrass_carried.png"], // 1/5 (tallgrass_carried.tga)
+			[[["textures/blocks/waterlily.png", [67, 102, 36]]], "textures/blocks/carried_waterlily.png"], // 4/2 (carried_waterlily.png)
+			[[["textures/blocks/water_flow_grey.png", [86, 132, 254]]], "textures/blocks/water_flow.png"], // 0/0 (water_flow.png)
+			[[["textures/blocks/water_still_grey.png", [215, 215, 215]]], "textures/blocks/cauldron_water.png"], // 0/0 (cauldron_water.png)
+			[[["textures/blocks/water_still_grey.png", [86, 132, 254]]], "textures/blocks/water_still.png"],// 0/0 (water_flow.png)
+			[[["textures/blocks/vine.png", [80, 121, 43]]], "textures/blocks/vine_carried.png"], // 1/1 (vine_carried.png)
 
-			// Lingering potion (Colors from px (x/y) 7/9 from original bedrock textures)
+			// Lingering potion (Colors from px 7/9 from original bedrock textures)
 			[[["textures/items/potion_overlay.png", [88, 148, 255]], ["textures/items/potion_bottle_lingering_empty.png"]], "textures/items/potion_bottle_lingering.png"],
 			[[["textures/items/potion_overlay.png", [232, 58, 56]], ["textures/items/potion_bottle_lingering_empty.png"]], "textures/items/potion_bottle_lingering_damageBoost.png"],
 			[[["textures/items/potion_overlay.png", [255, 244, 92]], ["textures/items/potion_bottle_lingering_empty.png"]], "textures/items/potion_bottle_lingering_fireResistance.png"],
@@ -110,13 +110,13 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			[[["textures/items/potion_overlay.png", [114, 122, 114]], ["textures/items/potion_bottle_lingering_empty.png"]], "textures/items/potion_bottle_lingering_weakness.png"],
 			[[["textures/items/potion_overlay.png", [84, 66, 62]], ["textures/items/potion_bottle_lingering_empty.png"]], "textures/items/potion_bottle_lingering_wither.png"],
 
-			// Map (Colors from px (x/y) 6/7 from original bedrock textures)
+			// Map (Colors from px 6/7 from original bedrock textures)
 			[[["textures/items/map_filled.png"], ["textures/items/map_filled_markings.png", [82, 76, 68]]], "textures/items/map_mansion.png"],
 			[[["textures/items/map_filled.png"], ["textures/items/map_filled_markings.png", [67, 124, 111]]], "textures/items/map_monument.png"],
 			[[["textures/items/map_filled.png"], ["textures/items/map_filled_markings.png", [103, 90, 173]]], "textures/items/map_nautilus.png"],
 			[[["textures/items/map_filled.png"], ["textures/items/map_filled_markings.png", [131, 131, 131], true]], "textures/items/map_filled.png"],
 
-			// Potion (Colors from px (x/y) 7/9 from original bedrock textures)
+			// Potion (Colors from px 7/9 from original bedrock textures)
 			[[["textures/items/potion_overlay.png", [58, 130, 255]], ["textures/items/potion_bottle_empty.png"]], "textures/items/potion_bottle_absorption.png"],
 			[[["textures/items/potion_overlay.png", [50, 50, 56]], ["textures/items/potion_bottle_empty.png"]], "textures/items/potion_bottle_blindness.png"],
 			[[["textures/items/potion_overlay.png", [134, 46, 118]], ["textures/items/potion_bottle_empty.png"]], "textures/items/potion_bottle_confusion.png"],
@@ -152,7 +152,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			// Saddle
 			[[["textures/entity/pig/pig.png"], ["textures/entity/saddle.png"]], "textures/entity/pig/pig_saddle.png"],
 
-			// Splash potion (Colors from px (x/y) 7/9 from original bedrock textures)
+			// Splash potion (Colors from px 7/9 from original bedrock textures)
 			[[["textures/items/potion_overlay.png", [88, 184, 255]], ["textures/items/potion_bottle_splash_empty.png"]], "textures/items/potion_bottle_splash.png"],
 			[[["textures/items/potion_overlay.png", [58, 130, 255]], ["textures/items/potion_bottle_splash_empty.png"]], "textures/items/potion_bottle_splash_absorption.png"],
 			[[["textures/items/potion_overlay.png", [50, 50, 56]], ["textures/items/potion_bottle_splash_empty.png"]], "textures/items/potion_bottle_splash_blindness.png"],
@@ -181,7 +181,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			[[["textures/items/potion_overlay.png", [114, 122, 114]], ["textures/items/potion_bottle_splash_empty.png"]], "textures/items/potion_bottle_splash_weakness.png"],
 			[[["textures/items/potion_overlay.png", [84, 66, 62]], ["textures/items/potion_bottle_splash_empty.png"]], "textures/items/potion_bottle_splash_wither.png"],
 
-			// Spawn egg (Colors from px (x/y) 8/9 and 5/9 from original bedrock textures)
+			// Spawn egg (Colors from px 8/9 and 5/9 from original bedrock textures)
 			[[["textures/items/spawn_egg.png", [65, 53, 41]], ["textures/items/spawn_egg_overlay.png", [13, 13, 13]]], "textures/items/egg_bat.png"],
 			[[["textures/items/spawn_egg.png", [211, 153, 1]], ["textures/items/spawn_egg_overlay.png", [226, 220, 112]]], "textures/items/egg_blaze.png"],
 			[[["textures/items/spawn_egg.png", [239, 200, 142]], ["textures/items/spawn_egg_overlay.png", [135, 101, 74]]], "textures/items/egg_cat.png"],
@@ -240,7 +240,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			[[["textures/items/spawn_egg.png", [36, 77, 47]], ["textures/items/spawn_egg_overlay.png", [117, 184, 113]]], "textures/items/egg_zombiehorse.png"],
 			[[["textures/items/spawn_egg.png", [74, 52, 44]], ["textures/items/spawn_egg_overlay.png", [107, 138, 90]]], "textures/items/egg_zombievillager.png"],
 
-			// Tipped arrow (Colors from px (x/y) 12/3 from original bedrock textures)
+			// Tipped arrow (Colors from px 12/3 from original bedrock textures)
 			[[["textures/items/tipped_arrow_base.png"], ["textures/items/tipped_arrow_head.png"]], "textures/items/tipped_arrow.png"],
 			[[["textures/items/tipped_arrow_base.png"], ["textures/items/tipped_arrow_head.png", [214, 144, 54]]], "textures/items/tipped_arrow_fireres.png"],
 			[[["textures/items/tipped_arrow_base.png"], ["textures/items/tipped_arrow_head.png", [65, 10, 9]]], "textures/items/tipped_arrow_harm.png"],
