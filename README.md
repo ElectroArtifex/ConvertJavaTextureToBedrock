@@ -89,7 +89,7 @@ ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputP
 
 Example is the [CLI script](./src/cli.js)
 
-## Know issues
+## Known issues
 - Convert horse textures is very tricky and may buggy
 
 # Extras
