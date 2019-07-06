@@ -69,6 +69,12 @@ class CopyConverter extends AbstractConverter {
 			["textures/blocks/grass_side_carried.png", "textures/ui/icon_recipe_nature.png"],
 			["textures/items/bed_red.png", "textures/ui/icon_recipe_item.png"],
 			["textures/items/diamond_sword.png", "textures/ui/icon_recipe_equipment.png"],
+			["textures/gui/background/panorama_0.png", ".textures/ui/panorama_0.png"],
+			["textures/gui/background/panorama_1.png", ".textures/ui/panorama_1.png"],
+			["textures/gui/background/panorama_2.png", ".textures/ui/panorama_2.png"],
+			["textures/gui/background/panorama_3.png", ".textures/ui/panorama_3.png"],
+			["textures/gui/background/panorama_4.png", ".textures/ui/panorama_4.png"],
+			["textures/gui/background/panorama_5.png", ".textures/ui/panorama_5.png"],
 
 			["bedrock_textures", "./textures"]
 		];

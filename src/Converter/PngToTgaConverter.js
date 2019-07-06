@@ -107,6 +107,7 @@ class PngToTgaConverter extends AbstractConverter {
 			["textures/entity/dragon/dragon.png", "./dragon.tga"],
 			["textures/entity/enderman/enderman.png", "./enderman.tga"],
 			["textures/entity/ghast/ghast_shooting.png", "./ghast_shooting.tga"],
+			["textures/entity/horse/armor/horse_armor_leather.png", "./horse_armor_leather.tga"],
 			["textures/entity/horse2/armor/horse_armor_leather.png", "./horse_armor_leather.tga"],
 			["textures/entity/sheep/sheep.png", "./sheep.tga"],
 			["textures/entity/slime/magmacube.png", "./magmacube.tga"],

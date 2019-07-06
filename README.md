@@ -9,7 +9,7 @@ It supports always the latest Minecraft versions, currently:
 
 Older versions still usable by tags later
 
-Currently it supports blocks, items and entities textures
+Currently it supports blocks, items, entities, paintings, particles and map icons textures
 
 Supported input formats are zip archives or directories
 

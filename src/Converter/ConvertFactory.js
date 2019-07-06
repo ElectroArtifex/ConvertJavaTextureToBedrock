@@ -11,6 +11,7 @@ import DeleteStaticConverter from "./DeleteStaticConverter";
 import DrownedConverter from "./DrownedConverter";
 import FishHookConverter from "./FishingConverter";
 import HorseConverter from "./HorseConverter";
+import MapIconsConverter from "./MapIconsConverter";
 import MetadataConverter from "./MetadataConverter";
 import OpaqueConverter from "./OpaqueConverter";
 import OverlayToTranslateConverter from "./OverlayToTranslateConverter";
@@ -21,6 +22,7 @@ import RedstoneDustConverter from "./RedstoneDustConverter";
 import RenameConverter from "./RenameConverter";
 import SheepConverter from "./SheepConverter";
 import SideRotateConverter from "./SideRotateConverter";
+import SpriteConverter from "./SpriteConverter";
 import VillagerConverter from "./VillagerConverter";
 
 /**
@@ -61,6 +63,7 @@ const converters = [
 	[DrownedConverter, []],
 	[FishHookConverter, []],
 	[HorseConverter, []],
+	[MapIconsConverter, []],
 	[PistonArmConverter, []],
 	[RedstoneDustConverter, []],
 	[SheepConverter, []],
@@ -70,6 +73,7 @@ const converters = [
 	[ColorizeOverlayConverter, []],
 	[PlaceholderConverter, []],
 	[SideRotateConverter, []],
+	[SpriteConverter, []],
 	[PngToTgaConverter, []],
 	[CopyConverter, []],
 	[DeleteStaticConverter, []]

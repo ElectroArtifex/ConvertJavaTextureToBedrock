@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.0]
+- Convert paintings, particles, map icons and banners
+
 ## [1.1.0]
 - First try to convert horse textures (Is very tricky and may buggy)
 - Note some more origin colors in `ColorizeOverlayConverter`

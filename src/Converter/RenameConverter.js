@@ -873,6 +873,10 @@ class RenameConverter extends AbstractConverter {
 				["textures/entity/turtle/big_sea_turtle.png", "textures/entity/sea_turtle.png"],
 				["textures/items/scute.png", "./turtle_shell_piece.png"],
 
+				// UI
+				["textures/gui/options_background.png", "./background.png"],
+				["textures/gui/title/background.png", ".textures/gui/background"],
+
 				// Villager
 				["textures/entity/villager", "./villager2"],
 				["textures/entity/villager2/profession", "./professions"],
