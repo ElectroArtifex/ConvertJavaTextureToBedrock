@@ -875,7 +875,7 @@ class RenameConverter extends AbstractConverter {
 
 				// UI
 				["textures/gui/options_background.png", "./background.png"],
-				["textures/gui/title/background.png", ".textures/gui/background"],
+				["textures/gui/title/background", "textures/gui/background"],
 
 				// Villager
 				["textures/entity/villager", "./villager2"],

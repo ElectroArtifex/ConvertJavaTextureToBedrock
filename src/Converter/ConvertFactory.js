@@ -1,6 +1,7 @@
 import AbstractConverter from "./AbstractConverter";
 import AbstractInput from "../Input/AbstractInput";
 import AtlasConverter from "./AtlasConverter";
+import BannerPatternConverter from "./BannerPatternConverter";
 import BedConverter from "./BedConverter";
 import ChestFrontConverter from "./ChestFrontConverter";
 import ChestSideConverter from "./ChestSideConverter";
@@ -24,6 +25,7 @@ import SheepConverter from "./SheepConverter";
 import SideRotateConverter from "./SideRotateConverter";
 import SpriteConverter from "./SpriteConverter";
 import VillagerConverter from "./VillagerConverter";
+import WeatherConverter from "./WeatherConverter";
 
 /**
  * @param {string} temp
@@ -57,6 +59,7 @@ const converters = [
 	[MetadataConverter, []],
 	[RenameConverter, []],
 	[AtlasConverter, []],
+	[BannerPatternConverter, []],
 	[BedConverter, []],
 	[ChestFrontConverter, []],
 	[ChestSideConverter, []],
@@ -68,6 +71,7 @@ const converters = [
 	[RedstoneDustConverter, []],
 	[SheepConverter, []],
 	[VillagerConverter, []],
+	[WeatherConverter, []],
 	[OpaqueConverter, []],
 	[OverlayToTranslateConverter, []],
 	[ColorizeOverlayConverter, []],

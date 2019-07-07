@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.0]
+- Convert weather environment
+- Convert illager banner
+- Fixed bugs due previous version
+
 ## [1.2.0]
 - Convert paintings, particles, map icons and banners
 

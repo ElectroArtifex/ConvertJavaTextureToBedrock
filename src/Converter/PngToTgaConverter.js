@@ -144,6 +144,7 @@ class PngToTgaConverter extends AbstractConverter {
 			["textures/entity/zombie_villager2/professions/stonemason.png", "./stonemason.tga"],
 			["textures/entity/zombie_villager2/professions/toolsmith.png", "./toolsmith.tga"],
 			["textures/entity/zombie_villager2/professions/weaponsmith.png", "./weaponsmith.tga"],
+			["textures/gui/background/panorama_overlay.png", "textures/ui/panorama_overlay.tga"],
 			["textures/items/fireworks_charge.png", "./fireworks_charge.tga"],
 			["textures/items/leather_boots.png", "./leather_boots.tga"],
 			["textures/items/leather_helmet.png", "./leather_helmet.tga"],
