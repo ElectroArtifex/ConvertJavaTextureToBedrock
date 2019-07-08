@@ -61,13 +61,14 @@ class BannerPatternConverter extends AbstractConverter {
 		const data = [
 			["textures/entity/banner_base.png", [
 				// https://www.planetminecraft.com/banner/pillager-banner-199281/
+				// Colors from original bedrock texture
 				["textures/entity/banner/base.png", [255, 255, 255]],
-				["textures/entity/banner/rhombus.png", [0, 190, 190]],
-				["textures/entity/banner/stripe_bottom.png", [190, 190, 190]],
-				["textures/entity/banner/stripe_center.png", [63, 63, 63]],
+				["textures/entity/banner/rhombus.png", [76, 127, 153]],
+				["textures/entity/banner/stripe_bottom.png", [146, 146, 146]],
+				["textures/entity/banner/stripe_center.png", [79, 79, 79]],
 				["textures/entity/banner/stripe_middle.png", [0, 0, 0]],
-				["textures/entity/banner/half_horizontal.png", [190, 190, 190]],
-				["textures/entity/banner/circle.png", [190, 190, 190]],
+				["textures/entity/banner/half_horizontal.png", [146, 146, 146]],
+				["textures/entity/banner/circle.png", [146, 146, 146]],
 				["textures/entity/banner/border.png", [0, 0, 0]]
 			], "textures/entity/banner/banner_pattern_illager.png"]
 		];

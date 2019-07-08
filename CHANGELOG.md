@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.1]
+- More real illager banner colors
+
 ## [1.3.0]
 - Convert weather environment
 - Convert illager banner
