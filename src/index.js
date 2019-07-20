@@ -16,6 +16,7 @@ import Utils from "./Utils/Utils";
  */
 async function ConvertMinecraftJavaTextureToBedrock(input, output, options = {}) {
 	Utils.setVerbose(options.verbose);
+	Utils.setLogCallback(options.logCallback);
 
 	const temp = await detectTemp(options.temp);
 	const inputProcessor = detectInput(input, temp);

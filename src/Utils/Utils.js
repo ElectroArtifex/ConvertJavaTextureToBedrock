@@ -20,8 +20,15 @@ class Utils {
 	 */
 	static log(log) {
 		if (Utils.verbose) {
-			console.log(log);
+			Utils.logCallback(log);
 		}
+	}
+
+	/**
+	 * @param {function} callback
+	 */
+	static setLogCallback(callback = console.log) {
+		Utils.logCallback = console.log;
 	}
 
 	/**
@@ -54,5 +61,10 @@ class Utils {
  * @type {boolean}
  */
 Utils.verbose = true;
+
+/**
+ * @type {function}
+ */
+Utils.logCallback = console.log;
 
 export default Utils;

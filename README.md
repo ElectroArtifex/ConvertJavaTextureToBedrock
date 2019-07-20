@@ -80,12 +80,13 @@ or handle the `Promise` direct
 ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputPath) => {}).catch((err) => {});
 ```
 
-| Parameter       | Description                                           |
-|-----------------|-------------------------------------------------------|
-| input           | Input (Required)                                      |
-| output          | Output (Required)                                     |
-| options.tmp     | Temp directory (Default is the system temp directory) |
-| options.verbose | Verbose log                                           |
+| Parameter           | Description                                           |
+|---------------------|-------------------------------------------------------|
+| input               | Input (Required)                                      |
+| output              | Output (Required)                                     |
+| options.tmp         | Temp directory (Default is the system temp directory) |
+| options.verbose     | Verbose log                                           |
+| options.logCallback | Custom log callback (Default is `console.log`)        |
 
 Example is the [CLI script](./src/cli.js)
 

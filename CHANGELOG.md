@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.2]
+- Custom log callback
+
 ## [1.3.1]
 - More real illager banner colors
 
