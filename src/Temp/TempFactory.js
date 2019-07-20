@@ -1,7 +1,6 @@
 import fs from "fs-extra";
 import os from "os";
 import PACKAGE from "../../package";
-import TempError from "./TempError";
 import Utils from "../Utils/Utils";
 
 /**
@@ -12,10 +11,6 @@ import Utils from "../Utils/Utils";
 async function detectTemp(temp = os.tmpdir()) {
 	Utils.log(`Init temp folder`);
 
-	if (!fs.existsSync(temp)) {
-		throw new TempError(`The temp ${temp} does not exists!`);
-	}
-
 	temp = Utils.fromPath(PACKAGE.productName/* + Date.now().toString()*/, temp);
 
 	try {
@@ -24,7 +19,9 @@ async function detectTemp(temp = os.tmpdir()) {
 		// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
 	}
 
-	await fs.mkdirs(temp);
+	if (!fs.existsSync(temp)) {
+		await fs.mkdirs(temp);
+	}
 
 	return temp;
 }
