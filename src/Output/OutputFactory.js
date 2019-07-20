@@ -3,19 +3,22 @@ import FolderOutput from "./FolderOutput";
 import fs from "fs-extra";
 import OutputError from "./OutputError";
 import path from "path";
+import Utils from "../Utils/Utils";
 import ZipOutput from "./ZipOutput";
 
 /**
  * @param {string} output
  * @param {string} temp
  *
- * @returns {AbstractOutput}
+ * @returns {Promise<AbstractOutput>}
  *
  * @throws {OutputError}
  */
-function detectOutput(output, temp) {
+async function detectOutput(output, temp) {
 	if (fs.existsSync(output)) {
-		throw new OutputError(`The output ${output} exists already!`);
+		Utils.log(`Remove exists output ${output}`);
+
+		await fs.remove(output);
 	}
 
 	const ext = path.extname(output).toLowerCase().substr(1);

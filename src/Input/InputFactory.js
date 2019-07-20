@@ -9,11 +9,11 @@ import ZipInput from "./ZipInput";
  * @param {string} input
  * @param {string} temp
  *
- * @returns {AbstractInput}
+ * @returns {Promise<AbstractInput>}
  *
  * @throws {InputError}
  */
-function detectInput(input, temp) {
+async function detectInput(input, temp) {
 	if (!fs.existsSync(input)) {
 		throw new InputError(`The input ${input} does not exists!`);
 	}

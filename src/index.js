@@ -19,8 +19,8 @@ async function ConvertMinecraftJavaTextureToBedrock(input, output, options = {})
 	Utils.setLogCallback(options.logCallback);
 
 	const temp = await detectTemp(options.temp);
-	const inputProcessor = detectInput(input, temp);
-	const outputProcessor = detectOutput(output, temp);
+	const inputProcessor = await detectInput(input, temp);
+	const outputProcessor = await detectOutput(output, temp);
 
 	await inputProcessor.input();
 

@@ -3,6 +3,7 @@ import DeleteConverter from "./DeleteConverter";
 import fs from "fs-extra";
 import Utils from "../Utils/Utils";
 import uuid from "uuid/v4";
+import ConverterError from "./ConverterError";
 
 /**
  * Class MetadataConverter
@@ -41,6 +42,10 @@ class MetadataConverter extends AbstractConverter {
 			}
 
 			const mcmeta = JSON.parse(await fs.readFile(from_path, "utf8"));
+
+			if (mcmeta.pack.pack_format !== 4) {
+				throw new ConverterError("Only supports pack_format 4!");
+			}
 
 			const manifest = {
 				"format_version": 1,

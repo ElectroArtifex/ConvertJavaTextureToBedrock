@@ -1,4 +1,5 @@
 .idea
+dist
 input
 node_modules
 output

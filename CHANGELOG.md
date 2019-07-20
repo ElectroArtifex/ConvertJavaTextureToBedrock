@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.5]
+- Delete may already exists output path
+- Validate metadata pack_format
+
 ## [1.3.4]
 - Readme
 
