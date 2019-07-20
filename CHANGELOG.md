@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.4]
+- Readme
+
 ## [1.3.3]
 - Custom log callback
 

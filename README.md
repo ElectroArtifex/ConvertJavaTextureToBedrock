@@ -23,9 +23,12 @@ For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/p
 
 # Usage
 
-Be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version)
+## GUI
+Look at https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrockGUI/releases
 
 ## CLI
+Be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version)
+
 Install it global with your package manager
 
 yarn:
@@ -104,6 +107,40 @@ You can put custom textures in a `bedrock_textures` directory in your input
 For instance for textures, that can not be converted or are not converted correctly
 
 This files are applied additionally before output
+
+## Debug and build
+First clone this repo and install the dependencies
+
+yarn:
+```bash
+yarn
+```
+npm:
+```bash
+npm install
+```
+
+Then you can start the debug
+
+yarn:
+```bash
+yarn debug
+```
+npm:
+```bash
+npm run debug
+```
+
+You can create a build
+
+yarn:
+```bash
+yarn build
+```
+npm:
+```bash
+npm run build
+```
 
 # License
 The Minecraft Java and Bedrock products are &copy; by [Mojang](https://mojang.com/)
