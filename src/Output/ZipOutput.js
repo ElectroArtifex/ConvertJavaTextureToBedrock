@@ -19,6 +19,7 @@ class ZipOutput extends AbstractOutput {
 			await fs.remove(this.temp);
 		} catch (err) {
 			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+			console.warn(err);
 		}
 	}
 }

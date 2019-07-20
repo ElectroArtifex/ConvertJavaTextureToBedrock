@@ -11,12 +11,13 @@ import Utils from "../Utils/Utils";
 async function detectTemp(temp = os.tmpdir()) {
 	Utils.log(`Init temp folder`);
 
-	temp = Utils.fromPath(PACKAGE.productName/* + Date.now().toString()*/, temp);
+	temp = Utils.fromPath(PACKAGE.productName + Date.now().toString(), temp);
 
 	try {
 		await fs.remove(temp);
 	} catch (err) {
 		// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+		console.warn(err);
 	}
 
 	if (!fs.existsSync(temp)) {

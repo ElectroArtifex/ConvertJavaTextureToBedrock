@@ -22,6 +22,7 @@ async function detectOutput(output, temp) {
 			await fs.remove(output);
 		} catch (err) {
 			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+			console.warn(err);
 		}
 	}
 
