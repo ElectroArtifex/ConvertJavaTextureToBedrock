@@ -15,7 +15,11 @@ class ZipOutput extends AbstractOutput {
 		await zip(this.temp, this.path);
 
 		Utils.log(`Clean ${this.temp}`);
-		await fs.remove(this.temp);
+		try {
+			await fs.remove(this.temp);
+		} catch (err) {
+			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+		}
 	}
 }
 

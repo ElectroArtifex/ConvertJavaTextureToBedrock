@@ -18,7 +18,11 @@ async function detectOutput(output, temp) {
 	if (fs.existsSync(output)) {
 		Utils.log(`Remove exists output ${output}`);
 
-		await fs.remove(output);
+		try {
+			await fs.remove(output);
+		} catch (err) {
+			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+		}
 	}
 
 	const ext = path.extname(output).toLowerCase().substr(1);

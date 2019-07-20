@@ -18,7 +18,11 @@ async function detectTemp(temp = os.tmpdir()) {
 
 	temp = Utils.fromPath(PACKAGE.productName/* + Date.now().toString()*/, temp);
 
-	await fs.remove(temp);
+	try {
+		await fs.remove(temp);
+	} catch (err) {
+		// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+	}
 
 	await fs.mkdirs(temp);
 
