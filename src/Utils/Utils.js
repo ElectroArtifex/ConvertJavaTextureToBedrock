@@ -28,7 +28,7 @@ class Utils {
 	 * @param {function} callback
 	 */
 	static setLogCallback(callback = console.log) {
-		Utils.logCallback = console.log;
+		Utils.logCallback = callback;
 	}
 
 	/**
