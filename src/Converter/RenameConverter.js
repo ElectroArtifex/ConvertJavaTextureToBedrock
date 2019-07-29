@@ -346,6 +346,9 @@ class RenameConverter extends AbstractConverter {
 				["textures/items/red_dye.png", "./dye_powder_red.png"],
 				["textures/items/white_dye.png", "./dye_powder_white_new.png"],
 				["textures/items/yellow_dye.png", "./dye_powder_yellow.png"],
+				["textures/items/cactus_green.png", "./dye_powder_green.png"], // 1.13
+				["textures/items/dandelion_yellow.png", "./dye_powder_yellow.png"], // 1.13
+				["textures/items/rose_red.png", "./dye_powder_red.png"], // 1.13
 
 				// End crystal
 				["textures/entity/end_crystal", "./endercrystal"],
@@ -636,6 +639,9 @@ class RenameConverter extends AbstractConverter {
 
 				// Observer
 				["textures/blocks/observer_back_on.png", "./observer_back_lit.png"],
+
+				// Painting
+				["textures/painting/paintings_kristoffer_zetterstrand.png", "./kz.png"], // 1.13
 
 				// Panda
 				["textures/entity/panda/aggressive_panda.png", "./panda_aggressive.png"],

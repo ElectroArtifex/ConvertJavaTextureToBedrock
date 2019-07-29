@@ -2,12 +2,10 @@ Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
 
 It supports always the latest Minecraft versions, currently:
 
-| Minecraft | Version |
-|-----------|---------|
-| Java      | v1.14.x |
-| Bedrock   | v1.11.x |
-
-Older versions still usable by tags later
+| Minecraft | Version             |
+|-----------|---------------------|
+| Java      | v1.13.x or v1.14.x  |
+| Bedrock   | v1.12.x             |
 
 Currently it supports blocks, items, entities, paintings, particles and map icons textures
 
@@ -90,8 +88,6 @@ ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputP
 | options.tmp         | Temp directory (Default is the system temp directory) |
 | options.verbose     | Verbose log                                           |
 | options.logCallback | Custom log callback (Default is `console.log`)        |
-
-Example is the [CLI script](./src/cli.js)
 
 ## Known issues
 - Convert horse textures is very tricky and may buggy
