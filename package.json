@@ -45,6 +45,7 @@
     "cli": "node dist/cli.js",
     "debug": "webpack --mode=development && node dist/cli.js",
     "build": "webpack",
+    "publish": "webpack && npm publish",
     "test": "webpack --mode=development && mocha tests"
   }
 }
