@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.4.2]
+- Update description
+
 ## [1.4.1]
 - Some more support for Java v1.13
 
