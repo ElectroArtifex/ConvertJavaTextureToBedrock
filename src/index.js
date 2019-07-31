@@ -1,8 +1,8 @@
-import {addAdditionalConverters, getConverters} from "./Converter/ConvertFactory";
+import {addAdditionalConverters, getConverters} from "./Converter";
 import BaseError from "./BaseError";
-import detectInput from "./Input/InputFactory";
-import detectOutput from "./Output/OutputFactory";
-import detectTemp from "./Temp/TempFactory";
+import detectInput from "./Input";
+import detectOutput from "./Output";
+import detectTemp from "./Temp";
 import Utils from "./Utils/Utils";
 
 /**

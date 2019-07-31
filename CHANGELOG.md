@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.0]
+- Convert fireworks
+- Fix `EXDEV: cross-device link not permitted`
+
 ## [1.4.2]
 - Update description
 

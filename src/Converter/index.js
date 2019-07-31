@@ -11,6 +11,7 @@ import CopyConverter from "./CopyConverter";
 import DeleteStaticConverter from "./DeleteStaticConverter";
 import DrownedConverter from "./DrownedConverter";
 import FishHookConverter from "./FishingConverter";
+import FireworksConverter from "./FireworksConverter";
 import HorseConverter from "./HorseConverter";
 import MapIconsConverter from "./MapIconsConverter";
 import MetadataConverter from "./MetadataConverter";
@@ -64,6 +65,7 @@ const converters = [
 	[ChestFrontConverter, []],
 	[ChestSideConverter, []],
 	[DrownedConverter, []],
+	[FireworksConverter, []],
 	[FishHookConverter, []],
 	[HorseConverter, []],
 	[MapIconsConverter, []],
