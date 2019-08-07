@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.1]
+- Fix
+
 ## [1.6.0]
 - Refactoring output zip
 

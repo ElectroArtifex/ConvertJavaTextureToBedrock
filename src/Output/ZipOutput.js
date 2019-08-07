@@ -107,9 +107,11 @@ class ZipOutput extends AbstractOutput {
 			if (parent === ".") {
 				parent = "";
 			}
-			parent += "/";
-			if (this.zip.getEntry(parent) === null) {
-				this.zip.addFile(parent, "")
+			if (parent !== "") {
+				parent += "/";
+				if (this.zip.getEntry(parent) === null) {
+					this.zip.addFile(parent, "")
+				}
 			}
 
 			this.zip.addFile(file, data);
