@@ -1,6 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
-import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
 /**
@@ -12,22 +10,17 @@ class BannerPatternConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [base, patterns, to] of this.getData()) {
-			const base_path = Utils.fromPath(base, this.path);
-			const to_path = Utils.toPath(to, base_path, this.path);
-
-			if (fs.existsSync(base_path)) {
+			if (await this.output.exists(base)) {
 				let image = null;
 
 				for (const [pattern, color] of patterns) {
-					const pattern_path = Utils.fromPath(pattern, this.path);
-
-					if (fs.existsSync(pattern_path)) {
-						const image_pattern = await Jimp.read(pattern_path);
+					if (await this.output.exists(pattern)) {
+						const image_pattern = await this.readImage(pattern);
 
 						if (image === null) {
 							Utils.log(`Convert pattern banner ${to}`);
 
-							image = await Jimp.read(base_path);
+							image = await this.readImage(base);
 
 							const factor = (image.getWidth() / 64);
 
@@ -45,7 +38,7 @@ class BannerPatternConverter extends AbstractConverter {
 					}
 
 					if (image !== null) {
-						await image.writeAsync(to_path);
+						await this.writeImage(to, image);
 					}
 				}
 			}

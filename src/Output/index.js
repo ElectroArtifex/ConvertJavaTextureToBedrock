@@ -1,7 +1,7 @@
+import AbstractInput from "../Input/AbstractInput";
 import AbstractOutput from "./AbstractOutput";
 import FolderOutput from "./FolderOutput";
 import fs from "fs-extra";
-import OutputError from "./OutputError";
 import path from "path";
 import Utils from "../Utils/Utils";
 import ZipOutput from "./ZipOutput";
@@ -9,12 +9,13 @@ import ZipOutput from "./ZipOutput";
 /**
  * @param {string} output
  * @param {string} temp
+ * @param {AbstractInput} input
  *
  * @returns {Promise<AbstractOutput>}
  *
- * @throws {OutputError}
+ * @throws {Error}
  */
-async function detectOutput(output, temp) {
+async function detectOutput(output, temp, input) {
 	if (fs.existsSync(output)) {
 		Utils.log(`Remove exists output ${output}`);
 
@@ -31,10 +32,10 @@ async function detectOutput(output, temp) {
 	switch (ext) {
 		case "mcpack":
 		case "zip":
-			return new ZipOutput(output, temp);
+			return new ZipOutput(output, temp, input);
 
 		default:
-			return new FolderOutput(output, temp);
+			return new FolderOutput(output, temp, input);
 	}
 }
 

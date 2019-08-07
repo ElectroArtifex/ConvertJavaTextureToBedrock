@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -15,17 +14,13 @@ class AtlasConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [base, count, to] of this.getData()) {
-			const base_path = Utils.fromPath(base, this.path);
-			const to_path = Utils.toPath(to, base_path, this.path);
-
 			let image = null;
 
 			for (let i = 0; i <= count; i++) {
 				const step = base + (i.toString().padStart(2, "0") + ".png");
-				const step_path = Utils.fromPath(step, this.path);
 
-				if (fs.existsSync(step_path)) {
-					const image_step = await Jimp.read(step_path);
+				if (await this.output.exists(step)) {
+					const image_step = await this.readImage(step);
 
 					if (image === null) {
 						Utils.log(`Create atlas ${to}`);
@@ -40,7 +35,7 @@ class AtlasConverter extends AbstractConverter {
 			}
 
 			if (image !== null) {
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
@@ -52,8 +47,8 @@ class AtlasConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			["textures/items/clock_", 63, "./watch_atlas.png"],
-			["textures/items/compass_", 31, "./compass_atlas.png"]
+			["textures/items/clock_", 63, "textures/items/watch_atlas.png"],
+			["textures/items/compass_", 31, "textures/items/compass_atlas.png"]
 		];
 
 		for (const date of data) {

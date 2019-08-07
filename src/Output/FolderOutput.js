@@ -1,6 +1,11 @@
 import AbstractOutput from "./AbstractOutput";
+import admZip from "adm-zip";
+import FolderInput from "../Input/FolderInput";
 import fs from "fs-extra";
+import path from "path";
+import util from "util";
 import Utils from "../Utils/Utils";
+import ZipInput from "../Input/ZipInput";
 
 /**
  * Class FolderOutput
@@ -9,26 +14,90 @@ class FolderOutput extends AbstractOutput {
 	/**
 	 * @inheritDoc
 	 */
-	async output() {
-		Utils.log(`Move ${this.temp} to ${this.path}`);
+	async init() {
+		switch (true) {
+			case (this.input instanceof FolderInput):
+				Utils.log(`Copy ${this.input.path}`);
 
-		try {
-			await fs.rename(this.temp, this.path);
-		} catch (err) {
-			// TODO: Fix EXDEV: cross-device link not permitted
-			console.warn(err);
+				return fs.copy(this.input.path, this.temp);
 
-			Utils.log(`Copy ${this.temp} to ${this.path}`);
-			await fs.copy(this.temp, this.path);
+			case (this.input instanceof ZipInput):
+				Utils.log(`Extract ${this.input.path}`);
 
-			Utils.log(`Clean ${this.temp}`);
-			try {
-				await fs.remove(this.temp);
-			} catch (err) {
-				// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
-				console.warn(err);
-			}
+				const zip = new admZip(this.input.path);
+
+				const extractAllToAsyncPromise = util.promisify(zip.extractAllToAsync.bind(zip));
+
+				return extractAllToAsyncPromise(this.temp, true);
+
+			default:
+				break;
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async exists(path) {
+		return fs.existsSync(this.p(path));
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async rename(from, to) {
+		if (!fs.existsSync(this.p(path.dirname(to)))) {
+			await fs.mkdirs(this.p(path.dirname(to)));
+		}
+
+		return fs.rename(this.p(from), this.p(to)); // TODO: Fix EXDEV: cross-device link not permitted
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async read(file) {
+		return fs.readFile(this.p(file));
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async write(file, data) {
+		if (!fs.existsSync(this.p(path.dirname(file)))) {
+			await fs.mkdirs(this.p(path.dirname(file)));
+		}
+
+		return fs.writeFile(this.p(file), data);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async delete(path) {
+		return fs.remove(this.p(path));
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async copy(from, to) {
+		if (!fs.existsSync(this.p(path.dirname(to)))) {
+			await fs.mkdirs(this.p(path.dirname(to)));
+		}
+
+		return fs.copy(this.p(from), this.p(to));
+	}
+
+	/**
+	 * @param {string} p
+	 *
+	 * @returns {string}
+	 *
+	 * @protected
+	 */
+	p(p) {
+		return path.join(this.temp, p);
 	}
 }
 

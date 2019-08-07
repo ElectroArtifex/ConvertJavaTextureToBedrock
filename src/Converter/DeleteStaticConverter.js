@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Utils from "../Utils/Utils";
 
 /**
@@ -11,12 +10,10 @@ class DeleteStaticConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const from of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Delete ${from}`);
 
-				await fs.remove(from_path);
+				await this.output.delete(from);
 			}
 		}
 
@@ -28,7 +25,7 @@ class DeleteStaticConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			"assets",
+			"assets/",
 
 			"textures/blocks/conduit.png",
 			"textures/entity/conduit/break_particle.png",
@@ -40,7 +37,7 @@ class DeleteStaticConverter extends AbstractConverter {
 
 			"textures/entity/wolf/wolf_collar.png",
 
-			"bedrock_textures"
+			"bedrock_textures/"
 		];
 
 		for (const date of data) {

@@ -1,7 +1,7 @@
 {
   "name": "@ozelot379/convert-minecraft-java-texture-to-bedrock",
   "productName": "ConvertMinecraftJavaTextureToBedrock",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "CLI version for convert Minecraft Java texture packs to Minecraft Bedrock texture packs",
   "keywords": [
     "Minecraft",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock#readme",
   "dependencies": {},
   "devDependencies": {
-    "decompress": "latest",
+    "adm-zip": "https://github.com/cthackers/adm-zip/tarball/master",
     "fs-extra": "latest",
     "jimp": "latest",
     "mocha": "latest",
@@ -31,8 +31,7 @@
     "uuid": "latest",
     "webpack": "latest",
     "webpack-cli": "latest",
-    "yargs": "latest",
-    "zip-a-folder": "latest"
+    "yargs": "latest"
   },
   "engines": {
     "node": ">=10.0.0"

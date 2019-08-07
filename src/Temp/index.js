@@ -1,5 +1,6 @@
 import fs from "fs-extra";
 import os from "os";
+import path from "path";
 import PACKAGE from "../../package";
 import Utils from "../Utils/Utils";
 
@@ -11,17 +12,15 @@ import Utils from "../Utils/Utils";
 async function detectTemp(temp = os.tmpdir()) {
 	Utils.log(`Init temp folder`);
 
-	temp = Utils.fromPath(PACKAGE.productName + Date.now().toString(), temp);
+	temp = path.join(temp, PACKAGE.productName + Date.now().toString());
 
-	try {
-		await fs.remove(temp);
-	} catch (err) {
-		// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
-		console.warn(err);
-	}
-
-	if (!fs.existsSync(temp)) {
-		await fs.mkdirs(temp);
+	if (fs.existsSync(temp)) {
+		try {
+			await fs.remove(temp);
+		} catch (err) {
+			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+			console.warn(err);
+		}
 	}
 
 	return temp;

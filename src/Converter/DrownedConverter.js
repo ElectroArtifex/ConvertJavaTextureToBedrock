@@ -1,7 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import fs from "fs-extra";
-import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
 /**
@@ -15,16 +13,12 @@ class DrownedConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [from, overlay, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const overlay_path = Utils.toPath(overlay, from_path, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path) && fs.existsSync(overlay_path)) {
+			if (await this.output.exists(from) && await this.output.exists(overlay)) {
 				Utils.log(`Convert drowned`);
 
-				const image = await Jimp.read(from_path);
+				const image = await this.readImage(from);
 
-				const image_overlay = await Jimp.read(overlay_path);
+				const image_overlay = await this.readImage(overlay);
 
 				const factor = (image.getWidth() / 64);
 
@@ -36,7 +30,7 @@ class DrownedConverter extends AbstractConverter {
 
 				image.composite(image_overlay.clone().crop((32 * factor), (48 * factor), (16 * factor), (16 * factor)), (48 * factor), (48 * factor));
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 
 			to_delete.push(overlay);
@@ -49,7 +43,7 @@ class DrownedConverter extends AbstractConverter {
 	 * @inheritDoc
 	 */
 	async* getData() {
-		const date = ["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "./drowned.png"];
+		const date = ["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "textures/entity/zombie/drowned.png"];
 
 		yield date;
 	}

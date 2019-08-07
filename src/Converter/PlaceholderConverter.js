@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,13 +11,10 @@ class PlaceholderConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, x, y, width, height, factor_detect, to, not_center] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Create placeholder ${to}`);
 
-				let image = await Jimp.read(from_path);
+				let image = await this.readImage(from);
 
 				const factor = (image.getWidth() / factor_detect);
 
@@ -30,7 +26,7 @@ class PlaceholderConverter extends AbstractConverter {
 					image = (await Jimp.create((size * factor), (size * factor))).composite(image, (((size * factor) - (width * factor)) / 2), (((size * factor) - (height * factor)) / 2));
 				}
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
@@ -73,22 +69,22 @@ class PlaceholderConverter extends AbstractConverter {
 			["textures/entity/chest/ender.png", 14, 0, 14, 14, 64, "textures/blocks/ender_chest_top.png"],
 
 			// Command block
-			["textures/blocks/chain_command_block_back.png", 0, 0, 16, 16, 16, "./chain_command_block_back_mipmap.png"],
-			["textures/blocks/chain_command_block_conditional.png", 0, 0, 16, 16, 16, "./chain_command_block_conditional_mipmap.png"],
-			["textures/blocks/chain_command_block_front.png", 0, 0, 16, 16, 16, "./chain_command_block_front_mipmap.png"],
-			["textures/blocks/chain_command_block_side.png", 0, 0, 16, 16, 16, "./chain_command_block_side_mipmap.png"],
-			["textures/blocks/command_block_back.png", 0, 0, 16, 16, 16, "./command_block_back_mipmap.png"],
-			["textures/blocks/command_block_conditional.png", 0, 0, 16, 16, 16, "./command_block_conditional_mipmap.png"],
-			["textures/blocks/command_block_front.png", 0, 0, 16, 16, 16, "./command_block_front_mipmap.png"],
-			["textures/blocks/command_block_side.png", 0, 0, 16, 16, 16, "./command_block_side_mipmap.png"],
-			["textures/blocks/repeating_command_block_back.png", 0, 0, 16, 16, 16, "./repeating_command_block_back_mipmap.png"],
-			["textures/blocks/repeating_command_block_conditional.png", 0, 0, 16, 16, 16, "./repeating_command_block_conditional_mipmap.png"],
-			["textures/blocks/repeating_command_block_front.png", 0, 0, 16, 16, 16, "./repeating_command_block_front_mipmap.png"],
-			["textures/blocks/repeating_command_block_side.png", 0, 0, 16, 16, 16, "./repeating_command_block_side_mipmap.png"],
+			["textures/blocks/chain_command_block_back.png", 0, 0, 16, 16, 16, "textures/blocks/chain_command_block_back_mipmap.png"],
+			["textures/blocks/chain_command_block_conditional.png", 0, 0, 16, 16, 16, "textures/blocks/chain_command_block_conditional_mipmap.png"],
+			["textures/blocks/chain_command_block_front.png", 0, 0, 16, 16, 16, "textures/blocks/chain_command_block_front_mipmap.png"],
+			["textures/blocks/chain_command_block_side.png", 0, 0, 16, 16, 16, "textures/blocks/chain_command_block_side_mipmap.png"],
+			["textures/blocks/command_block_back.png", 0, 0, 16, 16, 16, "textures/blocks/command_block_back_mipmap.png"],
+			["textures/blocks/command_block_conditional.png", 0, 0, 16, 16, 16, "textures/blocks/command_block_conditional_mipmap.png"],
+			["textures/blocks/command_block_front.png", 0, 0, 16, 16, 16, "textures/blocks/command_block_front_mipmap.png"],
+			["textures/blocks/command_block_side.png", 0, 0, 16, 16, 16, "textures/blocks/command_block_side_mipmap.png"],
+			["textures/blocks/repeating_command_block_back.png", 0, 0, 16, 16, 16, "textures/blocks/repeating_command_block_back_mipmap.png"],
+			["textures/blocks/repeating_command_block_conditional.png", 0, 0, 16, 16, 16, "textures/blocks/repeating_command_block_conditional_mipmap.png"],
+			["textures/blocks/repeating_command_block_front.png", 0, 0, 16, 16, 16, "textures/blocks/repeating_command_block_front_mipmap.png"],
+			["textures/blocks/repeating_command_block_side.png", 0, 0, 16, 16, 16, "textures/blocks/repeating_command_block_side_mipmap.png"],
 
 			// Compass & clock
-			["textures/items/compass_atlas.png", 0, 0, 16, 16, 16, "./compass_item.png"],
-			["textures/items/watch_atlas.png", 0, 0, 16, 16, 16, "./clock_item.png"],
+			["textures/items/compass_atlas.png", 0, 0, 16, 16, 16, "textures/items/compass_item.png"],
+			["textures/items/watch_atlas.png", 0, 0, 16, 16, 16, "textures/items/clock_item.png"],
 
 			// Sign
 			["textures/entity/sign_acacia.png", 2, 2, 24, 12, 64, "textures/ui/sign_acacia.png", true],
@@ -99,17 +95,17 @@ class PlaceholderConverter extends AbstractConverter {
 			["textures/entity/sign_spruce.png", 2, 2, 24, 12, 64, "textures/ui/sign_spruce.png", true],
 
 			// Water, lava & co.
-			["textures/blocks/cauldron_water.png", 0, 0, 16, 16, 16, "./cauldron_water_placeholder.png"],
-			["textures/blocks/fire_0.png", 0, 0, 16, 16, 16, "./fire_0_placeholder.png"],
-			["textures/blocks/fire_1.png", 0, 0, 16, 16, 16, "./fire_1_placeholder.png"],
-			["textures/blocks/lava_still.png", 0, 0, 16, 16, 16, "./lava_placeholder.png"],
-			["textures/blocks/portal.png", 0, 0, 16, 16, 16, "./portal_placeholder.png"],
-			["textures/blocks/water_still.png", 0, 0, 16, 16, 16, "./water_placeholder.png"],
+			["textures/blocks/cauldron_water.png", 0, 0, 16, 16, 16, "textures/blocks/cauldron_water_placeholder.png"],
+			["textures/blocks/fire_0.png", 0, 0, 16, 16, 16, "textures/blocks/fire_0_placeholder.png"],
+			["textures/blocks/fire_1.png", 0, 0, 16, 16, 16, "textures/blocks/fire_1_placeholder.png"],
+			["textures/blocks/lava_still.png", 0, 0, 16, 16, 16, "textures/blocks/lava_placeholder.png"],
+			["textures/blocks/portal.png", 0, 0, 16, 16, 16, "textures/blocks/portal_placeholder.png"],
+			["textures/blocks/water_still.png", 0, 0, 16, 16, 16, "textures/blocks/water_placeholder.png"],
 
 			// Zombie
-			["textures/entity/pig/pigzombie.png", 0, 0, 64, 32, 64, "./pigzombie.png", true],
-			["textures/entity/zombie/husk.png", 0, 0, 64, 32, 64, "./husk.png", true],
-			["textures/entity/zombie/zombie.png", 0, 0, 64, 32, 64, "./zombie.png", true],
+			["textures/entity/pig/pigzombie.png", 0, 0, 64, 32, 64, "textures/entity/pig/pigzombie.png", true],
+			["textures/entity/zombie/husk.png", 0, 0, 64, 32, 64, "textures/entity/zombie/husk.png", true],
+			["textures/entity/zombie/zombie.png", 0, 0, 64, 32, 64, "textures/entity/zombie/zombie.png", true],
 		];
 
 		for (const date of data) {

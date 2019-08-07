@@ -1,5 +1,4 @@
 import {addAdditionalConverters, getConverters} from "./Converter";
-import BaseError from "./BaseError";
 import detectInput from "./Input";
 import detectOutput from "./Output";
 import detectTemp from "./Temp";
@@ -12,25 +11,26 @@ import Utils from "./Utils/Utils";
  *
  * @returns {Promise<string>}
  *
- * @throws {BaseError}
+ * @throws {Error}
  */
 async function ConvertMinecraftJavaTextureToBedrock(input, output, options = {}) {
 	Utils.setVerbose(options.verbose);
 	Utils.setLogCallback(options.logCallback);
 
 	const temp = await detectTemp(options.temp);
-	const inputProcessor = await detectInput(input, temp);
-	const outputProcessor = await detectOutput(output, temp);
+	const inputProcessor = await detectInput(input);
 
-	await inputProcessor.input();
+	const outputProcessor = await detectOutput(output, temp, inputProcessor);
 
-	for await (const converter of getConverters(temp, inputProcessor)) {
+	await outputProcessor.init();
+
+	for await (const converter of getConverters(outputProcessor)) {
 		await addAdditionalConverters(...await converter.convert());
 	}
 
-	await outputProcessor.output();
+	await outputProcessor.store();
 
-	return await outputProcessor.getPath();
+	return outputProcessor.path;
 }
 
 export default ConvertMinecraftJavaTextureToBedrock;

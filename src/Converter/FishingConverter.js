@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,13 +11,10 @@ class FishHookConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Convert fishhook`);
 
-				const image_from = await Jimp.read(from_path);
+				const image_from = await this.readImage(from);
 
 				const factor = (image_from.getWidth() / 8);
 
@@ -44,7 +40,7 @@ class FishHookConverter extends AbstractConverter {
 				image.composite(image_from.clone().crop((2 * factor), (5 * factor), (3 * factor), (3 * factor)), (18 * factor), 0);
 				image.composite(image_from.clone().crop((2 * factor), (6 * factor), factor, factor), (22 * factor), (2 * factor));
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
@@ -55,7 +51,7 @@ class FishHookConverter extends AbstractConverter {
 	 * @inheritDoc
 	 */
 	async* getData() {
-		const date = ["textures/entity/fishhook.png", "./fishhook.png"];
+		const date = ["textures/entity/fishhook.png", "textures/entity/fishhook.png"];
 
 		yield date;
 	}

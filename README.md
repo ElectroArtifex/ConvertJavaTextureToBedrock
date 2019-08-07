@@ -1,6 +1,6 @@
 CLI version for convert Minecraft Java texture packs to Minecraft Bedrock texture packs
 
-It supports always the latest Minecraft versions, currently:
+It supports currently the follow Minecraft versions:
 
 | Minecraft | Version             |
 |-----------|---------------------|

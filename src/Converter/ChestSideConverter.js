@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,13 +11,10 @@ class ChestSideConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, "", this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Create chest side ${to}`);
 
-				const image_from = await Jimp.read(from_path);
+				const image_from = await this.readImage(from);
 
 				const factor = (image_from.getWidth() / 64);
 
@@ -28,7 +24,7 @@ class ChestSideConverter extends AbstractConverter {
 
 				image.composite(image_from.clone().crop((28 * factor), (34 * factor), (14 * factor), (9 * factor)), 0, (5 * factor));
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 

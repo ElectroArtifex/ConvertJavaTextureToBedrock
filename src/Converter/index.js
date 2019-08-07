@@ -1,12 +1,11 @@
 import AbstractConverter from "./AbstractConverter";
-import AbstractInput from "../Input/AbstractInput";
+import AbstractOutput from "../Output/AbstractOutput";
 import AtlasConverter from "./AtlasConverter";
 import BannerPatternConverter from "./BannerPatternConverter";
 import BedConverter from "./BedConverter";
 import ChestFrontConverter from "./ChestFrontConverter";
 import ChestSideConverter from "./ChestSideConverter";
 import ColorizeOverlayConverter from "./ColorizeOverlayConverter";
-import ConverterError from "./ConverterError";
 import CopyConverter from "./CopyConverter";
 import DeleteStaticConverter from "./DeleteStaticConverter";
 import DrownedConverter from "./DrownedConverter";
@@ -29,16 +28,15 @@ import VillagerConverter from "./VillagerConverter";
 import WeatherConverter from "./WeatherConverter";
 
 /**
- * @param {string} temp
- * @param {AbstractInput} input
+ * @param {AbstractOutput} output
  *
  * @returns {AsyncIterableIterator<AbstractConverter>}
  *
- * @throws {ConverterError}
+ * @throws {Error}
  */
-async function* getConverters(temp, input) {
+async function* getConverters(output) {
 	for (const [converter, data] of converters) {
-		yield new converter(temp, input, data);
+		yield new converter(output, data);
 	}
 }
 

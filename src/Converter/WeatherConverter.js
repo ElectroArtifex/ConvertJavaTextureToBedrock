@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -15,16 +14,12 @@ class WeatherConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [snow, rain, to] of this.getData()) {
-			const snow_path = Utils.fromPath(snow, this.path);
-			const rain_path = Utils.toPath(rain, snow_path, this.path);
-			const to_path = Utils.toPath(to, snow_path, this.path);
-
-			if (fs.existsSync(snow_path) && fs.existsSync(rain_path)) {
+			if (await this.output.exists(snow) && await this.output.exists(rain)) {
 				Utils.log(`Convert weather`);
 
-				const snow_image = await Jimp.read(snow_path);
+				const snow_image = await this.readImage(snow);
 
-				const rain_image = await Jimp.read(rain_path);
+				const rain_image = await this.readImage(rain);
 
 				const factor = (snow_image.getWidth() / 64);
 
@@ -66,7 +61,7 @@ class WeatherConverter extends AbstractConverter {
 
 				to_delete.push(rain);
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
@@ -78,7 +73,7 @@ class WeatherConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			["textures/environment/snow.png", "textures/environment/rain.png", "./weather.png"]
+			["textures/environment/snow.png", "textures/environment/rain.png", "textures/environment/weather.png"]
 		];
 
 		for (const date of data) {

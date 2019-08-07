@@ -42,5 +42,5 @@ import yargs from "yargs";
 })().then((outputPath) => {
 	console.log(`Output: ${outputPath}`);
 }).catch((err) => {
-	console.error(err.message);
+	console.error(err);
 });

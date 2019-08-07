@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Utils from "../Utils/Utils";
 
 /**
@@ -11,13 +10,10 @@ class CopyConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Copy ${from} to ${to}`);
 
-				await fs.copy(from_path, to_path);
+				await this.output.copy(from, to);
 			}
 		}
 
@@ -30,30 +26,30 @@ class CopyConverter extends AbstractConverter {
 	async* getData() {
 		const data = [
 			// Cat
-			["textures/entity/cat/redtabby.png", "./red.png"],
-			["textures/entity/cat/siamesecat.png", "./siamese.png"],
-			["textures/entity/cat/tuxedo.png", "./blackcat.png"],
+			["textures/entity/cat/redtabby.png", "textures/entity/cat/red.png"],
+			["textures/entity/cat/siamesecat.png", "textures/entity/cat/siamese.png"],
+			["textures/entity/cat/tuxedo.png", "textures/entity/cat/blackcat.png"],
 
 			// Command block
-			["textures/blocks/command_block_back_mipmap.png", "./command_block.png"],
+			["textures/blocks/command_block_back_mipmap.png", "textures/blocks/command_block.png"],
 
 			// Fire
 			["textures/blocks/fire_0.png", "textures/flame_atlas.png"],
 
 			// Kelp
-			["textures/blocks/kelp_a.tga", "./kelp_b.tga"],
-			["textures/blocks/kelp_a.tga", "./kelp_c.tga"],
-			["textures/blocks/kelp_a.tga", "./kelp_d.tga"],
-			["textures/blocks/kelp_top.tga", "./kelp_top_bulb.tga"],
+			["textures/blocks/kelp_a.tga", "textures/blocks/kelp_b.tga"],
+			["textures/blocks/kelp_a.tga", "textures/blocks/kelp_c.tga"],
+			["textures/blocks/kelp_a.tga", "textures/blocks/kelp_d.tga"],
+			["textures/blocks/kelp_top.tga", "textures/blocks/kelp_top_bulb.tga"],
 
 			// Lever
 			["textures/blocks/lever.png", "textures/items/lever.png"],
 
 			// Llama
-			["textures/entity/llama/llama_creamy.png", "./llama.png"],
+			["textures/entity/llama/llama_creamy.png", "textures/entity/llama/llama.png"],
 
 			// Pattern
-			["textures/items/skull_banner_pattern.png", "./banner_pattern.png"],
+			["textures/items/skull_banner_pattern.png", "textures/items/banner_pattern.png"],
 
 			// Sign
 			["textures/ui/sign.png", "textures/gui/sign.png"],
@@ -76,7 +72,7 @@ class CopyConverter extends AbstractConverter {
 			["textures/gui/background/panorama_4.png", "textures/ui/panorama_4.png"],
 			["textures/gui/background/panorama_5.png", "textures/ui/panorama_5.png"],
 
-			["bedrock_textures", "./textures"]
+			["bedrock_textures/", "textures/"]
 		];
 
 		for (const date of data) {

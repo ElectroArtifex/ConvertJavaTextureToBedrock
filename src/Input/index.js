@@ -1,31 +1,29 @@
 import AbstractInput from "./AbstractInput";
 import FolderInput from "./FolderInput";
 import fs from "fs-extra";
-import InputError from "./InputError";
 import path from "path";
 import ZipInput from "./ZipInput";
 
 /**
  * @param {string} input
- * @param {string} temp
  *
  * @returns {Promise<AbstractInput>}
  *
- * @throws {InputError}
+ * @throws {Error}
  */
-async function detectInput(input, temp) {
+async function detectInput(input) {
 	if (!fs.existsSync(input)) {
-		throw new InputError(`The input ${input} does not exists!`);
+		throw new Error(`The input ${input} does not exists!`);
 	}
 
 	const ext = path.extname(input).toLowerCase().substr(1);
 
 	switch (ext) {
 		case "zip":
-			return new ZipInput(input, temp);
+			return new ZipInput(input);
 
 		default:
-			return new FolderInput(input, temp);
+			return new FolderInput(input);
 	}
 }
 

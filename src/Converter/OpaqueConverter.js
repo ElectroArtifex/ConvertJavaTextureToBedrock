@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,24 +11,21 @@ class OpaqueConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Create opaque ${to}`);
 
-				/*const image = await Jimp.read(from_path);
+				/*const image = await this.readImage(from);
 
 				image.opaque();
 
-				await image.writeAsync(to_path);*/
-				const image = await Jimp.read(from_path);
+				await this.writeImage(to, image);*/
+				const image = await this.readImage(from);
 
 				const background_image = await Jimp.create(image.getWidth(), image.getHeight(), "#000000");
 
 				background_image.composite(image, 0, 0);
 
-				await background_image.writeAsync(to_path);
+				await this.writeImage(to, background_image);
 			}
 		}
 
@@ -42,12 +38,12 @@ class OpaqueConverter extends AbstractConverter {
 	async* getData() {
 		const data = [
 			// Leaves
-			["textures/blocks/leaves_acacia.png", "./leaves_acacia_opaque.png"],
-			["textures/blocks/leaves_big_oak.png", "./leaves_big_oak_opaque.png"],
-			["textures/blocks/leaves_birch.png", "./leaves_birch_opaque.png"],
-			["textures/blocks/leaves_jungle.png", "./leaves_jungle_opaque.png"],
-			["textures/blocks/leaves_oak.png", "./leaves_oak_opaque.png"],
-			["textures/blocks/leaves_spruce.png", "./leaves_spruce_opaque.png"]
+			["textures/blocks/leaves_acacia.png", "textures/blocks/leaves_acacia_opaque.png"],
+			["textures/blocks/leaves_big_oak.png", "textures/blocks/leaves_big_oak_opaque.png"],
+			["textures/blocks/leaves_birch.png", "textures/blocks/leaves_birch_opaque.png"],
+			["textures/blocks/leaves_jungle.png", "textures/blocks/leaves_jungle_opaque.png"],
+			["textures/blocks/leaves_oak.png", "textures/blocks/leaves_oak_opaque.png"],
+			["textures/blocks/leaves_spruce.png", "textures/blocks/leaves_spruce_opaque.png"]
 		];
 
 		for (const date of data) {

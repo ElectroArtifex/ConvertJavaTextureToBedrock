@@ -1,4 +1,6 @@
-import OutputError from "./OutputError";
+import AbstractInput from "../Input/AbstractInput";
+import fs from "fs-extra";
+import Utils from "../Utils/Utils";
 
 /**
  * Class AbstractOutput
@@ -11,18 +13,17 @@ class AbstractOutput {
 	 *
 	 * @param {string} path
 	 * @param {string} temp
+	 * @param {AbstractInput} input
 	 *
-	 * @throws {OutputError}
+	 * @throws {Error}
 	 */
-	constructor(path, temp) {
+	constructor(path, temp, input) {
 		if (this.constructor === AbstractOutput) {
-			throw new OutputError("Can't instantiate abstract class!");
+			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
 		 * @type {string}
-		 *
-		 * @protected
 		 */
 		this.path = path;
 		/**
@@ -31,23 +32,128 @@ class AbstractOutput {
 		 * @protected
 		 */
 		this.temp = temp;
-	}
-
-	/**
-	 * @returns {Promise<string>}
-	 */
-	async getPath() {
-		return this.path;
+		/**
+		 * @type {AbstractInput}
+		 */
+		this.input = input;
 	}
 
 	/**
 	 * @returns {Promise<>}
 	 *
-	 * @throws {OutputError}
+	 * @throws {Error}
 	 *
 	 * @abstract
 	 */
-	async output() {
+	async init() {
+
+	}
+
+	/**
+	 * @returns {Promise<>}
+	 *
+	 * @throws {Error}
+	 */
+	async store() {
+		Utils.log(`Move to ${this.path}`);
+
+		try {
+			await fs.rename(this.temp, this.path);
+		} catch (err) {
+			// TODO: Fix EXDEV: cross-device link not permitted
+			console.warn(err);
+
+			Utils.log(`Copy to ${this.path}`);
+			await fs.copy(this.temp, this.path);
+
+			Utils.log(`Clean`);
+			try {
+				await fs.remove(this.temp);
+			} catch (err) {
+				// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
+				console.warn(err);
+			}
+		}
+	}
+
+	/**
+	 * @param {string} path
+	 *
+	 * @returns {Promise<boolean>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async exists(path) {
+
+	}
+
+	/**
+	 * @param {string} from
+	 * @param {string} to
+	 *
+	 * @returns {Promise<>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async rename(from, to) {
+
+	}
+
+	/**
+	 * @param {string} file
+	 *
+	 * @returns {Promise<Buffer>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async read(file) {
+
+	}
+
+	/**
+	 * @param {string} file
+	 * @param {Buffer} data
+	 *
+	 * @returns {Promise<>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async write(file, data) {
+
+	}
+
+	/**
+	 * @param {string} path
+	 *
+	 * @returns {Promise<>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async delete(path) {
+
+	}
+
+	/**
+	 * @param {string} from
+	 * @param {string} to
+	 *
+	 * @returns {Promise<>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @abstract
+	 */
+	async copy(from, to) {
 
 	}
 }

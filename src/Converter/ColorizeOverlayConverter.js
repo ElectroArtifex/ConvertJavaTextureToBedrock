@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -15,15 +14,11 @@ class ColorizeOverlayConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [overlays, to] of this.getData()) {
-			const to_path = Utils.toPath(to, "", this.path);
-
 			let image = null;
 
 			for (const [overlay, color, delete_overlay] of overlays) {
-				const overlay_path = Utils.fromPath(overlay, this.path);
-
-				if (fs.existsSync(overlay_path)) {
-					const image_overlay = await Jimp.read(overlay_path);
+				if (await this.output.exists(overlay)) {
+					const image_overlay = await this.readImage(overlay);
 
 					if (image === null) {
 						Utils.log(`Colorize and overlay ${to}`);
@@ -56,7 +51,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			}
 
 			if (image !== null) {
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.0]
+- Refactoring output zip
+
 ## [1.5.0]
 - Convert fireworks
 - Fix `EXDEV: cross-device link not permitted`

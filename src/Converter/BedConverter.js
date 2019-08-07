@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,12 +11,10 @@ class BedConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const block of this.getData()) {
-			const block_path = Utils.fromPath(block, this.path);
-
-			if (fs.existsSync(block_path)) {
+			if (await this.output.exists(block)) {
 				Utils.log(`Convert bed ${block}`);
 
-				const bed_image = await Jimp.read(block_path);
+				const bed_image = await this.readImage(block);
 
 				const factor = (bed_image.getWidth() / 64);
 
@@ -38,7 +35,7 @@ class BedConverter extends AbstractConverter {
 				// Feed 2
 				image.composite(bed_image.clone().crop((50 * factor), (12 * factor), (12 * factor), (12 * factor)), (12 * factor), (38 * factor));
 
-				await image.writeAsync(block_path);
+				await this.writeImage(block, image);
 			}
 		}
 

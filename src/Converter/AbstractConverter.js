@@ -1,5 +1,5 @@
-import AbstractInput from "../Input/AbstractInput";
-import ConverterError from "./ConverterError";
+import AbstractOutput from "../Output/AbstractOutput";
+import Jimp from "jimp";
 
 /**
  * Class AbstractConverter
@@ -10,30 +10,22 @@ class AbstractConverter {
 	/**
 	 * AbstractConverter constructor
 	 *
-	 * @param {string} path
-	 * @param {AbstractInput} input
+	 * @param {AbstractOutput} output
 	 * @param {mixed[]} data
 	 *
-	 * @throws {ConverterError}
+	 * @throws {Error}
 	 */
-	constructor(path, input, data = []) {
+	constructor(output, data = []) {
 		if (this.constructor === AbstractConverter) {
-			throw new ConverterError("Can't instantiate abstract class!");
+			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
-		 * @type {string}
+		 * @type {AbstractOutput}
 		 *
 		 * @protected
 		 */
-		this.path = path;
-
-		/**
-		 * @type {AbstractInput}
-		 *
-		 * @protected
-		 */
-		this.input = input;
+		this.output = output;
 
 		/**
 		 * @type {mixed[]}
@@ -44,9 +36,35 @@ class AbstractConverter {
 	}
 
 	/**
+	 * @param {string} file
+	 *
+	 * @returns {Promise<Jimp>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @protected
+	 */
+	async readImage(file) {
+		return Jimp.read(await this.output.read(file));
+	}
+
+	/**
+	 * @param {string} file
+	 * @param {Jimp} image
+	 * @param {string} mime
+	 *
+	 * @returns {Promise<>}
+	 *
+	 * @protected
+	 */
+	async writeImage(file, image, mime = Jimp.MIME_PNG) {
+		return this.output.write(file, await image.getBufferAsync(mime));
+	}
+
+	/**
 	 * @returns {Promise<Function<AbstractConverter>[]>}
 	 *
-	 * @throws {ConverterError}
+	 * @throws {Error}
 	 *
 	 * @abstract
 	 */
@@ -57,7 +75,7 @@ class AbstractConverter {
 	/**
 	 * @returns {AsyncIterableIterator<*>}
 	 *
-	 * @throws {ConverterError}
+	 * @throws {Error}
 	 *
 	 * @abstract
 	 *

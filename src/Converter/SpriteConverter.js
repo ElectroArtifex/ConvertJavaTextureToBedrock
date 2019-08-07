@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -15,17 +14,13 @@ class SpriteConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [width, height, sprites, to, scale = 1] of this.getData()) {
-			const to_path = Utils.toPath(to, "", this.path);
-
 			let image = null;
 
 			let factor = 1;
 
 			for (const [sprite, x, y, factor_detect, not_scale] of sprites) {
-				const sprite_path = Utils.fromPath(sprite, this.path);
-
-				if (fs.existsSync(sprite_path)) {
-					const image_sprite = await Jimp.read(sprite_path);
+				if (await this.output.exists(sprite)) {
+					const image_sprite = await this.readImage(sprite);
 
 					factor = (image_sprite.getWidth() / factor_detect * scale);
 
@@ -42,7 +37,7 @@ class SpriteConverter extends AbstractConverter {
 			}
 
 			if (image !== null) {
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 

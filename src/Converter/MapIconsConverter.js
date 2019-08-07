@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,13 +11,10 @@ class MapIconsConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [from, to] of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-			const to_path = Utils.toPath(to, from_path, this.path);
-
-			if (fs.existsSync(from_path)) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Convert map icons ${to}`);
 
-				const from_image = await Jimp.read(from_path);
+				const from_image = await this.readImage(from);
 
 				const factor = (from_image.getWidth() / 128);
 
@@ -44,7 +40,7 @@ class MapIconsConverter extends AbstractConverter {
 				image.composite(from_image.clone().crop((64 * factor), 0, (8 * factor), (8 * factor)).scale(2, "nearestNeighbor"), (32 * factor), (48 * factor));
 				image.composite(from_image.clone().crop((72 * factor), 0, (8 * factor), (8 * factor)).scale(2, "nearestNeighbor"), (48 * factor), (48 * factor));
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
@@ -56,7 +52,7 @@ class MapIconsConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			["textures/map/map_icons.png", "./map_icons.png"]
+			["textures/map/map_icons.png", "textures/map/map_icons.png"]
 		];
 
 		for (const date of data) {

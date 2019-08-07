@@ -1,6 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
-import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
 /**
@@ -11,13 +9,11 @@ class VillagerConverter extends AbstractConverter {
 	 * @inheritDoc
 	 */
 	async convert() {
-		for await (const from  of this.getData()) {
-			const from_path = Utils.fromPath(from, this.path);
-
-			if (fs.existsSync(from_path)) {
+		for await (const from of this.getData()) {
+			if (await this.output.exists(from)) {
 				Utils.log(`Convert villager ${from}`);
 
-				const image = await Jimp.read(from_path);
+				const image = await this.readImage(from);
 
 				image.scan(0, 0, image.getWidth(), image.getHeight(), (x, y, idx) => {
 					if (image.bitmap.data[idx + 3] === 0) {
@@ -28,7 +24,7 @@ class VillagerConverter extends AbstractConverter {
 					}
 				});
 
-				await image.writeAsync(from_path);
+				await this.writeImage(from, image);
 			}
 		}
 

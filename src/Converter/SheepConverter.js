@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 import DeleteConverter from "./DeleteConverter";
@@ -15,14 +14,11 @@ class SheepConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [sheep, sheep_fur] of this.getData()) {
-			const sheep_path = Utils.fromPath(sheep, this.path);
-			const sheep_fur_path = Utils.fromPath(sheep_fur, this.path);
-
-			if (fs.existsSync(sheep_path) && fs.existsSync(sheep_fur_path)) {
+			if (await this.output.exists(sheep) && await this.output.exists(sheep_fur)) {
 				Utils.log(`Convert sheep`);
 
-				const image_sheep = await Jimp.read(sheep_path);
-				const image_fur = await Jimp.read(sheep_fur_path);
+				const image_sheep = await this.readImage(sheep);
+				const image_fur = await this.readImage(sheep_fur);
 
 				const image = await Jimp.create(image_sheep.getWidth(), image_sheep.getHeight() + image_fur.getHeight());
 
@@ -36,7 +32,7 @@ class SheepConverter extends AbstractConverter {
 					}
 				});
 
-				await image.writeAsync(sheep_path);
+				await this.writeImage(sheep, image);
 			}
 
 			to_delete.push(sheep_fur);

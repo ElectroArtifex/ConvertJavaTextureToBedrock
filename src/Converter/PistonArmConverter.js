@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import fs from "fs-extra";
 import Jimp from "jimp";
 import Utils from "../Utils/Utils";
 
@@ -12,17 +11,12 @@ class PistonArmConverter extends AbstractConverter {
 	 */
 	async convert() {
 		for await (const [top_1, top_2, side, to] of this.getData()) {
-			const top_1_path = Utils.fromPath(top_1, this.path);
-			const top_2_path = Utils.fromPath(top_2, this.path);
-			const side_path = Utils.fromPath(side, this.path);
-			const to_path = Utils.toPath(to, "", this.path);
-
-			if (fs.existsSync(top_1_path) && fs.existsSync(top_2_path) && fs.existsSync(side_path)) {
+			if (await this.output.exists(top_1) && await this.output.exists(top_2) && await this.output.exists(side)) {
 				Utils.log(`Create piston arm ${to}`);
 
-				const top_1_image = await Jimp.read(top_1_path);
-				const top_2_image = await Jimp.read(top_2_path);
-				const side_image = await Jimp.read(side_path);
+				const top_1_image = await this.readImage(top_1);
+				const top_2_image = await this.readImage(top_2);
+				const side_image = await this.readImage(side);
 
 				const factor = (top_1_image.getWidth() / 16);
 
@@ -97,7 +91,7 @@ class PistonArmConverter extends AbstractConverter {
 				image.composite(side_image_5, (83 * factor), (25 * factor));
 				image.composite(side_image_5, (83 * factor), (29 * factor));
 
-				await image.writeAsync(to_path);
+				await this.writeImage(to, image);
 			}
 		}
 
