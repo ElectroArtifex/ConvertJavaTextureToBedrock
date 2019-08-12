@@ -35,7 +35,7 @@ import yargs from "yargs";
 		.version("version", PACKAGE.version).alias("v", "version")
 		.argv;
 
-	return await ConvertMinecraftJavaTextureToBedrock(argv.input, argv.output, {
+	return ConvertMinecraftJavaTextureToBedrock(argv.input, argv.output, {
 		temp: argv.temp,
 		verbose: argv.verbose
 	});
