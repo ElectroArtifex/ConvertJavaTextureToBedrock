@@ -25,17 +25,12 @@ For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/p
 Look at https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrockGUI/releases
 
 ## CLI
-Be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version)
+First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)
 
-Install it global with your package manager
+Then install it global
 
-yarn:
 ```bash
 yarn global add @ozelot379/convert-minecraft-java-texture-to-bedrock
-```
-npm:
-```bash
-npm install -g @ozelot379/convert-minecraft-java-texture-to-bedrock
 ```
 
 You can now convert your texture packs like
@@ -54,13 +49,8 @@ ConvertMinecraftJavaTextureToBedrock -i input/java_texture_pack.zip -o output/be
 ## Direct in your code
 Add it as a dependency to your `package.json`
 
-yarn:
 ```bash
 yarn add @ozelot379/convert-minecraft-java-texture-to-bedrock
-```
-npm:
-```bash
-npm install @ozelot379/convert-minecraft-java-texture-to-bedrock
 ```
 
 Import it in your code, if you use webpack
@@ -107,35 +97,20 @@ This files are applied additionally before output
 ## Debug and build
 First clone this repo and install the dependencies
 
-yarn:
 ```bash
 yarn
-```
-npm:
-```bash
-npm install
 ```
 
 Then you can start the debug
 
-yarn:
 ```bash
 yarn debug
-```
-npm:
-```bash
-npm run debug
 ```
 
 You can create a build
 
-yarn:
 ```bash
 yarn build
-```
-npm:
-```bash
-npm run build
 ```
 
 # License
