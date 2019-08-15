@@ -25,8 +25,6 @@ class DeleteStaticConverter extends AbstractConverter {
 	 */
 	async* getData() {
 		const data = [
-			"assets/",
-
 			"textures/blocks/conduit.png",
 			"textures/entity/conduit/break_particle.png",
 
