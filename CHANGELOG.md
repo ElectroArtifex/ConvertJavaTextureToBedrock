@@ -2,6 +2,7 @@
 
 ## [1.6.2]
 - Skip `WeatherConverter` if failed
+- Fixes buggy zip output by using temp folder again like before v1.6.0
 
 ## [1.6.1]
 - Fix
