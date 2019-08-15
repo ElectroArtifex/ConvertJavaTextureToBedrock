@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.2]
+- Skip `WeatherConverter` if failed
+
 ## [1.6.1]
 - Fix
 

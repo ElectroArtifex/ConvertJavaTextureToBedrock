@@ -81,6 +81,7 @@ ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputP
 
 ## Known issues
 - Convert horse textures is very tricky and may buggy
+- Convert weather textures (rain and snow) may not works (seems to be an other format as the default)
 
 # Extras
 
