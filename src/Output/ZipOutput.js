@@ -16,11 +16,11 @@ class ZipOutput extends FolderOutput {
 	async store() {
 		Utils.log(`Pack`);
 
-		this.zip = new admZip();
+		const zip = new admZip();
 
-		this.zip.addLocalFolder(this.temp, "");
+		zip.addLocalFolder(this.temp, "");
 
-		const writeZipPromise = util.promisify(this.zip.writeZip.bind(this.zip));
+		const writeZipPromise = util.promisify(zip.writeZip.bind(zip));
 
 		await this.delete(""); // Removes the temp folder to make it possible to write the file (Same name)
 
