@@ -39,10 +39,12 @@ class SpriteConverter extends AbstractConverter {
 						image = await Jimp.create((width * factor), (height * factor));
 					}
 
-					image.scan((x * factor), (y * factor), (factor_detect * factor), (factor_detect * factor), (x, y, idx) => {
+					const image_sprited_scaled = image_sprite.scale(((factor_detect * factor) / image_sprite.getWidth()), "nearestNeighbor");
+
+					image.scan((x * factor), (y * factor), image_sprited_scaled.getWidth(), image_sprited_scaled.getHeight(), (x, y, idx) => {
 						image.bitmap.data[idx] = image.bitmap.data[idx + 1] = image.bitmap.data[idx + 2] = image.bitmap.data[idx + 3] = 0; // Delete previous area, if the sprite already exists
 					});
-					image.composite(image_sprite.resize((factor_detect * factor), (factor_detect * factor), "nearestNeighbor"), (x * factor), (y * factor));
+					image.composite(image_sprited_scaled, (x * factor), (y * factor));
 
 					to_delete.push(sprite);
 				}
