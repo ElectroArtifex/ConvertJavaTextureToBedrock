@@ -34,7 +34,7 @@ class MetadataConverter extends AbstractConverter {
 				uuid_module = uuid();
 			}
 
-			const mcmeta = JSON.parse((await this.output.read(from)).toString("utf8"));
+			const mcmeta = JSON.parse((await this.output.read(from)).toString("utf8").trim()); // trim it to supports UF8 files with 'BOOM' at the beginning
 
 			if (mcmeta.pack.pack_format !== 4) {
 				throw new Error("Only supports pack_format 4!");
