@@ -13,16 +13,25 @@ class SpriteConverter extends AbstractConverter {
 	async convert() {
 		const to_delete = [];
 
-		for await (const [width, height, sprites, to, scale = 1] of this.getData()) {
+		for await (const [width, height, sprites, to, min_factor = 1] of this.getData()) {
 			let image = null;
+			let factor = null;
 
-			let factor = 1;
+			if (await this.output.exists(to)) {
+				Utils.log(`Convert sprite ${to}`);
 
-			for (const [sprite, x, y, factor_detect, not_scale] of sprites) {
+				image = await this.readImage(to); // Load already exists sprites image - Some texture packs have may a mix with sprites (1.13) and separate images (1.14)
+
+				factor = (image.getWidth() / width);
+			}
+
+			for (const [sprite, x, y, factor_detect] of sprites) {
 				if (await this.output.exists(sprite)) {
 					const image_sprite = await this.readImage(sprite);
 
-					factor = (image_sprite.getWidth() / factor_detect * scale);
+					if (factor === null) {
+						factor = Math.max((image_sprite.getWidth() / factor_detect), min_factor); // Take the factor of the first image
+					}
 
 					if (image === null) {
 						Utils.log(`Create sprite ${to}`);
@@ -30,7 +39,10 @@ class SpriteConverter extends AbstractConverter {
 						image = await Jimp.create((width * factor), (height * factor));
 					}
 
-					image.composite((scale > 1 && !not_scale ? image_sprite.scale(scale, "nearestNeighbor") : image_sprite), (x * factor), (y * factor));
+					image.scan((x * factor), (y * factor), (factor_detect * factor), (factor_detect * factor), (x, y, idx) => {
+						image.bitmap.data[idx] = image.bitmap.data[idx + 1] = image.bitmap.data[idx + 2] = image.bitmap.data[idx + 3] = 0; // Delete previous area, if the sprite already exists
+					});
+					image.composite(image_sprite.resize((factor_detect * factor), (factor_detect * factor), "nearestNeighbor"), (x * factor), (y * factor));
 
 					to_delete.push(sprite);
 				}
@@ -182,22 +194,22 @@ class SpriteConverter extends AbstractConverter {
 				["textures/particle/spell_5.png", 40, 72, 8],
 				["textures/particle/spell_6.png", 48, 72, 8],
 				["textures/particle/spell_7.png", 56, 72, 8],
-				["textures/particle/explosion_0.png", 0, 80, 32, true],
-				["textures/particle/explosion_1.png", 8, 80, 32, true],
-				["textures/particle/explosion_2.png", 16, 80, 32, true],
-				["textures/particle/explosion_3.png", 24, 80, 32, true],
-				["textures/particle/explosion_4.png", 32, 80, 32, true],
-				["textures/particle/explosion_5.png", 40, 80, 32, true],
-				["textures/particle/explosion_6.png", 48, 80, 32, true],
-				["textures/particle/explosion_7.png", 56, 80, 32, true],
-				["textures/particle/explosion_8.png", 64, 80, 32, true],
-				["textures/particle/explosion_9.png", 72, 80, 32, true],
-				["textures/particle/explosion_10.png", 80, 80, 32, true],
-				["textures/particle/explosion_11.png", 88, 80, 32, true],
-				["textures/particle/explosion_12.png", 96, 80, 32, true],
-				["textures/particle/explosion_13.png", 104, 80, 32, true],
-				["textures/particle/explosion_14.png", 112, 80, 32, true],
-				["textures/particle/explosion_15.png", 120, 80, 32, true],
+				["textures/particle/explosion_0.png", 0, 80, 8],
+				["textures/particle/explosion_1.png", 8, 80, 8],
+				["textures/particle/explosion_2.png", 16, 80, 8],
+				["textures/particle/explosion_3.png", 24, 80, 8],
+				["textures/particle/explosion_4.png", 32, 80, 8],
+				["textures/particle/explosion_5.png", 40, 80, 8],
+				["textures/particle/explosion_6.png", 48, 80, 8],
+				["textures/particle/explosion_7.png", 56, 80, 8],
+				["textures/particle/explosion_8.png", 64, 80, 8],
+				["textures/particle/explosion_9.png", 72, 80, 8],
+				["textures/particle/explosion_10.png", 80, 80, 8],
+				["textures/particle/explosion_11.png", 88, 80, 8],
+				["textures/particle/explosion_12.png", 96, 80, 8],
+				["textures/particle/explosion_13.png", 104, 80, 8],
+				["textures/particle/explosion_14.png", 112, 80, 8],
+				["textures/particle/explosion_15.png", 120, 80, 8],
 				["textures/particle/glitter_0.png", 0, 88, 8],
 				["textures/particle/glitter_1.png", 8, 88, 8],
 				["textures/particle/glitter_2.png", 16, 88, 8],
@@ -240,7 +252,7 @@ class SpriteConverter extends AbstractConverter {
 				["textures/particle/sga_x.png", 64, 120, 8],
 				["textures/particle/sga_y.png", 72, 120, 8],
 				["textures/particle/sga_z.png", 80, 120, 8]
-			], "textures/particle/particles.png", 4],
+			], "textures/particle/particles.png", 4 /* Needs a minimal 4x factor because the explosion images are bigger than the others */], // 1.14
 			[16, 192, [
 				["textures/particle/big_smoke_0.png", 0, 0, 16],
 				["textures/particle/big_smoke_1.png", 0, 16, 16],

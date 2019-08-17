@@ -16,6 +16,7 @@ import MapIconsConverter from "./MapIconsConverter";
 import MetadataConverter from "./MetadataConverter";
 import OpaqueConverter from "./OpaqueConverter";
 import OverlayToTranslateConverter from "./OverlayToTranslateConverter";
+import Particles1_13Converter from "./Particles1_13Converter";
 import PistonArmConverter from "./PistonArmConverter";
 import PlaceholderConverter from "./PlaceholderConverter";
 import PngToTgaConverter from "./PngToTgaConverter";
@@ -79,6 +80,7 @@ const converters = [
 	[ColorizeOverlayConverter, []],
 	[PlaceholderConverter, []],
 	[SideRotateConverter, []],
+	[Particles1_13Converter, []],
 	[SpriteConverter, []],
 	[PngToTgaConverter, []],
 	[CopyConverter, []],

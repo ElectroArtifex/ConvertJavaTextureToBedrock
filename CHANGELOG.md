@@ -2,6 +2,7 @@
 
 ## [1.6.4]
 - Fix convert water
+- Improve particles convert and merge Java 1.13 and 1.14 variants
 
 ## [1.6.3]
 - Fix `publish` script
