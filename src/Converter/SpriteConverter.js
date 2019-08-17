@@ -13,7 +13,7 @@ class SpriteConverter extends AbstractConverter {
 	async convert() {
 		const to_delete = [];
 
-		for await (const [width, height, sprites, to, min_factor = 1] of this.getData()) {
+		for await (const [width, height, sprites, to, additional_factor = 1] of this.getData()) {
 			let image = null;
 			let factor = null;
 
@@ -30,7 +30,7 @@ class SpriteConverter extends AbstractConverter {
 					const image_sprite = await this.readImage(sprite);
 
 					if (factor === null) {
-						factor = Math.max((image_sprite.getWidth() / factor_detect), min_factor); // Take the factor of the first image
+						factor = (image_sprite.getWidth() / factor_detect * additional_factor); // Take the factor of the first image
 					}
 
 					if (image === null) {
