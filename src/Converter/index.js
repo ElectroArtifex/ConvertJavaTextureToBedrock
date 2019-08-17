@@ -25,6 +25,7 @@ import SheepConverter from "./SheepConverter";
 import SideRotateConverter from "./SideRotateConverter";
 import SpriteConverter from "./SpriteConverter";
 import VillagerConverter from "./VillagerConverter";
+import WaterConverter from "./WaterConverter";
 import WeatherConverter from "./WeatherConverter";
 
 /**
@@ -73,6 +74,7 @@ const converters = [
 	[VillagerConverter, []],
 	[WeatherConverter, []],
 	[OpaqueConverter, []],
+	[WaterConverter, []],
 	[OverlayToTranslateConverter, []],
 	[ColorizeOverlayConverter, []],
 	[PlaceholderConverter, []],
