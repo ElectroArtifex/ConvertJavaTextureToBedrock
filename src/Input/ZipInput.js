@@ -9,7 +9,7 @@ class ZipInput extends AbstractInput {
 	 * @inheritDoc
 	 */
 	async name() {
-		return path.parse(this.path).name;
+		return path.parse(this.input).name;
 	}
 }
 

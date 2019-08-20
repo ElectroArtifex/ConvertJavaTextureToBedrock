@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class FishHookConverter
@@ -12,7 +11,7 @@ class FishHookConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Convert fishhook`);
+				this.log.log(`Convert fishhook`);
 
 				const image_from = await this.readImage(from);
 

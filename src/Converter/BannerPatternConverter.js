@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class BannerPatternConverter
@@ -18,7 +17,7 @@ class BannerPatternConverter extends AbstractConverter {
 						const image_pattern = await this.readImage(pattern);
 
 						if (image === null) {
-							Utils.log(`Convert pattern banner ${to}`);
+							this.log.log(`Convert pattern banner ${to}`);
 
 							image = await this.readImage(base);
 

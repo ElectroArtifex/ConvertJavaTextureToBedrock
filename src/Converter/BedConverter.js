@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class BedConverter
@@ -12,7 +11,7 @@ class BedConverter extends AbstractConverter {
 	async convert() {
 		for await (const block of this.getData()) {
 			if (await this.output.exists(block)) {
-				Utils.log(`Convert bed ${block}`);
+				this.log.log(`Convert bed ${block}`);
 
 				const bed_image = await this.readImage(block);
 

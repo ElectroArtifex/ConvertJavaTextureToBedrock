@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class DeleteStaticConverter
@@ -11,7 +10,7 @@ class DeleteStaticConverter extends AbstractConverter {
 	async convert() {
 		for await (const from of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Delete ${from}`);
+				this.log.log(`Delete ${from}`);
 
 				await this.output.delete(from);
 			}

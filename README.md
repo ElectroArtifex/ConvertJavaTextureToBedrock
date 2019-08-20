@@ -9,9 +9,7 @@ It supports currently the follow Minecraft versions:
 
 Currently it supports blocks, items, entities, paintings, particles and map icons textures
 
-Supported input formats are zip archives or directories
-
-Supported output formats are mcpack archives, zip archives or directories
+Supported formats are mcpack archives, zip archives or directories
 
 This library is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
 
@@ -39,12 +37,11 @@ You can now convert your texture packs like
 ConvertMinecraftJavaTextureToBedrock -i input/java_texture_pack.zip -o output/bedrock_texture_pack.mcpack
 ```
 
-| Parameter | Description                                           |
-|-----------|-------------------------------------------------------|
-| -i        | Input (Required)                                      |
-| -o        | Output (Required)                                     |
-| -t        | Temp directory (Default is the system temp directory) |
-| -l        | Verbose log                                           |
+| Parameter     | Description                   |
+|---------------|-------------------------------|
+| -i (Required) | Input folder or archive path  |
+| -o (Required) | Output folder or archive path |
+| -l            | Verbose log                   |
 
 ## Direct in your code
 Add it as a dependency to your `package.json`
@@ -64,20 +61,24 @@ const ConvertMinecraftJavaTextureToBedrock = require("@ozelot379/convert-minecra
 
 You can now convert your texture packs in an `async function`
 ```javascript
-const outputPath = await ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/);
+let outputPath;
+try {
+    outputPath = await ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/);
+} catch (err) {
+
+}
 ```
 or handle the `Promise` direct
 ```javascript
 ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputPath) => {}).catch((err) => {});
 ```
 
-| Parameter           | Description                                           |
-|---------------------|-------------------------------------------------------|
-| input               | Input (Required)                                      |
-| output              | Output (Required)                                     |
-| options.tmp         | Temp directory (Default is the system temp directory) |
-| options.verbose     | Verbose log                                           |
-| options.logCallback | Custom log callback (Default is `console.log`)        |
+| Parameter           | Description                                    |
+|---------------------|------------------------------------------------|
+| input (Required)    | - Folder or archive path (`string`)<br>- Archive (`Buffer`)<br>- `Array` with archive (`Buffer`) and filename (`string`) |
+| output (Required)   | - Folder or archive path (`string`)<br>- Archive (`Buffer`) |
+| options.verbose     | Verbose log                                    |
+| options.logCallback | Custom log callback (Default is `console.log`) |
 
 ## Known issues
 - Convert horse textures is very tricky and may buggy

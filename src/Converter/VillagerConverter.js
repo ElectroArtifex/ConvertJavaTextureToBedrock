@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class VillagerConverter
@@ -11,7 +10,7 @@ class VillagerConverter extends AbstractConverter {
 	async convert() {
 		for await (const from of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Convert villager ${from}`);
+				this.log.log(`Convert villager ${from}`);
 
 				const image = await this.readImage(from);
 

@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class DrownedConverter
@@ -14,7 +13,7 @@ class DrownedConverter extends AbstractConverter {
 
 		for await (const [from, overlay, to] of this.getData()) {
 			if (await this.output.exists(from) && await this.output.exists(overlay)) {
-				Utils.log(`Convert drowned`);
+				this.log.log(`Convert drowned`);
 
 				const image = await this.readImage(from);
 

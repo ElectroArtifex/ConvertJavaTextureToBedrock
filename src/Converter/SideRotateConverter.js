@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class SideRotateConverter
@@ -11,7 +10,7 @@ class SideRotateConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Create side rotate ${to}`);
+				this.log.log(`Create side rotate ${to}`);
 
 				const image = await this.readImage(from);
 

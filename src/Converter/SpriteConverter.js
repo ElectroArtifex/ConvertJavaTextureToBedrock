@@ -1,7 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class SpriteConverter
@@ -18,7 +17,7 @@ class SpriteConverter extends AbstractConverter {
 			let factor = null;
 
 			if (await this.output.exists(to)) {
-				Utils.log(`Convert sprite ${to}`);
+				this.log.log(`Convert sprite ${to}`);
 
 				image = await this.readImage(to); // Load already exists sprites image - Some texture packs have may a mix with sprites (1.13) and separate images (1.14)
 
@@ -34,12 +33,12 @@ class SpriteConverter extends AbstractConverter {
 					}
 
 					if (image === null) {
-						Utils.log(`Create sprite ${to}`);
+						this.log.log(`Create sprite ${to}`);
 
 						image = await Jimp.create((width * factor), (height * factor));
 					}
 
-					const image_sprited_scaled = image_sprite.scale(((factor_detect * factor) / image_sprite.getWidth()), "nearestNeighbor");
+					const image_sprited_scaled = image_sprite.scale(((factor_detect * factor) / image_sprite.getWidth()), Jimp.RESIZE_NEAREST_NEIGHBOR);
 
 					image.scan((x * factor), (y * factor), image_sprited_scaled.getWidth(), image_sprited_scaled.getHeight(), (x, y, idx) => {
 						image.bitmap.data[idx] = image.bitmap.data[idx + 1] = image.bitmap.data[idx + 2] = image.bitmap.data[idx + 3] = 0; // Delete previous area, if the sprite already exists

@@ -1,5 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
+import Jimp from "jimp";
 
 /**
  * Class WaterConverter
@@ -11,14 +11,14 @@ class WaterConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to, to_small_size] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Convert water ${from}`);
+				this.log.log(`Convert water ${from}`);
 
 				const image = await this.readImage(from);
 
 				image.grayscale(); // Fix cauldron water (Some texture packs still using a colored water texture but it's just a grayscale texture)
 
 				if (image.getWidth() === to_small_size) {
-					image.scale(2, "nearestNeighbor"); // Bedrock version has doubled pixels as the Java version
+					image.scale(2, Jimp.RESIZE_NEAREST_NEIGHBOR); // Bedrock version has doubled pixels as the Java version
 				}
 
 				await this.writeImage(to, image);

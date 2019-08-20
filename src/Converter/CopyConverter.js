@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class CopyConverter
@@ -11,7 +10,7 @@ class CopyConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Copy ${from} to ${to}`);
+				this.log.log(`Copy ${from} to ${to}`);
 
 				await this.output.copy(from, to);
 			}

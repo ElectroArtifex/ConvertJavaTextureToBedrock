@@ -1,7 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class AtlasConverter
@@ -23,7 +22,7 @@ class AtlasConverter extends AbstractConverter {
 					const image_step = await this.readImage(step);
 
 					if (image === null) {
-						Utils.log(`Create atlas ${to}`);
+						this.log.log(`Create atlas ${to}`);
 
 						image = await Jimp.create(image_step.getWidth(), (image_step.getHeight() * (count + 1)));
 					}

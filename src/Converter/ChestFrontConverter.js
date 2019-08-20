@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class ChestFrontConverter
@@ -12,7 +11,7 @@ class ChestFrontConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Create chest front ${to}`);
+				this.log.log(`Create chest front ${to}`);
 
 				const image_from = await this.readImage(from);
 

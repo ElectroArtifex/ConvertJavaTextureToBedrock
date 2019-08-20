@@ -1,7 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
 import TGA from "tga";
-import Utils from "../Utils/Utils";
 
 /**
  * Class PngToTgaConverter
@@ -15,7 +14,7 @@ class PngToTgaConverter extends AbstractConverter {
 
 		for await (const [from, to, not_delete] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Create tga ${to}`);
+				this.log.log(`Create tga ${to}`);
 
 				const image = await this.readImage(from);
 

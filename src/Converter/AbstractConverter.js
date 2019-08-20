@@ -1,5 +1,6 @@
 import AbstractOutput from "../Output/AbstractOutput";
 import Jimp from "jimp";
+import Log from "../Log/Log";
 
 /**
  * Class AbstractConverter
@@ -12,10 +13,11 @@ class AbstractConverter {
 	 *
 	 * @param {AbstractOutput} output
 	 * @param {mixed[]} data
+	 * @param {Log} log
 	 *
 	 * @throws {Error}
 	 */
-	constructor(output, data = []) {
+	constructor(output, data = [], log) {
 		if (this.constructor === AbstractConverter) {
 			throw new Error("Can't instantiate abstract class!");
 		}
@@ -26,13 +28,18 @@ class AbstractConverter {
 		 * @protected
 		 */
 		this.output = output;
-
 		/**
 		 * @type {mixed[]}
 		 *
 		 * @protected
 		 */
 		this.data = data;
+		/**
+		 * @type {Log}
+		 *
+		 * @protected
+		 */
+		this.log = log;
 	}
 
 	/**

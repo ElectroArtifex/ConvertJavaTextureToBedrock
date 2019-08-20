@@ -1,11 +1,12 @@
 import AbstractOutput from "./AbstractOutput";
-import admZip from "adm-zip";
+import extractZip from "extract-zip";
 import FolderInput from "../Input/FolderInput";
 import fs from "fs-extra";
 import path from "path";
 import util from "util";
-import Utils from "../Utils/Utils";
 import ZipInput from "../Input/ZipInput";
+
+const extractZipPromise = util.promisify(extractZip);
 
 /**
  * Class FolderOutput
@@ -16,23 +17,28 @@ class FolderOutput extends AbstractOutput {
 	 */
 	async init() {
 		switch (true) {
-			case (this.input instanceof FolderInput):
-				Utils.log(`Copy ${this.input.path}`);
-
-				return fs.copy(this.input.path, this.temp);
-
 			case (this.input instanceof ZipInput):
-				Utils.log(`Extract ${this.input.path}`);
+				this.log.log(`Extract input`);
 
-				const zip = new admZip(this.input.path);
+				return extractZipPromise(this.input.input, {dir: path.resolve(this.output)});
 
-				const extractAllToAsyncPromise = util.promisify(zip.extractAllToAsync.bind(zip));
+			case (this.input instanceof FolderInput):
+				this.log.log(`Copy input`);
 
-				return extractAllToAsyncPromise(this.temp, true);
+				return fs.copy(this.input.input, this.output);
 
 			default:
-				break;
+				throw new Error(`Unknown input format ${this.input}!`);
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	async generate() {
+		this.log.log(`Output: ${this.output}`);
+
+		return this.output;
 	}
 
 	/**
@@ -50,7 +56,7 @@ class FolderOutput extends AbstractOutput {
 			await fs.mkdirs(this.p(path.dirname(to)));
 		}
 
-		return fs.rename(this.p(from), this.p(to)); // TODO: Fix EXDEV: cross-device link not permitted
+		return fs.rename(this.p(from), this.p(to));
 	}
 
 	/**
@@ -97,7 +103,7 @@ class FolderOutput extends AbstractOutput {
 	 * @protected
 	 */
 	p(p) {
-		return path.join(this.temp, p);
+		return path.join(this.output, p);
 	}
 }
 

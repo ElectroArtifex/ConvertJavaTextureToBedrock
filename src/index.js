@@ -1,36 +1,31 @@
 import {addAdditionalConverters, getConverters} from "./Converter";
 import detectInput from "./Input";
 import detectOutput from "./Output";
-import detectTemp from "./Temp";
-import Utils from "./Utils/Utils";
+import Log from "./Log/Log";
 
 /**
- * @param {string} input
- * @param {string} output
+ * @param {string|Buffer} inputParam
+ * @param {string} outputParam
  * @param {Object} options
  *
- * @returns {Promise<string>}
+ * @returns {Promise<string|Buffer|Array>}
  *
  * @throws {Error}
  */
-async function ConvertMinecraftJavaTextureToBedrock(input, output, options = {}) {
-	Utils.setVerbose(options.verbose);
-	Utils.setLogCallback(options.logCallback);
+async function ConvertMinecraftJavaTextureToBedrock(inputParam, outputParam, options = {}) {
+	const log = new Log(options.logCallback, options.verbose);
 
-	const temp = await detectTemp(options.temp);
-	const inputProcessor = await detectInput(input);
+	const input = await detectInput(inputParam);
 
-	const outputProcessor = await detectOutput(output, temp, inputProcessor);
+	const output = await detectOutput(outputParam, input, log);
 
-	await outputProcessor.init();
+	await output.init();
 
-	for await (const converter of getConverters(outputProcessor)) {
+	for await (const converter of getConverters(output, log)) {
 		await addAdditionalConverters(...await converter.convert());
 	}
 
-	await outputProcessor.store();
-
-	return outputProcessor.path;
+	return output.generate();
 }
 
 export default ConvertMinecraftJavaTextureToBedrock;

@@ -1,6 +1,5 @@
 import AbstractInput from "../Input/AbstractInput";
-import fs from "fs-extra";
-import Utils from "../Utils/Utils";
+import Log from "../Log/Log";
 
 /**
  * Class AbstractOutput
@@ -11,31 +10,35 @@ class AbstractOutput {
 	/**
 	 * AbstractOutput constructor
 	 *
-	 * @param {string} path
-	 * @param {string} temp
+	 * @param {string|Buffer} output
 	 * @param {AbstractInput} input
+	 * @param {Log} log
 	 *
 	 * @throws {Error}
 	 */
-	constructor(path, temp, input) {
+	constructor(output, input, log) {
 		if (this.constructor === AbstractOutput) {
 			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
-		 * @type {string}
-		 */
-		this.path = path;
-		/**
-		 * @type {string}
+		 * @type {string|Buffer}
 		 *
 		 * @protected
 		 */
-		this.temp = temp;
+		this.output = output;
 		/**
 		 * @type {AbstractInput}
+		 *
+		 * @protected
 		 */
 		this.input = input;
+		/**
+		 * @type {Log}
+		 *
+		 * @protected
+		 */
+		this.log = log;
 	}
 
 	/**
@@ -50,30 +53,14 @@ class AbstractOutput {
 	}
 
 	/**
-	 * @returns {Promise<>}
+	 * @returns {Promise<string|Buffer>}
 	 *
 	 * @throws {Error}
+	 *
+	 * @abstract
 	 */
-	async store() {
-		Utils.log(`Move to ${this.path}`);
+	async generate() {
 
-		try {
-			await fs.rename(this.temp, this.path);
-		} catch (err) {
-			// TODO: Fix EXDEV: cross-device link not permitted
-			console.warn(err);
-
-			Utils.log(`Copy to ${this.path}`);
-			await fs.copy(this.temp, this.path);
-
-			Utils.log(`Clean`);
-			try {
-				await fs.remove(this.temp);
-			} catch (err) {
-				// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
-				console.warn(err);
-			}
-		}
 	}
 
 	/**

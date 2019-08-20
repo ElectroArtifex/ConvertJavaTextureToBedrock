@@ -1,5 +1,4 @@
 import ConvertMinecraftJavaTextureToBedrock from "./index";
-import os from "os";
 import PACKAGE from "../package";
 import yargs from "yargs";
 
@@ -9,19 +8,13 @@ import yargs from "yargs";
 			i: {
 				alias: "input",
 				demand: true,
-				describe: "Input",
+				describe: "Input folder or archive path",
 				type: "string"
 			},
 			o: {
 				alias: "output",
 				demand: true,
-				describe: "Output",
-				type: "string"
-			},
-			t: {
-				alias: "temp",
-				default: os.tmpdir(),
-				describe: "Temp directory",
+				describe: "Output folder or archive path",
 				type: "string"
 			},
 			l: {
@@ -35,12 +28,11 @@ import yargs from "yargs";
 		.version("version", PACKAGE.version).alias("v", "version")
 		.argv;
 
-	return ConvertMinecraftJavaTextureToBedrock(argv.input, argv.output, {
-		temp: argv.temp,
-		verbose: argv.verbose
-	});
-})().then((outputPath) => {
-	console.log(`Output: ${outputPath}`);
-}).catch((err) => {
-	console.error(err);
-});
+	try {
+		await ConvertMinecraftJavaTextureToBedrock(argv.input, argv.output, {
+			verbose: argv.verbose
+		});
+	} catch (err) {
+		console.error(err);
+	}
+})();

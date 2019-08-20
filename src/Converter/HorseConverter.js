@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class HorseConverter
@@ -12,7 +11,7 @@ class HorseConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Convert horse ${to}`);
+				this.log.log(`Convert horse ${to}`);
 
 				const image_from = await this.readImage(from);
 

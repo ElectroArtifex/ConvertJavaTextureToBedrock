@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class PistonArmConverter
@@ -12,7 +11,7 @@ class PistonArmConverter extends AbstractConverter {
 	async convert() {
 		for await (const [top_1, top_2, side, to] of this.getData()) {
 			if (await this.output.exists(top_1) && await this.output.exists(top_2) && await this.output.exists(side)) {
-				Utils.log(`Create piston arm ${to}`);
+				this.log.log(`Create piston arm ${to}`);
 
 				const top_1_image = await this.readImage(top_1);
 				const top_2_image = await this.readImage(top_2);

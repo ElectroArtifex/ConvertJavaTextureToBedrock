@@ -1,7 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class WeatherConverter
@@ -16,7 +15,7 @@ class WeatherConverter extends AbstractConverter {
 		for await (const [snow, rain, to] of this.getData()) {
 			if (await this.output.exists(snow) && await this.output.exists(rain)) {
 				try {
-					Utils.log(`Convert weather`);
+					this.log.log(`Convert weather`);
 
 					const snow_image = await this.readImage(snow);
 
@@ -65,7 +64,7 @@ class WeatherConverter extends AbstractConverter {
 					await this.writeImage(to, image);
 				} catch (err) {
 					//  TODO: Reimplement WeatherConverter (Fix "The value of "offset" is out of range. It must be >= 0 and <= 8188. Received 10788")
-					console.warn("Can't currently convert weather textures (rain and sun) properly, seems to be an other format as the default - skip it to convert the rest at least"); //
+					this.log.warn("Can't currently convert weather textures (rain and sun) properly, seems to be an other format as the default - skip it to convert the rest at least"); //
 				}
 			}
 		}

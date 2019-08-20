@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class OpaqueConverter
@@ -12,7 +11,7 @@ class OpaqueConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Create opaque ${to}`);
+				this.log.log(`Create opaque ${to}`);
 
 				/*const image = await this.readImage(from);
 

@@ -1,7 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class ColorizeOverlayConverter
@@ -21,7 +20,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 					const image_overlay = await this.readImage(overlay);
 
 					if (image === null) {
-						Utils.log(`Colorize and overlay ${to}`);
+						this.log.log(`Colorize and overlay ${to}`);
 
 						image = await Jimp.create(image_overlay.getWidth(), image_overlay.getHeight());
 					}

@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class RedstoneDustConverter
@@ -14,7 +13,7 @@ class RedstoneDustConverter extends AbstractConverter {
 
 		for await (const [dot, line_0, line_1, to_cross, to_line] of this.getData()) {
 			if (await this.output.exists(dot) && await this.output.exists(line_0) && await this.output.exists(line_1)) {
-				Utils.log(`Convert redstone dust`);
+				this.log.log(`Convert redstone dust`);
 
 				const image = await this.readImage(line_0);
 

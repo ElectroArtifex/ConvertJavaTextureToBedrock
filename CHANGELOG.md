@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.7.0]
+- Supports input and output a `Buffer`
+- Remove temp folder usage, instead write directly to the output
+- Improved zip output again from v1.6.0 by using `jszip` now instead of `adm-zip` library
+
 ## [1.6.5]
 - Fix painting are warped
 

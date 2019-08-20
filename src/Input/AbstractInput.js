@@ -7,19 +7,21 @@ class AbstractInput {
 	/**
 	 * AbstractInput constructor
 	 *
-	 * @param {string} path
+	 * @param {string|Buffer} input
 	 *
 	 * @throws {Error}
 	 */
-	constructor(path) {
+	constructor(input) {
 		if (this.constructor === AbstractInput) {
 			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
-		 * @type {string}
+		 * @type {string|Buffer}
+		 *
+		 * @protected
 		 */
-		this.path = path;
+		this.input = input;
 	}
 
 	/**

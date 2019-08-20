@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class RenameConverter
@@ -11,7 +10,7 @@ class RenameConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Rename ${from} to ${to}`);
+				this.log.log(`Rename ${from} to ${to}`);
 
 				await this.output.rename(from, to);
 			}

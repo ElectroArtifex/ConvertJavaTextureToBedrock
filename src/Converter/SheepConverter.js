@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 import DeleteConverter from "./DeleteConverter";
 
 /**
@@ -15,7 +14,7 @@ class SheepConverter extends AbstractConverter {
 
 		for await (const [sheep, sheep_fur] of this.getData()) {
 			if (await this.output.exists(sheep) && await this.output.exists(sheep_fur)) {
-				Utils.log(`Convert sheep`);
+				this.log.log(`Convert sheep`);
 
 				const image_sheep = await this.readImage(sheep);
 				const image_fur = await this.readImage(sheep_fur);

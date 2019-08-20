@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import Jimp from "jimp";
-import Utils from "../Utils/Utils";
 
 /**
  * Class PlaceholderConverter
@@ -12,7 +11,7 @@ class PlaceholderConverter extends AbstractConverter {
 	async convert() {
 		for await (const [from, x, y, width, height, factor_detect, to, not_center] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Create placeholder ${to}`);
+				this.log.log(`Create placeholder ${to}`);
 
 				let image = await this.readImage(from);
 

@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class OverlayToTranslateConverter
@@ -14,7 +13,7 @@ class OverlayToTranslateConverter extends AbstractConverter {
 
 		for await (const [from, overlay, to, reverse_method, not_delete_overlay] of this.getData()) {
 			if (await this.output.exists(from) && await this.output.exists(overlay)) {
-				Utils.log(`Create translated overlay ${to}`);
+				this.log.log(`Create translated overlay ${to}`);
 
 				const image = await this.readImage(from);
 

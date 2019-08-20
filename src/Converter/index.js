@@ -12,6 +12,7 @@ import DrownedConverter from "./DrownedConverter";
 import FishHookConverter from "./FishingConverter";
 import FireworksConverter from "./FireworksConverter";
 import HorseConverter from "./HorseConverter";
+import Log from "./../Log/Log";
 import MapIconsConverter from "./MapIconsConverter";
 import MetadataConverter from "./MetadataConverter";
 import OpaqueConverter from "./OpaqueConverter";
@@ -31,14 +32,15 @@ import WeatherConverter from "./WeatherConverter";
 
 /**
  * @param {AbstractOutput} output
+ * @param {Log} log
  *
  * @returns {AsyncIterableIterator<AbstractConverter>}
  *
  * @throws {Error}
  */
-async function* getConverters(output) {
+async function* getConverters(output, log) {
 	for (const [converter, data] of converters) {
-		yield new converter(output, data);
+		yield new converter(output, data, log);
 	}
 }
 

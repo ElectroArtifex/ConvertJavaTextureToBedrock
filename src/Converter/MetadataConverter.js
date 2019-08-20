@@ -1,6 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
-import Utils from "../Utils/Utils";
 import uuid from "uuid/v4";
 
 /**
@@ -14,7 +13,7 @@ class MetadataConverter extends AbstractConverter {
 		const to_delete = [];
 
 		for await (const [from, to, uuid_header_file, uuid_module_file] of this.getData()) {
-			Utils.log(`Create metadata ${to}`);
+			this.log.log(`Create metadata ${to}`);
 
 			let uuid_header = "";
 			if (await this.output.exists(uuid_header_file)) {

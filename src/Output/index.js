@@ -1,29 +1,34 @@
 import AbstractInput from "../Input/AbstractInput";
 import AbstractOutput from "./AbstractOutput";
+import BufferOutput from "./BufferOutput";
 import FolderOutput from "./FolderOutput";
 import fs from "fs-extra";
+import Log from "../Log/Log";
 import path from "path";
-import Utils from "../Utils/Utils";
 import ZipOutput from "./ZipOutput";
 
 /**
- * @param {string} output
- * @param {string} temp
+ * @param {string|Buffer} output
  * @param {AbstractInput} input
+ * @param {Log} log
  *
  * @returns {Promise<AbstractOutput>}
  *
  * @throws {Error}
  */
-async function detectOutput(output, temp, input) {
+async function detectOutput(output, input, log) {
+	if (Buffer.isBuffer(output)) {
+		return new BufferOutput(output, input, log);
+	}
+
 	if (fs.existsSync(output)) {
-		Utils.log(`Remove exists output ${output}`);
+		log.log(`Remove exists output`);
 
 		try {
 			await fs.remove(output);
 		} catch (err) {
 			// TODO: Bug on Windows? (EPERM: operation not permitted (rmdir))
-			console.warn(err);
+			log.warn(err);
 		}
 	}
 
@@ -32,10 +37,10 @@ async function detectOutput(output, temp, input) {
 	switch (ext) {
 		case "mcpack":
 		case "zip":
-			return new ZipOutput(output, temp, input);
+			return new ZipOutput(output, input, log);
 
 		default:
-			return new FolderOutput(output, temp, input);
+			return new FolderOutput(output, input, log);
 	}
 }
 

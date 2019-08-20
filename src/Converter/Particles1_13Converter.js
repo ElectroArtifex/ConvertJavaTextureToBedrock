@@ -1,5 +1,4 @@
 import AbstractConverter from "./AbstractConverter";
-import Utils from "../Utils/Utils";
 
 /**
  * Class Particles1_13Converter
@@ -11,7 +10,7 @@ class Particles1_13Converter extends AbstractConverter {
 	async convert() {
 		for await (const [from, to] of this.getData()) {
 			if (await this.output.exists(from)) {
-				Utils.log(`Convert particles ${from}`);
+				this.log.log(`Convert particles ${from}`);
 
 				const image = await this.readImage(from);
 
