@@ -27,7 +27,6 @@
     "fs-extra": "latest",
     "jimp": "latest",
     "jszip": "latest",
-    "mocha": "latest",
     "readdirp": "latest",
     "tga": "latest",
     "uuid": "latest",
@@ -43,10 +42,10 @@
     "ConvertMinecraftJavaTextureToBedrock": "dist/cli.js"
   },
   "scripts": {
-    "cli": "node dist/cli.js",
-    "debug": "webpack --mode=development && node dist/cli.js",
     "build": "webpack",
-    "prepublishOnly": "webpack",
-    "test": "webpack --mode=development && mocha tests"
+    "build:dev": "webpack --mode=development",
+    "cli": "node dist/cli.js",
+    "debug": "yarn build:dev && yarn cli",
+    "prepublishOnly": "yarn build"
   }
 }
