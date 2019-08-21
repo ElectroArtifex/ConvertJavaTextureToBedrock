@@ -4,11 +4,11 @@ import detectOutput from "./Output";
 import Log from "./Log/Log";
 
 /**
- * @param {string|Buffer} inputParam
+ * @param {string|Buffer|Array} inputParam
  * @param {string} outputParam
  * @param {Object} options
  *
- * @returns {Promise<string|Buffer|Array>}
+ * @returns {Promise<string|Buffer>}
  *
  * @throws {Error}
  */
