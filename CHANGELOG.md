@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.2]
+- Browser support
+- `ArrayBuffer` and `Uint8Array` support
+
 ## [1.7.1]
 - Better validate input
 
