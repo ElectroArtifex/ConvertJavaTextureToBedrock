@@ -2,6 +2,7 @@ import AbstractInput from "./AbstractInput";
 import BufferInput from "./BufferInput";
 import FolderInput from "./FolderInput";
 import fs from "fs-extra";
+import MetadataConverter from "../Converter/MetadataConverter";
 import path from "path";
 import ZipInput from "./ZipInput";
 
@@ -33,6 +34,15 @@ async function detectInput(input) {
 		throw new Error(`The input ${input} does not exists!`);
 	}
 
+	if (fs.statSync(input).isDirectory()) {
+		if (!fs.existsSync(path.join(input, MetadataConverter.PACK_MCMETA))) { // Prevents copy whole wrong folders
+			throw new Error(`Invalid folder input ${input} - Missing ${MetadataConverter.PACK_MCMETA}!`);
+		}
+
+		return new FolderInput(input);
+	}
+
+
 	const ext = path.extname(input).toLowerCase().substr(1);
 
 	switch (ext) {
@@ -40,7 +50,7 @@ async function detectInput(input) {
 			return new ZipInput(input);
 
 		default:
-			return new FolderInput(input);
+			throw new Error(`The input ${input} is no zip archive or folder!`);
 	}
 }
 

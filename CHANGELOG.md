@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.7.1]
+- Better validate input
+
 ## [1.7.0]
 - Supports input and output a `Buffer`
 - Remove temp folder usage, instead write directly to the output

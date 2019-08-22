@@ -7,6 +7,13 @@ import uuid from "uuid/v4";
  */
 class MetadataConverter extends AbstractConverter {
 	/**
+	 * @returns {string}
+	 */
+	static get PACK_MCMETA() {
+		return "pack.mcmeta";
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	async convert() {
@@ -70,7 +77,7 @@ class MetadataConverter extends AbstractConverter {
 	 * @inheritDoc
 	 */
 	async* getData() {
-		const date = ["pack.mcmeta", "manifest.json", "bedrock_uuid_header", "bedrock_uuid_module"];
+		const date = [this.constructor.PACK_MCMETA, "manifest.json", "bedrock_uuid_header", "bedrock_uuid_module"];
 
 		yield date;
 	}
