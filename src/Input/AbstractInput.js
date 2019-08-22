@@ -7,32 +7,28 @@ class AbstractInput {
 	/**
 	 * AbstractInput constructor
 	 *
-	 * @param {string|Buffer} input
+	 * @param {string|Buffer|ArrayBuffer|Uint8Array} input
+	 * @param {string} filename
 	 *
 	 * @throws {Error}
 	 */
-	constructor(input) {
+	constructor(input, filename) {
 		if (this.constructor === AbstractInput) {
 			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
-		 * @type {string|Buffer}
+		 * @type {string|Buffer|ArrayBuffer|Uint8Array}
 		 *
 		 * @protected
 		 */
 		this.input = input;
-	}
-
-	/**
-	 * @returns {Promise<string>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @abstract
-	 */
-	async name() {
-
+		/**
+		 * @type {string}
+		 *
+		 * @protected
+		 */
+		this.filename = filename;
 	}
 }
 

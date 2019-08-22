@@ -1,9 +1,9 @@
 import AbstractOutput from "./AbstractOutput";
+import BufferInput from "../Input/BufferInput";
 import FolderInput from "../Input/FolderInput";
 import fs from "fs-extra";
 import JSZip from "jszip";
 import readdirp from "readdirp";
-import ZipInput from "../Input/ZipInput";
 
 /**
  * Class ZipOutput
@@ -21,10 +21,10 @@ class ZipOutput extends AbstractOutput {
 		this.zip = new JSZip();
 
 		switch (true) {
-			case (this.input instanceof ZipInput):
+			case (this.input instanceof BufferInput):
 				this.log.log(`Read input`);
 
-				this.zip = await this.zip.loadAsync(Buffer.isBuffer(this.input.input) ? this.input.input : await fs.readFile(this.input.input));
+				this.zip = await this.zip.loadAsync(this.input.input);
 				break;
 
 			case (this.input instanceof FolderInput):
@@ -60,13 +60,15 @@ class ZipOutput extends AbstractOutput {
 	}
 
 	/**
+	 * @param {string} type
+	 *
 	 * @returns {Promise<Buffer>}
 	 *
 	 * @protected
 	 */
-	async generateZip() {
+	async generateZip(type = "nodebuffer") {
 		return this.zip.generateAsync({
-			type: "nodebuffer"
+			type
 		})
 	}
 

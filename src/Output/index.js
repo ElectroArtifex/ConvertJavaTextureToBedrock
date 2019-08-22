@@ -3,12 +3,13 @@ import AbstractOutput from "./AbstractOutput";
 import BufferOutput from "./BufferOutput";
 import FolderOutput from "./FolderOutput";
 import fs from "fs-extra";
+import isBuffer from "./isBuffer";
 import Log from "../Log/Log";
 import path from "path";
 import ZipOutput from "./ZipOutput";
 
 /**
- * @param {string|Buffer} output
+ * @param {string|Buffer|ArrayBuffer|Uint8Array} output
  * @param {AbstractInput} input
  * @param {Log} log
  *
@@ -17,8 +18,12 @@ import ZipOutput from "./ZipOutput";
  * @throws {Error}
  */
 async function detectOutput(output, input, log) {
-	if (Buffer.isBuffer(output)) {
+	if (isBuffer(output)) {
 		return new BufferOutput(output, input, log);
+	}
+
+	if (!fs) {
+		throw new Error(`Browser only supports Buffer output!`);
 	}
 
 	if (fs.existsSync(output)) {

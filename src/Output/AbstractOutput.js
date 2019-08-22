@@ -10,7 +10,7 @@ class AbstractOutput {
 	/**
 	 * AbstractOutput constructor
 	 *
-	 * @param {string|Buffer} output
+	 * @param {string|Buffer|ArrayBuffer|Uint8Array} output
 	 * @param {AbstractInput} input
 	 * @param {Log} log
 	 *
@@ -22,7 +22,7 @@ class AbstractOutput {
 		}
 
 		/**
-		 * @type {string|Buffer}
+		 * @type {string|Buffer|ArrayBuffer|Uint8Array}
 		 *
 		 * @protected
 		 */
@@ -53,7 +53,7 @@ class AbstractOutput {
 	}
 
 	/**
-	 * @returns {Promise<string|Buffer>}
+	 * @returns {Promise<string|Buffer|ArrayBuffer|Uint8Array>}
 	 *
 	 * @throws {Error}
 	 *

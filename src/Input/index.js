@@ -2,24 +2,24 @@ import AbstractInput from "./AbstractInput";
 import BufferInput from "./BufferInput";
 import FolderInput from "./FolderInput";
 import fs from "fs-extra";
+import isBuffer from "./../Output/isBuffer";
 import MetadataConverter from "../Converter/MetadataConverter";
 import path from "path";
-import ZipInput from "./ZipInput";
 
 /**
- * @param {string|Buffer|Array} input
+ * @param {string|Buffer|ArrayBuffer|Uint8Array|Array} input
  *
  * @returns {Promise<AbstractInput>}
  *
  * @throws {Error}
  */
 async function detectInput(input) {
-	if (Buffer.isBuffer(input)) {
+	if (isBuffer(input)) {
 		return new BufferInput(input);
 	}
 
 	if (Array.isArray(input)) {
-		if (Buffer.isBuffer(input[0])) {
+		if (isBuffer(input[0])) {
 			return new BufferInput(input[0], input[1]);
 		}
 
@@ -28,6 +28,10 @@ async function detectInput(input) {
 
 	if (typeof input !== "string") {
 		throw new Error(`Invalid string input!`);
+	}
+
+	if (!fs) {
+		throw new Error(`Browser only supports Buffer input!`);
 	}
 
 	if (!fs.existsSync(input)) {
@@ -39,7 +43,7 @@ async function detectInput(input) {
 			throw new Error(`Invalid folder input ${input} - Missing ${MetadataConverter.PACK_MCMETA}!`);
 		}
 
-		return new FolderInput(input);
+		return new FolderInput(input, input);
 	}
 
 
@@ -47,7 +51,7 @@ async function detectInput(input) {
 
 	switch (ext) {
 		case "zip":
-			return new ZipInput(input);
+			return new BufferInput(await fs.readFile(input), input);
 
 		default:
 			throw new Error(`The input ${input} is no zip archive or folder!`);

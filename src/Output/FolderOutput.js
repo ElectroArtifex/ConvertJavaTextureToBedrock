@@ -1,12 +1,9 @@
 import AbstractOutput from "./AbstractOutput";
-import extractZip from "extract-zip";
+import BufferInput from "../Input/BufferInput";
 import FolderInput from "../Input/FolderInput";
 import fs from "fs-extra";
+import JSZip from "jszip";
 import path from "path";
-import util from "util";
-import ZipInput from "../Input/ZipInput";
-
-const extractZipPromise = util.promisify(extractZip);
 
 /**
  * Class FolderOutput
@@ -17,10 +14,21 @@ class FolderOutput extends AbstractOutput {
 	 */
 	async init() {
 		switch (true) {
-			case (this.input instanceof ZipInput):
+			case (this.input instanceof BufferInput):
 				this.log.log(`Extract input`);
 
-				return extractZipPromise(this.input.input, {dir: path.resolve(this.output)});
+				let zip = new JSZip();
+				zip = await zip.loadAsync(this.input.input);
+				for (const entry of Object.values(zip.files)) {
+					if (entry.dir) {
+						if (!fs.existsSync(this.p(entry.name))) {
+							await fs.mkdirs(this.p(entry.name)); // Empty folders
+						}
+					} else {
+						await this.write(entry.name, await zip.file(entry.name).async("nodebuffer"));
+					}
+				}
+				break;
 
 			case (this.input instanceof FolderInput):
 				this.log.log(`Copy input`);

@@ -10,7 +10,7 @@ class BufferOutput extends ZipOutput {
 	async generate() {
 		this.log.log(`Pack output`);
 
-		return this.generateZip();
+		return this.generateZip(Buffer.isBuffer(this.output) ? undefined : this.output.constructor.name.toLowerCase());
 	}
 }
 

@@ -1,5 +1,6 @@
 import AbstractConverter from "./AbstractConverter";
 import DeleteConverter from "./DeleteConverter";
+import path from "path";
 import uuid from "uuid/v4";
 
 /**
@@ -50,7 +51,7 @@ class MetadataConverter extends AbstractConverter {
 				"format_version": 1,
 				"header": {
 					"description": mcmeta.pack.description,
-					"name": await this.output.input.name(),
+					"name": path.parse(this.output.input.filename).name,
 					"platform_locked": false,
 					"uuid": uuid_header,
 					"version": [0, 0, 1]
