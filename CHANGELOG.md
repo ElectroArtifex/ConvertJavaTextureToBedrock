@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.8.0]
+- New GUI directly in your browser
+
 ## [1.7.2]
 - Browser support
 - `ArrayBuffer` and `Uint8Array` support

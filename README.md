@@ -1,4 +1,4 @@
-CLI version for convert Minecraft Java texture packs to Minecraft Bedrock texture packs
+Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
 
 It supports currently the follow Minecraft versions:
 
@@ -20,7 +20,7 @@ For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/p
 # Usage
 
 ## GUI
-Look at https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrockGUI/releases
+Look at http://ozelot379.github.io/ConvertMinecraftJavaTextureToBedrock in your browser
 
 ## CLI
 First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)

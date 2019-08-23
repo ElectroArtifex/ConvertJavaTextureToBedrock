@@ -1,7 +1,7 @@
-import {addAdditionalConverters, getConverters} from "./Converter";
-import detectInput from "./Input";
-import detectOutput from "./Output";
-import Log from "./Log/Log";
+import {addAdditionalConverters, getConverters} from "./converter";
+import detectInput from "./input";
+import detectOutput from "./output";
+import Log from "./log/Log";
 
 /**
  * @param {string|Buffer|ArrayBuffer|Uint8Array|Array} inputParam

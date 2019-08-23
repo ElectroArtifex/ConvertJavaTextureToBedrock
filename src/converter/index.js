@@ -1,5 +1,5 @@
 import AbstractConverter from "./AbstractConverter";
-import AbstractOutput from "../Output/AbstractOutput";
+import AbstractOutput from "../output/AbstractOutput";
 import AtlasConverter from "./AtlasConverter";
 import BannerPatternConverter from "./BannerPatternConverter";
 import BedConverter from "./BedConverter";
@@ -12,7 +12,7 @@ import DrownedConverter from "./DrownedConverter";
 import FishHookConverter from "./FishingConverter";
 import FireworksConverter from "./FireworksConverter";
 import HorseConverter from "./HorseConverter";
-import Log from "./../Log/Log";
+import Log from "./../log/Log";
 import MapIconsConverter from "./MapIconsConverter";
 import MetadataConverter from "./MetadataConverter";
 import OpaqueConverter from "./OpaqueConverter";

@@ -1,6 +1,6 @@
-import AbstractOutput from "../Output/AbstractOutput";
+import AbstractOutput from "../output/AbstractOutput";
 import Jimp from "jimp";
-import Log from "../Log/Log";
+import Log from "../log/Log";
 
 /**
  * Class AbstractConverter
