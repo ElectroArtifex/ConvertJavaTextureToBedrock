@@ -106,7 +106,6 @@ module.exports = (env, argv) => {
 					devMode: "webapp",
 					logo: "./src/webapp/img/icon.svg",
 					mode: "webapp",
-					prefix: "webapp",
 					favicons: {
 						appDescription: PACKAGE.description,
 						appName: PACKAGE.productName,
@@ -128,11 +127,15 @@ module.exports = (env, argv) => {
 							yandex: false
 						},
 						lang: null,
+						manifestRelativePaths: true,
 						orientation: "portrait",
+						path: "./",
 						start_url: "/index.html",
 						theme_color: "#795548",
 						version: PACKAGE.version
-					}
+					},
+					prefix: "webapp",
+					publicPath: "./"
 				})
 			]
 		}
