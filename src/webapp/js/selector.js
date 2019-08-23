@@ -63,6 +63,8 @@ async function selectFile(title, filter) {
 
 		selector.addEventListener("change", selectorLastChangeListener);
 
+		document.body.appendChild(selector);
+
 		selector.click();
 	});
 }
