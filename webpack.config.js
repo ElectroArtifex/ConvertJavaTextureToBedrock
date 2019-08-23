@@ -130,7 +130,7 @@ module.exports = (env, argv) => {
 						manifestRelativePaths: true,
 						orientation: "portrait",
 						path: "./",
-						start_url: ".",
+						start_url: "..",
 						theme_color: "#795548",
 						version: PACKAGE.version
 					},

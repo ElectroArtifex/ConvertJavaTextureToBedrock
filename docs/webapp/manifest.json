@@ -6,7 +6,7 @@
   "lang": null,
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": ".",
+  "start_url": "..",
   "background_color": "#FFFFFF",
   "theme_color": "#795548",
   "icons": [
