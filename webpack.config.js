@@ -26,6 +26,13 @@ module.exports = [
 		entry: {
 			browser: "./src/index.js"
 		},
+		mode: "production",
+		output: {
+			filename: "[name].js",
+			path: __dirname + "/dist",
+			libraryTarget: "umd",
+			globalObject: "this" // Fix worker
+		},
 		resolve: {
 			alias: {
 				fs: __dirname + "/src/fs_browser_null.js",
@@ -34,13 +41,6 @@ module.exports = [
 				path: "path-browserify",
 				readdirp: __dirname + "/src/fs_browser_null.js"
 			}
-		},
-		mode: "production",
-		output: {
-			filename: "[name].js",
-			path: __dirname + "/dist",
-			libraryTarget: "umd",
-			globalObject: "this" // Fix worker
 		},
 		target: "web"
 	}
