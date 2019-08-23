@@ -1,5 +1,5 @@
 .idea
 dist
-input
+/input
 node_modules
-output
+/output
