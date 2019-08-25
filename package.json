@@ -60,6 +60,6 @@
     "build:dev": "webpack --mode=development",
     "cli": "node dist/cli.js",
     "debug": "yarn build:dev && yarn cli",
-    "prepublishOnly": "yarn build && node -e \"require('ghpages')('./dist/webapp')\""
+    "prepublishOnly": "yarn build && node -e \"require('ghpages').publish('./dist/webapp')\""
   }
 }
