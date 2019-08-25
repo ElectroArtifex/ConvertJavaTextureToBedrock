@@ -13,11 +13,12 @@ let selectorLastChangeListener = null;
 /**
  * @param {ArrayBuffer} output
  * @param {string} filename
+ * @param {string} type
  *
  * @returns {Promise<>}
  */
-async function downloadFile(output, filename) {
-	fileSaver(new Blob([output]), filename);
+async function downloadFile(output, filename, type) {
+	fileSaver(new Blob([output], {type}), filename);
 }
 
 /**

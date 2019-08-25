@@ -81,6 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 
-		downloadFile(output, path.parse(input[1]).name + ".mcpack");
+		downloadFile(output, path.parse(input[1]).name + ".mcpack", "application/zip");
 	}
 });
