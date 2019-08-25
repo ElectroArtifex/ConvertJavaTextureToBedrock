@@ -25,7 +25,7 @@
   "devDependencies": {
     "css-loader": "^3.2.0",
     "favicons-webpack-plugin": "^1.0.1",
-    "file-saver": "^2.0.2",
+    "file-saver": "https://github.com/eligrey/FileSaver.js",
     "file-to-array-buffer": "^1.0.0",
     "fs-extra": "^8.1.0",
     "gh-pages": "^2.1.1",

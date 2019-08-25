@@ -76,9 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		await swal({
 			text: "Conversion was successfully",
 			icon: "success",
-			buttons: {
-				download: "Download"
-			}
+			buttons: "Save"
 		});
 
 		downloadFile(output, path.parse(input[1]).name + ".mcpack", "application/zip");

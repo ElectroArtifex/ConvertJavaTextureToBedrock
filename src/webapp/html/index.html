@@ -3,21 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Convert Minecraft Java texture packs to Minecraft Bedrock texture packs</title>
+	<meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
-<nav class="nav-extended brown">
-	<div class="nav-content">
-		<span class="nav-title">Convert Minecraft Java texture packs to Minecraft Bedrock texture packs</span>
-	</div>
-</nav>
-<div class="section center">
-	<button class="btn green" id="selectInputFileButton" type="button">Select input file</button>
-</div>
+<header>
+	<nav class="nav-extended brown">
+		<div class="nav-content">
+			<span class="nav-title">Convert Minecraft Java texture packs to Minecraft Bedrock texture packs</span>
+		</div>
+	</nav>
+</header>
+<main class="section center">
+	<button class="btn green" id="selectInputFileButton" type="button">Select</button>
+</main>
 <footer class="page-footer brown">
 	<div class="footer-copyright">
 		<div class="container">
-			Source:
-			<a class="green-text" href="https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock" target="_blank">https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock</a>
+			<div class="row">
+				<div class="col l6">
+					Works directly in your browser
+				</div>
+				<div class="col l6">
+					<div>
+						Version: <%= require("./../../../package").version %>
+					</div>
+					<div>
+						Source:
+						<a class="green-text" href="https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock" target="_blank">https://github.com/ozelot379/ConvertMinecraftJavaTextureToBedrock</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </footer>
