@@ -86,7 +86,7 @@ module.exports = (env, argv) => {
 			},
 			output: {
 				filename: "index.js",
-				path: __dirname + "/dist/",
+				path: __dirname + "/dist/webapp",
 				globalObject: "this" // Fix worker
 			},
 			plugins: [
