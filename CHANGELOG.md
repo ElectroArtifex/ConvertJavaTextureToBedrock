@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.8.1]
+- Some improvments and fixes
+
 ## [1.8.0]
 - New GUI directly in your browser
 
