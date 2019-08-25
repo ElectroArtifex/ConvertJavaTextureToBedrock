@@ -18,7 +18,7 @@ let selectorLastChangeListener = null;
  * @returns {Promise<>}
  */
 async function downloadFile(output, filename, type) {
-	fileSaver(new Blob([output], {type}), filename);
+	fileSaver(new File([output], filename, {type}));
 }
 
 /**
