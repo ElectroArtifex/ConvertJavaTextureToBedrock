@@ -1,7 +1,7 @@
 import {downloadFile, selectFile} from "./selector";
 import path from "path";
 import swal from "sweetalert";
-import Worker from "./convert.worker";
+import Worker from "./worker";
 import "./../css/style.less";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -73,8 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			return;
 		}
 
-		downloadFile(output, path.parse(input[1]).name + ".mcpack");
+		await swal({
+			text: "Conversion was successfully",
+			icon: "success",
+			buttons: {
+				download: "Download"
+			}
+		});
 
-		swal.close();
+		downloadFile(output, path.parse(input[1]).name + ".mcpack");
 	}
 });

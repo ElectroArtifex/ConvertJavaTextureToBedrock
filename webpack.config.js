@@ -79,14 +79,14 @@ module.exports = (env, argv) => {
 						test: /\.worker\.js$/,
 						loader: "worker-loader",
 						options: {
-							name: "worker.[ext]"
+							name: "[name].[ext]"
 						}
 					}
 				]
 			},
 			output: {
 				filename: "index.js",
-				path: __dirname + "/docs",
+				path: __dirname + "/dist/",
 				globalObject: "this" // Fix worker
 			},
 			plugins: [
@@ -128,7 +128,7 @@ module.exports = (env, argv) => {
 						},
 						lang: null,
 						manifestRelativePaths: true,
-						orientation: "portrait",
+						orientation: "any",
 						path: "./",
 						start_url: "..",
 						theme_color: "#795548",
