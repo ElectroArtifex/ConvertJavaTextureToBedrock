@@ -76,7 +76,7 @@ module.exports = (env, argv) => {
 						use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
 					},
 					{
-						test: /\.worker\.js$/,
+						test: /worker\.js$/,
 						loader: "worker-loader",
 						options: {
 							name: "[name].[ext]"
