@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.9.0]
+- Allow select folder on browser gui
+
 ## [1.8.1]
 - Some improvments and fixes
 

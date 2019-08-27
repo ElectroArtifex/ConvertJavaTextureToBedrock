@@ -1,4 +1,4 @@
-import {downloadFile, selectFile} from "./selector";
+import {download, select} from "./selector";
 import path from "path";
 import swal from "sweetalert";
 import Worker from "./worker";
@@ -8,35 +8,46 @@ document.addEventListener("DOMContentLoaded", () => {
 	const selectInputFileButton = document.getElementById("selectInputFileButton");
 	selectInputFileButton.addEventListener("click", selectInputFile);
 
+	const selectInputFolderButton = document.getElementById("selectInputFolderButton");
+	selectInputFolderButton.addEventListener("click", selectInputFolder);
+
 	/**
 	 * @type {Array|null}
 	 */
 	let input = null;
 
-	const worker = Worker();
+	/**
+	 * @type {Worker}
+	 */
+	const worker = new Worker();
 	worker.addEventListener("message", afterConvert);
 
 	/**
 	 * @returns {Promise<>}
 	 */
 	async function selectInputFile() {
-		input = await selectFile("Select input file", {
-			name: "Input files (*.zip)",
-			extensions: ["zip"]
-		});
+		input = await select("Select zip file", [".zip"]);
+
+		return startConvert();
+	}
+
+	/**
+	 * @returns {Promise<>}
+	 */
+	async function selectInputFolder() {
+		input = await select("Select folder", [".zip"], true); // TODO: Set filter too because directory support can't be detected because webkitdirectory is set in HTMLInputElement.prototype even on mobile browsers which not supports this :(
+
+		return startConvert();
+	}
+
+	/**
+	 * @returns {Promise<>}
+	 */
+	async function startConvert() {
 		if (input === null) {
 			return;
 		}
 
-		await startConvert(input);
-	}
-
-	/**
-	 * @param {Array} input
-	 *
-	 * @returns {Promise<>}
-	 */
-	async function startConvert(input) {
 		swal({
 			text: "Start conversion ...",
 			buttons: false,
@@ -79,6 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			buttons: "Save"
 		});
 
-		downloadFile(output, path.parse(input[1]).name + ".mcpack", "application/zip");
+		download(output, path.parse(input[1]).name + ".mcpack", "application/zip");
 	}
 });

@@ -41,7 +41,7 @@ ConvertMinecraftJavaTextureToBedrock -i input/java_texture_pack.zip -o output/be
 |---------------|-------------------------------|
 | -i (Required) | Input folder or archive path  |
 | -o (Required) | Output folder or archive path |
-| -l            | Verbose log                   |
+| -l            | Verbose log (Default `true`)  |
 
 ## Direct in your code
 Add it as a dependency to your `package.json`
@@ -77,14 +77,14 @@ ConvertMinecraftJavaTextureToBedrock(input, output/*, "options"*/).then((outputP
 |---------------------|------------------------------------------------|
 | input (Required)    | - Folder or archive path (`string`)<br>- Archive (`Buffer`)<br>- `Array` with archive (`Buffer`) and filename (`string`) |
 | output (Required)   | - Folder or archive path (`string`)<br>- Archive (`Buffer`) |
-| options.verbose     | Verbose log                                    |
+| options.verbose     | Verbose log (Default `true`)                   |
 | options.logCallback | Custom log callback (Default is `console.log`) |
 
 ## Known issues
 - Convert horse textures is very tricky and may buggy
 - Convert weather textures (rain and snow) may not works (seems to be an other format as the default)
 
-# Extras
+# Extras (for texture pack creators)
 
 ## UUID
 You can create the `bedrock_uuid_header` and `bedrock_uuid_module` files in your input, to keep the same uuid on repeating conversions - otherwise, random uuids are generated each time and you need to reselect the texture pack again in the game

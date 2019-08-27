@@ -1,4 +1,4 @@
-import ConvertMinecraftJavaTextureToBedrock from "../../../src";
+import ConvertMinecraftJavaTextureToBedrock from "../..";
 
 addEventListener("message", async (e) => {
 	const input = e.data;

@@ -1,5 +1,8 @@
 import fileToArrayBuffer from "file-to-array-buffer";
 import fileSaver from "file-saver";
+import JSZip from "jszip";
+import path from "path";
+import swal from "sweetalert";
 
 /**
  * @type {HTMLInputElement|null}
@@ -17,49 +20,77 @@ let selectorLastChangeListener = null;
  *
  * @returns {Promise<>}
  */
-async function downloadFile(output, filename, type) {
+async function download(output, filename, type) {
 	fileSaver(new File([output], filename, {type}));
 }
 
 /**
  * @param {string} title
  * @param {Object} filter
+ * @param {boolean} folder
+ *
  * @returns {Promise<Array|null>}
  */
-async function selectFile(title, filter) {
+async function select(title, filter, folder = false) {
 	return new Promise((resolve, reject) => {
-		resetFileSelector();
+		resetSelector(); // Allows select same file again without reset files/value
 
 		selector = document.createElement("input");
 
 		selector.type = "file";
 
-		selector.style.display = "none";
-
-		if (selectorLastChangeListener !== null) {
-			selector.removeEventListener("change", selectorLastChangeListener);
-			selectorLastChangeListener = null;
+		if (folder) {
+			selector.webkitdirectory = folder;
 		}
+
+		selector.style.display = "none";
 
 		selector.title = title;
 
-		selector.accept = filter.extensions.map((ext) => {
-			return ("." + ext);
-		}).join(" ");
+		selector.accept = filter.join(" ");
 
 		selectorLastChangeListener = async () => {
-			if (selector.files.length === 0) {
+			const files = selector.files;
+
+			if (files.length === 0) {
 				resolve(null);
+
 				return;
 			}
 
-			const file = selector.files[0];
+			let buffer, name = "";
 
-			resetFileSelector();
+			// TODO: Add this somehow to a worker
+			if (files.length > 1) {
+				swal({
+					text: "Pack",
+					buttons: false,
+					closeOnClickOutside: false,
+					closeOnEsc: false
+				});
 
-			const buffer = await fileToArrayBuffer(file);
+				const zip = new JSZip();
 
-			resolve([buffer, file.name]);
+				for (const file of files) {
+					const paths = file.webkitRelativePath.split(path.sep);
+
+					name = paths.shift();
+
+					zip.file(paths.join(path.sep), await fileToArrayBuffer(file));
+				}
+
+				buffer = await zip.generateAsync({
+					type: "arraybuffer"
+				});
+			} else {
+				const file = files[0];
+
+				buffer = await fileToArrayBuffer(file);
+
+				name = file.name;
+			}
+
+			resolve([buffer, name]);
 		};
 
 		selector.addEventListener("change", selectorLastChangeListener);
@@ -73,7 +104,7 @@ async function selectFile(title, filter) {
 /**
  *
  */
-function resetFileSelector() {
+function resetSelector() {
 	if (selector !== null) {
 		if (selectorLastChangeListener !== null) {
 			selector.removeEventListener("change", selectorLastChangeListener);
@@ -86,4 +117,4 @@ function resetFileSelector() {
 	}
 }
 
-export {downloadFile, selectFile};
+export {download, select};
