@@ -1,5 +1,5 @@
-import AbstractInput from "../input/AbstractInput";
-import Log from "../log/Log";
+import {AbstractInput, AbstractInputEntry} from "./../input";
+import {AbstractLog} from "./../log";
 
 /**
  * Class AbstractOutput
@@ -10,50 +10,53 @@ class AbstractOutput {
 	/**
 	 * AbstractOutput constructor
 	 *
-	 * @param {string|Buffer|ArrayBuffer|Uint8Array} output
-	 * @param {AbstractInput} input
-	 * @param {Log} log
-	 *
 	 * @throws {Error}
 	 */
-	constructor(output, input, log) {
+	constructor() {
 		if (this.constructor === AbstractOutput) {
 			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
-		 * @type {string|Buffer|ArrayBuffer|Uint8Array}
-		 *
-		 * @protected
-		 */
-		this.output = output;
-		/**
 		 * @type {AbstractInput}
 		 *
 		 * @protected
 		 */
-		this.input = input;
+		this.input;
 		/**
-		 * @type {Log}
+		 * @type {AbstractLog}
 		 *
 		 * @protected
 		 */
+		this.log;
+	}
+
+	/**
+	 * @param {AbstractInput} input
+	 * @param {AbstractLog} log
+	 *
+	 * @returns Promise<>
+	 */
+	async _init(input, log) {
+		this.input = input;
 		this.log = log;
 	}
 
 	/**
+	 * @param {AbstractInputEntry} entry
+	 *
 	 * @returns {Promise<>}
 	 *
 	 * @throws {Error}
 	 *
 	 * @abstract
 	 */
-	async init() {
+	async applyInputEntry(entry) {
 
 	}
 
 	/**
-	 * @returns {Promise<string|Buffer|ArrayBuffer|Uint8Array>}
+	 * @returns {Promise<*>}
 	 *
 	 * @throws {Error}
 	 *
@@ -145,4 +148,4 @@ class AbstractOutput {
 	}
 }
 
-export default AbstractOutput;
+export {AbstractOutput};

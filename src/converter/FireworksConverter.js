@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -33,11 +33,11 @@ class FireworksConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = ["textures/items/fireworks.png", "textures/entity/fireworks.png"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["textures/items/fireworks.png", "textures/entity/fireworks.png"]
+		];
 	}
 }
 
-export default FireworksConverter;
+export {FireworksConverter};

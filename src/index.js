@@ -1,31 +1,73 @@
 import {addAdditionalConverters, getConverters} from "./converter";
-import detectInput from "./input";
-import detectOutput from "./output";
-import Log from "./log/Log";
+import {AbstractInput} from "./input";
+import {AbstractLog} from "./log";
+import {AbstractOutput} from "./output";
 
 /**
- * @param {string|Buffer|ArrayBuffer|Uint8Array|Array} inputParam
- * @param {string} outputParam
- * @param {Object} options
- *
- * @returns {Promise<string|Buffer|ArrayBuffer|Uint8Array>}
- *
- * @throws {Error}
+ * Class ConvertMinecraftJavaTextureToBedrock
  */
-async function ConvertMinecraftJavaTextureToBedrock(inputParam, outputParam, options = {}) {
-	const log = new Log(options.logCallback, options.verbose);
-
-	const input = await detectInput(inputParam);
-
-	const output = await detectOutput(outputParam, input, log);
-
-	await output.init();
-
-	for await (const converter of getConverters(output, log)) {
-		await addAdditionalConverters(...await converter.convert());
+class ConvertMinecraftJavaTextureToBedrock {
+	/**
+	 * ConvertMinecraftJavaTextureToBedrock constructor
+	 *
+	 * @param {AbstractInput} input
+	 * @param {AbstractOutput} output
+	 * @param {AbstractLog} log
+	 */
+	constructor(input, output, log) {
+		/**
+		 * @type {AbstractInput}
+		 *
+		 * @protected
+		 */
+		this.input = input;
+		/**
+		 * @type {AbstractOutput}
+		 *
+		 * @protected
+		 */
+		this.output = output;
+		/**
+		 * @type {AbstractLog}
+		 *
+		 * @protected
+		 */
+		this.log = log;
 	}
 
-	return output.generate();
+	/**
+	 * @returns {Promise<*>}
+	 */
+	async convert() {
+		try {
+			await this.output._init(this.input, this.log);
+
+			for await (const entry of this.input.getEntries()) {
+				await entry._init(this.log);
+
+				await this.output.applyInputEntry(entry);
+			}
+
+			for await (const converter of getConverters()) {
+				await converter._init(this.input, this.output, this.log);
+
+				await addAdditionalConverters(...await converter.convert());
+			}
+
+			return await this.output.generate();
+		} catch (err) {
+			this.log.error(err.message);
+			throw err;
+		}
+	}
 }
 
 export default ConvertMinecraftJavaTextureToBedrock;
+
+//export {AbstractConverter, addAdditionalConverters} from "./converter";
+export {AbstractInput, ArrayInput, Input} from "./input";
+export {AbstractInputEntry, BufferInputEntry, FileInputEntry, LocalFileInputEntry, LocalFolderInputEntry} from "./input";
+export {AbstractLog, ConsoleLog, SilentLog} from "./log";
+export {
+	AbstractOutput, ArrayBufferOutput, BlobOutput, BufferOutput, FileOutput, LocalFileOutput, LocalFolderOutput, Uint8ArrayOutput
+} from "./output";

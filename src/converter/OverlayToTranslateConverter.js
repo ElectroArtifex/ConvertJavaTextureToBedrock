@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 
 /**
  * Class OverlayToTranslateConverter
@@ -36,14 +36,14 @@ class OverlayToTranslateConverter extends AbstractConverter {
 			}
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Cat
 			["textures/entity/cat/graytabby_tame.png", "textures/entity/cat/allblackcat.png", "textures/entity/cat/allblackcat_tame.png", false, true],
 			["textures/entity/cat/graytabby_tame.png", "textures/entity/cat/britishshorthair.png", "textures/entity/cat/britishshorthair_tame.png", false, true],
@@ -85,11 +85,7 @@ class OverlayToTranslateConverter extends AbstractConverter {
 			// Wolf
 			["textures/entity/wolf/wolf_collar.png", "textures/entity/wolf/wolf_tame.png", "textures/entity/wolf/wolf_tame.png", false, true]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default OverlayToTranslateConverter;
+export {OverlayToTranslateConverter};

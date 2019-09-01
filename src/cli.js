@@ -1,5 +1,14 @@
-import ConvertMinecraftJavaTextureToBedrock from "./index";
-import PACKAGE from "../package";
+import ConvertMinecraftJavaTextureToBedrock, {
+	ConsoleLog,
+	Input,
+	LocalFileInputEntry,
+	LocalFileOutput,
+	LocalFolderInputEntry,
+	LocalFolderOutput,
+	SilentLog
+} from ".";
+import fs from "fs-extra";
+import PACKAGE from "./../package";
 import yargs from "yargs";
 
 (async () => {
@@ -8,19 +17,19 @@ import yargs from "yargs";
 			i: {
 				alias: "input",
 				demand: true,
-				describe: "Input folder or archive path",
+				describe: "Input folder or zip path",
 				type: "string"
 			},
 			o: {
 				alias: "output",
 				demand: true,
-				describe: "Output folder or archive path",
+				describe: "Output folder or zip path",
 				type: "string"
 			},
 			l: {
-				alias: "verbose",
+				alias: "log",
 				default: true,
-				describe: "Verbose log",
+				describe: "Log",
 				type: "boolean"
 			}
 		})
@@ -29,9 +38,11 @@ import yargs from "yargs";
 		.argv;
 
 	try {
-		await ConvertMinecraftJavaTextureToBedrock(argv.input, argv.output, {
-			verbose: argv.verbose
-		});
+		return new ConvertMinecraftJavaTextureToBedrock(
+			new Input(fs.statSync(argv.input).isDirectory() ? new LocalFolderInputEntry(argv.input) : new LocalFileInputEntry(argv.input)),
+			(argv.output.includes(".") ? new LocalFileOutput(argv.output) : new LocalFolderOutput(argv.output)),
+			(argv.log ? new ConsoleLog() : new SilentLog())
+		).convert();
 	} catch (err) {
 		console.error(err.message);
 

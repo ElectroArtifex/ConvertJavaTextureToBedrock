@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -49,11 +49,11 @@ class FishHookConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = ["textures/entity/fishhook.png", "textures/entity/fishhook.png"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["textures/entity/fishhook.png", "textures/entity/fishhook.png"]
+		];
 	}
 }
 
-export default FishHookConverter;
+export {FishHookConverter};

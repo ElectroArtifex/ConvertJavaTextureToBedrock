@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -100,16 +100,12 @@ class PistonArmConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/blocks/piston_top_normal.png", "textures/blocks/piston_top_normal.png", "textures/blocks/piston_side.png", "textures/entity/pistonarm/pistonArm.png"],
 			["textures/blocks/piston_top_sticky.png", "textures/blocks/piston_top_normal.png", "textures/blocks/piston_side.png", "textures/entity/pistonarm/pistonArmSticky.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default PistonArmConverter;
+export {PistonArmConverter};

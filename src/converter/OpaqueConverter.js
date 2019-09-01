@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -34,8 +34,8 @@ class OpaqueConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Leaves
 			["textures/blocks/leaves_acacia.png", "textures/blocks/leaves_acacia_opaque.png"],
 			["textures/blocks/leaves_big_oak.png", "textures/blocks/leaves_big_oak_opaque.png"],
@@ -44,11 +44,7 @@ class OpaqueConverter extends AbstractConverter {
 			["textures/blocks/leaves_oak.png", "textures/blocks/leaves_oak_opaque.png"],
 			["textures/blocks/leaves_spruce.png", "textures/blocks/leaves_spruce_opaque.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default OpaqueConverter;
+export {OpaqueConverter};

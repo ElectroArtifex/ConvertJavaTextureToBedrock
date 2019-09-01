@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 import TGA from "tga";
 
 /**
@@ -28,14 +28,14 @@ class PngToTgaConverter extends AbstractConverter {
 			}
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/blocks/cactus_bottom.png", "textures/blocks/cactus_bottom.tga"],
 			["textures/blocks/cactus_side.png", "textures/blocks/cactus_side.tga"],
 			["textures/blocks/cactus_top.png", "textures/blocks/cactus_top.tga"],
@@ -147,11 +147,7 @@ class PngToTgaConverter extends AbstractConverter {
 			["textures/models/armor/leather_1.png", "textures/models/armor/leather_1.tga"],
 			["textures/models/armor/leather_2.png", "textures/models/armor/leather_2.tga"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default PngToTgaConverter;
+export {PngToTgaConverter};

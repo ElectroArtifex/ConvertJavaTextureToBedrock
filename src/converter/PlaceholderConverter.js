@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -35,8 +35,8 @@ class PlaceholderConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Bed
 			["textures/entity/bed/red.png", 2, 6, 14, 14, 64, "textures/blocks/bed_head_top.png"],
 			["textures/entity/bed/red.png", 0, 6, 6, 14, 64, "textures/blocks/bed_head_side.png"],
@@ -106,11 +106,7 @@ class PlaceholderConverter extends AbstractConverter {
 			["textures/entity/zombie/husk.png", 0, 0, 64, 32, 64, "textures/entity/zombie/husk.png", true],
 			["textures/entity/zombie/zombie.png", 0, 0, 64, 32, 64, "textures/entity/zombie/zombie.png", true],
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default PlaceholderConverter;
+export {PlaceholderConverter};

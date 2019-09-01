@@ -1,6 +1,6 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
-import DeleteConverter from "./DeleteConverter";
+import {DeleteConverter} from "./DeleteConverter";
 
 /**
  * Class SheepConverter
@@ -37,17 +37,17 @@ class SheepConverter extends AbstractConverter {
 			to_delete.push(sheep_fur);
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = ["textures/entity/sheep/sheep.png", "textures/entity/sheep/sheep_fur.png"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["textures/entity/sheep/sheep.png", "textures/entity/sheep/sheep_fur.png"]
+		];
 	}
 }
 
-export default SheepConverter;
+export {SheepConverter};

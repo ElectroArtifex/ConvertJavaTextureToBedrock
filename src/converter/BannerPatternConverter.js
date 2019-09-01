@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class BannerPatternConverter
@@ -49,8 +49,8 @@ class BannerPatternConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/entity/banner_base.png", [
 				// https://www.planetminecraft.com/banner/pillager-banner-199281/
 				// Colors from original bedrock texture
@@ -64,11 +64,7 @@ class BannerPatternConverter extends AbstractConverter {
 				["textures/entity/banner/border.png", [0, 0, 0]]
 			], "textures/entity/banner/banner_pattern_illager.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default BannerPatternConverter;
+export {BannerPatternConverter};

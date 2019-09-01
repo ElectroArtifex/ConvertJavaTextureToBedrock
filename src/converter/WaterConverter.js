@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -31,16 +31,12 @@ class WaterConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/blocks/water_flow_grey.png", "textures/blocks/water_flow_grey.png", 16],
 			["textures/blocks/water_still_grey.png", "textures/blocks/water_still_grey.png", 8]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default WaterConverter;
+export {WaterConverter};

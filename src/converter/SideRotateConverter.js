@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class SideRotateConverter
@@ -26,17 +26,13 @@ class SideRotateConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/blocks/dried_kelp_side_a.png", "textures/blocks/dried_kelp_side_b.png"],
 			["textures/blocks/seagrass_doubletall_top_a.png", "textures/blocks/seagrass_doubletall_top_b.png"],
 			["textures/blocks/seagrass_doubletall_bottom_a.png", "textures/blocks/seagrass_doubletall_bottom_b.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default SideRotateConverter;
+export {SideRotateConverter};

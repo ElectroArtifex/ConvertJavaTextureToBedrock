@@ -1,51 +1,19 @@
-import AbstractConverter from "./AbstractConverter";
-import AbstractOutput from "../output/AbstractOutput";
-import AtlasConverter from "./AtlasConverter";
-import BannerPatternConverter from "./BannerPatternConverter";
-import BedConverter from "./BedConverter";
-import ChestFrontConverter from "./ChestFrontConverter";
-import ChestSideConverter from "./ChestSideConverter";
-import ColorizeOverlayConverter from "./ColorizeOverlayConverter";
-import CopyConverter from "./CopyConverter";
-import DeleteStaticConverter from "./DeleteStaticConverter";
-import DrownedConverter from "./DrownedConverter";
-import FishHookConverter from "./FishingConverter";
-import FireworksConverter from "./FireworksConverter";
-import HorseConverter from "./HorseConverter";
-import Log from "./../log/Log";
-import MapIconsConverter from "./MapIconsConverter";
-import MetadataConverter from "./MetadataConverter";
-import OpaqueConverter from "./OpaqueConverter";
-import OverlayToTranslateConverter from "./OverlayToTranslateConverter";
-import Particles1_13Converter from "./Particles1_13Converter";
-import PistonArmConverter from "./PistonArmConverter";
-import PlaceholderConverter from "./PlaceholderConverter";
-import PngToTgaConverter from "./PngToTgaConverter";
-import RedstoneDustConverter from "./RedstoneDustConverter";
-import RenameConverter from "./RenameConverter";
-import SheepConverter from "./SheepConverter";
-import SideRotateConverter from "./SideRotateConverter";
-import SpriteConverter from "./SpriteConverter";
-import VillagerConverter from "./VillagerConverter";
-import WaterConverter from "./WaterConverter";
-import WeatherConverter from "./WeatherConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {converters} from "./converters";
 
 /**
- * @param {AbstractOutput} output
- * @param {Log} log
- *
  * @returns {AsyncIterableIterator<AbstractConverter>}
  *
  * @throws {Error}
  */
-async function* getConverters(output, log) {
-	for (const [converter, data] of converters) {
-		yield new converter(output, data, log);
+async function* getConverters() {
+	for (const converter of converters) {
+		yield converter;
 	}
 }
 
 /**
- * @param {[Function<AbstractConverter>, mixed[]]} additional_converters
+ * @param {AbstractConverter[]} additional_converters
  *
  * @returns {Promise<>}
  */
@@ -55,38 +23,5 @@ async function addAdditionalConverters(...additional_converters) {
 	}
 }
 
-/**
- * @type {[Function<AbstractConverter>, mixed[]][]}
- */
-const converters = [
-	[MetadataConverter, []],
-	[RenameConverter, []],
-	[AtlasConverter, []],
-	[BannerPatternConverter, []],
-	[BedConverter, []],
-	[ChestFrontConverter, []],
-	[ChestSideConverter, []],
-	[DrownedConverter, []],
-	[FireworksConverter, []],
-	[FishHookConverter, []],
-	[HorseConverter, []],
-	[MapIconsConverter, []],
-	[PistonArmConverter, []],
-	[RedstoneDustConverter, []],
-	[SheepConverter, []],
-	[VillagerConverter, []],
-	[WeatherConverter, []],
-	[OpaqueConverter, []],
-	[WaterConverter, []],
-	[OverlayToTranslateConverter, []],
-	[ColorizeOverlayConverter, []],
-	[PlaceholderConverter, []],
-	[SideRotateConverter, []],
-	[Particles1_13Converter, []],
-	[SpriteConverter, []],
-	[PngToTgaConverter, []],
-	[CopyConverter, []],
-	[DeleteStaticConverter, []]
-];
-
-export {getConverters, addAdditionalConverters};
+export {AbstractConverter} from "./AbstractConverter";
+export {addAdditionalConverters, getConverters};

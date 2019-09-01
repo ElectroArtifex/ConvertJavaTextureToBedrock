@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 
 /**
  * Class RedstoneDustConverter
@@ -33,17 +33,17 @@ class RedstoneDustConverter extends AbstractConverter {
 			to_delete.push(line_1);
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = ["textures/blocks/redstone_dust_dot.png", "textures/blocks/redstone_dust_line0.png", "textures/blocks/redstone_dust_line1.png", "textures/blocks/redstone_dust_cross.png", "textures/blocks/redstone_dust_line.png"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["textures/blocks/redstone_dust_dot.png", "textures/blocks/redstone_dust_line0.png", "textures/blocks/redstone_dust_line1.png", "textures/blocks/redstone_dust_cross.png", "textures/blocks/redstone_dust_line.png"]
+		];
 	}
 }
 
-export default RedstoneDustConverter;
+export {RedstoneDustConverter};

@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.10.0]
+- Restruct code
+- Optimized conversion popup
+- Reimplement weather convert
+
 ## [1.9.0]
 - Allow select folder on browser gui
 

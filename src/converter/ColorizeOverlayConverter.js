@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 import Jimp from "jimp";
 
 /**
@@ -54,14 +54,14 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			}
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Armor (Colors from px 9/1 from original cloth_1.png bedrock texture)
 			[[["textures/models/armor/leather_1.png", [167, 105, 67]]], "textures/models/armor/cloth_1.png"],
 			[[["textures/models/armor/leather_2.png", [167, 105, 67]]], "textures/models/armor/cloth_2.png"],
@@ -254,11 +254,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			[[["textures/items/tipped_arrow_base.png"], ["textures/items/tipped_arrow_head.png", [70, 75, 70]]], "textures/items/tipped_arrow_weakness.png"],
 			[[["textures/items/tipped_arrow_base.png"], ["textures/items/tipped_arrow_head.png", [50, 39, 36]]], "textures/items/tipped_arrow_wither.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default ColorizeOverlayConverter;
+export {ColorizeOverlayConverter};

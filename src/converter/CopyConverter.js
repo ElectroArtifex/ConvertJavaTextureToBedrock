@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class CopyConverter
@@ -22,8 +22,8 @@ class CopyConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Cat
 			["textures/entity/cat/redtabby.png", "textures/entity/cat/red.png"],
 			["textures/entity/cat/siamesecat.png", "textures/entity/cat/siamese.png"],
@@ -73,11 +73,7 @@ class CopyConverter extends AbstractConverter {
 
 			["bedrock_textures/", "textures/"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default CopyConverter;
+export {CopyConverter};

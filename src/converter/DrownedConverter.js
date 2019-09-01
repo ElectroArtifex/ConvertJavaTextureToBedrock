@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 
 /**
  * Class DrownedConverter
@@ -35,17 +35,17 @@ class DrownedConverter extends AbstractConverter {
 			to_delete.push(overlay);
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = ["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "textures/entity/zombie/drowned.png"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "textures/entity/zombie/drowned.png"]
+		];
 	}
 }
 
-export default DrownedConverter;
+export {DrownedConverter};

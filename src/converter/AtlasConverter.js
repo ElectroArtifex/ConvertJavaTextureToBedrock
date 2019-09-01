@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 import Jimp from "jimp";
 
 /**
@@ -38,22 +38,18 @@ class AtlasConverter extends AbstractConverter {
 			}
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/items/clock_", 63, "textures/items/watch_atlas.png"],
 			["textures/items/compass_", 31, "textures/items/compass_atlas.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default AtlasConverter;
+export {AtlasConverter};

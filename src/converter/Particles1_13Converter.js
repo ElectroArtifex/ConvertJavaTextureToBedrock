@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class Particles1_13Converter
@@ -26,14 +26,10 @@ class Particles1_13Converter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/particle/particles.png", "textures/particle/particles.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 

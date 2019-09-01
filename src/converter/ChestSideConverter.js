@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -33,16 +33,12 @@ class ChestSideConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/entity/chest/normal.png", "textures/blocks/chest_side.png"],
 			["textures/entity/chest/ender.png", "textures/blocks/ender_chest_side.png"],
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default ChestSideConverter;
+export {ChestSideConverter};

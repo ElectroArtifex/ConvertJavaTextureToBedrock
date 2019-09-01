@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class VillagerConverter
@@ -33,8 +33,8 @@ class VillagerConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			"textures/entity/villager2/professions/armorer.png",
 			"textures/entity/villager2/professions/butcher.png",
 			"textures/entity/villager2/professions/cartographer.png",
@@ -65,11 +65,7 @@ class VillagerConverter extends AbstractConverter {
 			"textures/entity/zombie_villager2/professions/toolsmith.png",
 			"textures/entity/zombie_villager2/professions/weaponsmith.png"
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default VillagerConverter;
+export {VillagerConverter};

@@ -1,19 +1,11 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
-import path from "path";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 import uuid from "uuid/v4";
 
 /**
  * Class MetadataConverter
  */
 class MetadataConverter extends AbstractConverter {
-	/**
-	 * @returns {string}
-	 */
-	static get PACK_MCMETA() {
-		return "pack.mcmeta";
-	}
-
 	/**
 	 * @inheritDoc
 	 */
@@ -51,7 +43,7 @@ class MetadataConverter extends AbstractConverter {
 				"format_version": 1,
 				"header": {
 					"description": mcmeta.pack.description,
-					"name": path.parse(this.output.input.filename).name,
+					"name": await this.input.getName(),
 					"platform_locked": false,
 					"uuid": uuid_header,
 					"version": [0, 0, 1]
@@ -71,17 +63,17 @@ class MetadataConverter extends AbstractConverter {
 			to_delete.push(from);
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const date = [this.constructor.PACK_MCMETA, "manifest.json", "bedrock_uuid_header", "bedrock_uuid_module"];
-
-		yield date;
+	static get DATA() {
+		return [
+			["pack.mcmeta", "manifest.json", "bedrock_uuid_header", "bedrock_uuid_module"]
+		];
 	}
 }
 
-export default MetadataConverter;
+export {MetadataConverter};

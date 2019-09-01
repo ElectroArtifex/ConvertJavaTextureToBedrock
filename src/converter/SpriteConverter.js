@@ -1,5 +1,5 @@
-import AbstractConverter from "./AbstractConverter";
-import DeleteConverter from "./DeleteConverter";
+import {AbstractConverter} from "./AbstractConverter";
+import {DeleteConverter} from "./DeleteConverter";
 import Jimp from "jimp";
 
 /**
@@ -54,14 +54,14 @@ class SpriteConverter extends AbstractConverter {
 			}
 		}
 
-		return [[DeleteConverter, to_delete]];
+		return [new DeleteConverter(to_delete)];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			// Banner
 			[512, 512, [
 				["textures/entity/banner_base.png", 0, 0, 64],
@@ -269,11 +269,7 @@ class SpriteConverter extends AbstractConverter {
 				["textures/particle/big_smoke_11.png", 0, 176, 16]
 			], "textures/particle/campfire_smoke.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default SpriteConverter;
+export {SpriteConverter};

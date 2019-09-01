@@ -1,4 +1,4 @@
-import AbstractConverter from "./AbstractConverter";
+import {AbstractConverter} from "./AbstractConverter";
 import Jimp from "jimp";
 
 /**
@@ -189,8 +189,8 @@ class HorseConverter extends AbstractConverter {
 	/**
 	 * @inheritDoc
 	 */
-	async* getData() {
-		const data = [
+	static get DATA() {
+		return [
 			["textures/entity/horse2/donkey.png", "textures/entity/horse/donkey.png"],
 			["textures/entity/horse2/horse_black.png", "textures/entity/horse/horse_black.png"],
 			["textures/entity/horse2/horse_brown.png", "textures/entity/horse/horse_brown.png"],
@@ -211,11 +211,7 @@ class HorseConverter extends AbstractConverter {
 			["textures/entity/horse2/armor/horse_armor_iron.png", "textures/entity/horse/armor/horse_armor_iron.png"],
 			["textures/entity/horse2/armor/horse_armor_leather.png", "textures/entity/horse/armor/horse_armor_leather.png"]
 		];
-
-		for (const date of data) {
-			yield date;
-		}
 	}
 }
 
-export default HorseConverter;
+export {HorseConverter};

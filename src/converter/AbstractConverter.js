@@ -1,6 +1,7 @@
-import AbstractOutput from "../output/AbstractOutput";
+import {AbstractInput} from "./../input"
+import {AbstractLog} from "./../log";
+import {AbstractOutput} from "./../output";
 import Jimp from "jimp";
-import Log from "../log/Log";
 
 /**
  * Class AbstractConverter
@@ -8,37 +9,55 @@ import Log from "../log/Log";
  * @abstract
  */
 class AbstractConverter {
+
 	/**
 	 * AbstractConverter constructor
 	 *
-	 * @param {AbstractOutput} output
 	 * @param {mixed[]} data
-	 * @param {Log} log
 	 *
 	 * @throws {Error}
 	 */
-	constructor(output, data = [], log) {
+	constructor(data = this.constructor.DATA) {
 		if (this.constructor === AbstractConverter) {
 			throw new Error("Can't instantiate abstract class!");
 		}
 
 		/**
+		 * @type {AbstractInput}
+		 *
+		 * @protected
+		 */
+		this.input;
+		/**
 		 * @type {AbstractOutput}
 		 *
 		 * @protected
 		 */
-		this.output = output;
+		this.output;
+		/**
+		 * @type {AbstractLog}
+		 *
+		 * @protected
+		 */
+		this.log;
 		/**
 		 * @type {mixed[]}
 		 *
 		 * @protected
 		 */
 		this.data = data;
-		/**
-		 * @type {Log}
-		 *
-		 * @protected
-		 */
+	}
+
+	/**
+	 * @param {AbstractInput} input
+	 * @param {AbstractOutput} output
+	 * @param {AbstractLog} log
+	 *
+	 * @returns Promise<>
+	 */
+	async _init(input, output, log) {
+		this.input = input;
+		this.output = output;
 		this.log = log;
 	}
 
@@ -69,6 +88,30 @@ class AbstractConverter {
 	}
 
 	/**
+	 * @returns {AsyncIterableIterator<*>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @protected
+	 */
+	async* getData() {
+		for (const date of this.data) {
+			yield date;
+		}
+	}
+
+	/**
+	 * @returns {mixed[]}
+	 *
+	 * @protected
+	 *
+	 * @abstract
+	 */
+	static get DATA() {
+
+	}
+
+	/**
 	 * @returns {Promise<Function<AbstractConverter>[]>}
 	 *
 	 * @throws {Error}
@@ -78,19 +121,6 @@ class AbstractConverter {
 	async convert() {
 
 	}
-
-	/**
-	 * @returns {AsyncIterableIterator<*>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @abstract
-	 *
-	 * @protected
-	 */
-	async* getData() {
-
-	}
 }
 
-export default AbstractConverter;
+export {AbstractConverter};
