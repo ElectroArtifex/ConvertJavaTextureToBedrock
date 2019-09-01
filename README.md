@@ -39,8 +39,8 @@ ConvertMinecraftJavaTextureToBedrock -i input/java_texture_pack.zip -o output/be
 
 | Parameter     | Description                   |
 |---------------|-------------------------------|
-| -i (Required) | Input folder or archive path  |
-| -o (Required) | Output folder or archive path |
+| -i (Required) | Input folder or zip path  |
+| -o (Required) | Output folder or zip path |
 | -l            | Show log (Default `true`)     |
 
 ## Direct in your code
