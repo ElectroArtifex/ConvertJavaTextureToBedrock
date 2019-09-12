@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.10.1]
+- Exclude webapp from npm package
+
 ## [1.10.0]
 - Restruct code
 - Optimized conversion popup
