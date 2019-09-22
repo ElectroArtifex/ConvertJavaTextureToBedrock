@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.11.1]
+- Search inventory icon
+
 ## [1.11.0]
 - Supports mob effects
 - Check if `pack.mcmeta` exists
