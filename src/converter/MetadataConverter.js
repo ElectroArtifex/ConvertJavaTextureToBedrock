@@ -15,6 +15,10 @@ class MetadataConverter extends AbstractConverter {
 		for await (const [from, to, uuid_header_file, uuid_module_file] of this.getData()) {
 			this.log.log(`Create metadata ${to}`);
 
+			if (!await this.output.exists(from)) {
+				throw new Error(`Missing ${from}!`);
+			}
+
 			let uuid_header = "";
 			if (await this.output.exists(uuid_header_file)) {
 				uuid_header = (await this.output.read(uuid_header_file)).toString("utf8");

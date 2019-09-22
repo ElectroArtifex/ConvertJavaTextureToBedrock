@@ -2,6 +2,7 @@
 
 ## [1.11.0]
 - Supports mob effects
+- Check if `pack.mcmeta` exists
 
 ## [1.10.1]
 - Exclude webapp from npm package
