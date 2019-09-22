@@ -1,121 +1,151 @@
 import fileSaver from "file-saver";
-import {select} from "./selector";
 import swal from "sweetalert";
 import Worker from "./worker";
 import "./../css/style.less";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const logs = document.createElement("ul");
-	logs.classList.add("log");
+    const selectInputFileButton = document.getElementById("selectInputFileButton");
+    selectInputFileButton.addEventListener("change", startConvert);
 
-	const selectInputFileButton = document.getElementById("selectInputFileButton");
-	selectInputFileButton.addEventListener("click", selectInputFile);
+    const selectInputFolderButton = document.getElementById("selectInputFolderButton");
+    if (supportsFolderSelect()) {
+        selectInputFolderButton.parentElement.classList.remove("disabled");
+        selectInputFolderButton.addEventListener("change", startConvert);
+    }
 
-	const selectInputFolderButton = document.getElementById("selectInputFolderButton");
-	selectInputFolderButton.addEventListener("click", selectInputFolder);
+    const main = document.querySelector("main");
+    main.addEventListener("dragenter", startConvertDrop);
+    main.addEventListener("dragleave", startConvertDrop);
+    main.addEventListener("dragover", startConvertDrop);
+    main.addEventListener("drop", startConvertDrop);
 
-	const worker = new Worker();
-	worker.addEventListener("message", afterConvert);
+    const worker = new Worker();
+    worker.addEventListener("message", afterConvert);
 
-	/**
-	 * @returns {Promise<>}
-	 */
-	async function selectInputFile() {
-		return startConvert(await select("Select zip file", [".zip"]));
-	}
+    const logs = document.createElement("ul");
+    logs.classList.add("log");
 
-	/**
-	 * @returns {Promise<>}
-	 */
-	async function selectInputFolder() {
-		// TODO: Set filter too because directory support can't be detected because webkitdirectory is set in HTMLInputElement.prototype even on mobile browsers which not supports this! :(
-		return startConvert(await select("Select folder", [".zip"], true));
-	}
+    /**
+     * @returns {boolean}
+     */
+    function supportsFolderSelect() {
+        return (
+            "webkitdirectory" in HTMLInputElement.prototype &&
+            "webkitRelativePath" in File.prototype &&
+            !(
+                navigator.userAgent.match(/Mobile/i) ||
+                (navigator.userAgent.match(/Safari/i) && "standalone" in navigator) // iPadOS
+            ));
+    }
 
-	/**
-	 * @param {FileList} input
-	 *
-	 * @returns {Promise<>}
-	 */
-	async function startConvert(input) {
-		if (input.length === 0) {
-			return;
-		}
+    /**
+     * @returns {Promise<>}
+     */
+    async function startConvert() {
+        const input = this.files;
 
-		logs.innerHTML = "";
+        if (input.length === 0) {
+            return;
+        }
 
-		swal({
-			title: "Conversion",
-			content: logs,
-			buttons: {
-				save: {
-					text: "Save",
-					className: "swal-button--loading"
-				}
-			},
-			closeOnClickOutside: false,
-			closeOnEsc: false
-		});
-		document.querySelector(".swal-button--loading").disabled = true;
+        logs.innerHTML = "";
 
-		_log("Start conversion");
+        swal({
+            title: "Conversion",
+            content: logs,
+            buttons: {
+                save: {
+                    text: "Save",
+                    className: "swal-button--loading"
+                }
+            },
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        });
+        document.querySelector(".swal-button--loading").disabled = true;
 
-		worker.postMessage(input);
-	}
+        _log("Start conversion");
 
-	/**
-	 * @param {Event} e
-	 *
-	 * @returns {Promise<>}
-	 */
-	async function afterConvert(e) {
-		const {log, err, output} = e.data;
+        worker.postMessage(input);
+    }
 
-		if (log) {
-			_log(log);
-			return;
-		}
+    /**
+     * @param {DragEvent} e
+     *
+     * @returns {Promise<>}
+     */
+    async function startConvertDrop(e) {
+        e.preventDefault();
 
-		if (err) {
-			swal({
-				title: "Conversion was failed",
-				content: logs,
-				icon: "error"
-			});
+        this.classList.remove("dragover");
 
-			_log("Conversion failed");
-			return;
-		}
+        switch (e.type) {
+            case "dragenter":
+            case "dragover":
+                this.classList.add("dragover");
+                break;
 
-		const savePopup = swal({
-			title: "Conversion was successfully",
-			content: logs,
-			icon: "success",
-			buttons: "Save"
-		});
+            case "drop":
+                return startConvert.call(e.dataTransfer);
 
-		_log("Conversion finished");
+            default:
+                break;
+        }
+    }
 
-		if (await savePopup) {
-			if (output instanceof File) {
-				fileSaver(output);
-			} else {
-				// TODO: Bug iOS `File` is undefined in worker?
-				fileSaver(output.data, output.name);
-			}
-		}
-	}
+    /**
+     * @param {MessageEvent} e
+     *
+     * @returns {Promise<>}
+     */
+    async function afterConvert(e) {
+        const {log, err, output} = e.data;
 
-	/**
-	 * @param {string} log
-	 */
-	function _log(log) {
-		const li = document.createElement("li");
+        if (log) {
+            _log(log);
+            return;
+        }
 
-		li.innerText = log;
+        if (err) {
+            swal({
+                title: "Conversion was failed",
+                content: logs,
+                icon: "error"
+            });
 
-		logs.appendChild(li);
+            _log("Conversion failed");
+            return;
+        }
 
-		logs.scrollTop = logs.scrollHeight; // Scroll to bottom
-	}
+        const savePopup = swal({
+            title: "Conversion was successfully",
+            content: logs,
+            icon: "success",
+            buttons: "Save"
+        });
+
+        _log("Conversion finished");
+
+        if (await savePopup) {
+            if (output instanceof File) {
+                fileSaver(output);
+            } else {
+                // TODO: Bug iOS `File` is undefined in worker?
+                fileSaver(output.data, output.name);
+            }
+        }
+    }
+
+    /**
+     * @param {string} log
+     */
+    function _log(log) {
+        const li = document.createElement("li");
+
+        li.innerText = log;
+
+        logs.appendChild(li);
+
+        logs.scrollTop = logs.scrollHeight; // Scroll to bottom
+    }
 });

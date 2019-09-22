@@ -30,7 +30,7 @@ addEventListener("message", async (e) => {
 					error(log) {
 						this.log(`ERROR: ${log}`);
 					}
-				}
+				}()
 			).convert()
 		};
 	} catch (err) {

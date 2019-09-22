@@ -13,11 +13,12 @@
 		</div>
 	</nav>
 </header>
-<main class="section center">
-	<span>Select</span>
-	<button class="btn green" id="selectInputFileButton" type="button">Zip file</button>
-	<button class="btn green" id="selectInputFolderButton" type="button">Folder (*)</button>
-	<span>* Not works on mobile browsers</span>
+<main>
+	<span>Select&nbsp;</span>
+	<label class="btn green"><input accept=".zip" id="selectInputFileButton" title="Select zip file" type="file">Zip file</label>
+	<label>&nbsp;</label>
+	<label class="btn green disabled"><input id="selectInputFolderButton" title="Select folder" type="file" webkitdirectory>Folder</label>
+	<span>&nbsp;or drag'n'drop</span>
 </main>
 <footer class="page-footer brown">
 	<div class="footer-copyright">

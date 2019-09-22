@@ -1,7 +1,29 @@
 @import (less) "~materialize-css/dist/css/materialize.min.css";
 
-.section {
-  padding: 100px 0; // Center buttons
+html, body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  .black-text;
+  align-items: center;
+  border-color: currentColor;
+  border-style: dashed;
+  border-width: 5px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  min-height: 100px;
+
+  &.dragover {
+    .brown-text;
+  }
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .swal-modal {
