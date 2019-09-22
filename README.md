@@ -7,7 +7,7 @@ It supports currently the follow Minecraft versions:
 | Java      | v1.13.x or v1.14.x  |
 | Bedrock   | v1.12.x             |
 
-Currently it supports blocks, items, entities, paintings, particles and map icons textures
+Currently it supports to convert blocks, items, entities, paintings, particles, map icons and mob effects textures
 
 Supported formats are zip archives or folders
 
@@ -20,7 +20,7 @@ For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/p
 # Usage
 
 ## GUI
-Look at http://ozelot379.github.io/ConvertMinecraftJavaTextureToBedrock in your browser
+Look at https://ozelot379.github.io/ConvertMinecraftJavaTextureToBedrock in your browser
 
 ## CLI
 First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)

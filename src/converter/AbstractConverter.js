@@ -13,7 +13,7 @@ class AbstractConverter {
 	/**
 	 * AbstractConverter constructor
 	 *
-	 * @param {mixed[]} data
+	 * @param {*[]} data
 	 *
 	 * @throws {Error}
 	 */
@@ -41,7 +41,7 @@ class AbstractConverter {
 		 */
 		this.log;
 		/**
-		 * @type {mixed[]}
+		 * @type {*[]}
 		 *
 		 * @protected
 		 */
@@ -101,7 +101,7 @@ class AbstractConverter {
 	}
 
 	/**
-	 * @returns {mixed[]}
+	 * @returns {*[]}
 	 *
 	 * @protected
 	 *

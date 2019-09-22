@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.11.0]
+- Supports mob effects
+
 ## [1.10.1]
 - Exclude webapp from npm package
 
