@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.11.2]
+- Title image convert
+
 ## [1.11.1]
 - Search inventory icon
 

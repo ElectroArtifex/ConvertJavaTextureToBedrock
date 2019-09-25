@@ -24,6 +24,7 @@ import {RenameConverter} from "./RenameConverter";
 import {SheepConverter} from "./SheepConverter";
 import {SideRotateConverter} from "./SideRotateConverter";
 import {SpriteConverter} from "./SpriteConverter";
+import {TitleConverter} from "./TitleConverter";
 import {VillagerConverter} from "./VillagerConverter";
 import {WaterConverter} from "./WaterConverter";
 import {WeatherConverter} from "./WeatherConverter";
@@ -51,6 +52,7 @@ const converters = [
 	new WeatherConverter(),
 	new OpaqueConverter(),
 	new WaterConverter(),
+	new TitleConverter(),
 	new OverlayToTranslateConverter(),
 	new ColorizeOverlayConverter(),
 	new PlaceholderConverter(),
