@@ -152,8 +152,14 @@ yarn
 
 Then you can start the debug
 
+cli:
 ```bash
-yarn debug
+yarn debug:cli
+```
+
+webapp:
+```bash
+yarn debug:webapp
 ```
 
 You can create a build

@@ -43,6 +43,7 @@
     "uuid": "^3.3.3",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.2",
     "webpack-pwa-manifest": "^4.0.0",
     "worker-loader": "^2.0.0",
     "yargs": "^14.0.0"
@@ -55,10 +56,10 @@
     "ConvertMinecraftJavaTextureToBedrock": "dist/cli.js"
   },
   "scripts": {
-    "build": "webpack",
-    "build:dev": "webpack --mode=development",
+    "build": "yarn build --config ./webpack.config.cli.js && yarn build --config ./webpack.config.webapp.js",
     "cli": "node ./dist/cli.js",
-    "debug": "yarn build:dev && yarn cli",
+    "debug:cli": "webpack --mode=development --config ./webpack.config.cli.js && yarn cli",
+    "debug:webapp": "webpack-dev-server --config ./webpack.config.webapp.js",
     "prepublishOnly": "yarn build && yarn publishGhPages",
     "publishGhPages": "gh-pages -d ./dist/webapp"
   }

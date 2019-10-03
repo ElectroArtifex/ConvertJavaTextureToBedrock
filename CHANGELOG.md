@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Add debug webapp
+
 ## [1.11.2]
 - Title image convert
 

@@ -4,6 +4,6 @@ input
 node_modules
 output
 src
-tests
 tmp
-webpack.config.js
+webpack.config.cli.js
+webpack.config.webapp.js
