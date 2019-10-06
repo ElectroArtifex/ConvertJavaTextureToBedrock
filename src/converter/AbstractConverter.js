@@ -9,7 +9,6 @@ import Jimp from "jimp";
  * @abstract
  */
 class AbstractConverter {
-
 	/**
 	 * AbstractConverter constructor
 	 *
