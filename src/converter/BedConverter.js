@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class BedConverter
@@ -17,7 +16,7 @@ class BedConverter extends AbstractConverter {
 
 				const factor = (bed_image.getWidth() / 64);
 
-				const image = await Jimp.create(bed_image.getWidth(), bed_image.getHeight());
+				const image = await this.createImage(bed_image.getWidth(), bed_image.getHeight());
 
 				// Top part
 				image.composite(bed_image.clone().crop(0, 0, (44 * factor), (22 * factor)), 0, 0);

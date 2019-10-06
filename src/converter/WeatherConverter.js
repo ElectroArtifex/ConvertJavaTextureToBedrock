@@ -22,7 +22,7 @@ class WeatherConverter extends AbstractConverter {
 
 				const factor = (snow_image.getWidth() / 64);
 
-				const image = await Jimp.create((32 * factor), (32 * factor));
+				const image = await this.createImage((32 * factor), (32 * factor));
 
 				// Snow
 				image.composite(snow_image.clone().crop(0, 0, snow_image.getWidth(), (3 * factor)).cover(image.getWidth(), (3 * factor), undefined, Jimp.RESIZE_NEAREST_NEIGHBOR), 0, 0);

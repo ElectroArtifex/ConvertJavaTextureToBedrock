@@ -62,6 +62,20 @@ class AbstractConverter {
 	}
 
 	/**
+	 * @param {number} width
+	 * @param {number} height
+	 *
+	 * @returns {Promise<Jimp>}
+	 *
+	 * @throws {Error}
+	 *
+	 * @protected
+	 */
+	async createImage(width, height) {
+		return Jimp.create(width, height);
+	}
+
+	/**
 	 * @param {string} file
 	 *
 	 * @returns {Promise<Jimp>}
@@ -112,7 +126,7 @@ class AbstractConverter {
 	}
 
 	/**
-	 * @returns {Promise<Function<AbstractConverter>[]>}
+	 * @returns {Promise<AbstractConverter[]>}
 	 *
 	 * @throws {Error}
 	 *

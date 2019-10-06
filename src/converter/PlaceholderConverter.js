@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class PlaceholderConverter
@@ -22,7 +21,7 @@ class PlaceholderConverter extends AbstractConverter {
 				if (!not_center) {
 					const size = Math.max(width, height);
 
-					image = (await Jimp.create((size * factor), (size * factor))).composite(image, (((size * factor) - (width * factor)) / 2), (((size * factor) - (height * factor)) / 2));
+					image = (await this.createImage((size * factor), (size * factor))).composite(image, (((size * factor) - (width * factor)) / 2), (((size * factor) - (height * factor)) / 2));
 				}
 
 				await this.writeImage(to, image);

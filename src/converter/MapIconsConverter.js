@@ -17,7 +17,7 @@ class MapIconsConverter extends AbstractConverter {
 
 				const factor = (from_image.getWidth() / 128);
 
-				const image = await Jimp.create((64 * factor), (64 * factor));
+				const image = await this.createImage((64 * factor), (64 * factor));
 
 				image.composite(from_image.clone().crop(0, 0, (8 * factor), (8 * factor)).scale(2, Jimp.RESIZE_NEAREST_NEIGHBOR), -factor, factor);
 				image.composite(from_image.clone().crop((8 * factor), 0, (8 * factor), (8 * factor)).scale(2, Jimp.RESIZE_NEAREST_NEIGHBOR), (15 * factor), factor);

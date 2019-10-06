@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class PistonArmConverter
@@ -19,7 +18,7 @@ class PistonArmConverter extends AbstractConverter {
 
 				const factor = (top_1_image.getWidth() / 16);
 
-				const image = await Jimp.create((128 * factor), (32 * factor));
+				const image = await this.createImage((128 * factor), (32 * factor));
 
 				image.composite(top_1_image, (16 * factor), 0);
 				image.composite(top_2_image, (32 * factor), 0);

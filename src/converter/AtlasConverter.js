@@ -1,6 +1,5 @@
 import {AbstractConverter} from "./AbstractConverter";
 import {DeleteConverter} from "./DeleteConverter";
-import Jimp from "jimp";
 
 /**
  * Class AtlasConverter
@@ -24,7 +23,7 @@ class AtlasConverter extends AbstractConverter {
 					if (image === null) {
 						this.log.log(`Create atlas ${to}`);
 
-						image = await Jimp.create(image_step.getWidth(), (image_step.getHeight() * (count + 1)));
+						image = await this.createImage(image_step.getWidth(), (image_step.getHeight() * (count + 1)));
 					}
 
 					image.composite(image_step, 0, (image_step.getHeight() * i));

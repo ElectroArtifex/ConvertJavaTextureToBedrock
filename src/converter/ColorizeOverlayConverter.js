@@ -1,6 +1,5 @@
 import {AbstractConverter} from "./AbstractConverter";
 import {DeleteConverter} from "./DeleteConverter";
-import Jimp from "jimp";
 
 /**
  * Class ColorizeOverlayConverter
@@ -22,7 +21,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 					if (image === null) {
 						this.log.log(`Colorize and overlay ${to}`);
 
-						image = await Jimp.create(image_overlay.getWidth(), image_overlay.getHeight());
+						image = await this.createImage(image_overlay.getWidth(), image_overlay.getHeight());
 					}
 
 					if (Array.isArray(color) && color.length >= 3) {

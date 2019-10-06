@@ -33,4 +33,4 @@ class Particles1_13Converter extends AbstractConverter {
 	}
 }
 
-export default Particles1_13Converter;
+export {Particles1_13Converter};

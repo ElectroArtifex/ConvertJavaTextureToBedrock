@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class OpaqueConverter
@@ -20,7 +19,7 @@ class OpaqueConverter extends AbstractConverter {
 				await this.writeImage(to, image);*/
 				const image = await this.readImage(from);
 
-				const background_image = await Jimp.create(image.getWidth(), image.getHeight(), "#000000");
+				const background_image = await this.createImage(image.getWidth(), image.getHeight(), "#000000");
 
 				background_image.composite(image, 0, 0);
 

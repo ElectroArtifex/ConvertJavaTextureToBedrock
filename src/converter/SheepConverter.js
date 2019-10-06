@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 import {DeleteConverter} from "./DeleteConverter";
 
 /**
@@ -19,7 +18,7 @@ class SheepConverter extends AbstractConverter {
 				const image_sheep = await this.readImage(sheep);
 				const image_fur = await this.readImage(sheep_fur);
 
-				const image = await Jimp.create(image_sheep.getWidth(), image_sheep.getHeight() + image_fur.getHeight());
+				const image = await this.createImage(image_sheep.getWidth(), image_sheep.getHeight() + image_fur.getHeight());
 
 				image.composite(image_sheep, 0, 0);
 

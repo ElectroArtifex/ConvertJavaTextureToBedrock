@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class ChestFrontConverter
@@ -17,7 +16,7 @@ class ChestFrontConverter extends AbstractConverter {
 
 				const factor = (image_from.getWidth() / 64);
 
-				const image = await Jimp.create((14 * factor), (14 * factor));
+				const image = await this.createImage((14 * factor), (14 * factor));
 
 				image.composite(image_from.clone().crop((14 * factor), (14 * factor), (14 * factor), (5 * factor)), 0, 0);
 

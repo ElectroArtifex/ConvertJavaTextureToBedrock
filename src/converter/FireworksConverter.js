@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class FireworksConverter
@@ -17,7 +16,7 @@ class FireworksConverter extends AbstractConverter {
 
 				const factor = (image_from.getWidth() / 16);
 
-				const image = await Jimp.create((32 * factor), (32 * factor));
+				const image = await this.createImage((32 * factor), (32 * factor));
 
 				image.composite(image_from.clone().crop((6 * factor), (2 * factor), (5 * factor), (12 * factor)).rotate(-90).crop(1, 0, (12 * factor), (5 * factor)), (3 * factor), (6 * factor)); // TODO: Why the rotated image is 2px to large in both sides?
 

@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class HorseConverter
@@ -17,7 +16,7 @@ class HorseConverter extends AbstractConverter {
 
 				const factor = (image_from.getWidth() / 64);
 
-				const image = await Jimp.create((image_from.getWidth() * 2), (image_from.getWidth() * 2));
+				const image = await this.createImage((image_from.getWidth() * 2), (image_from.getWidth() * 2));
 
 				// Chest
 				image.composite(image_from.clone().crop((26 * factor), (21 * factor), (22 * factor), (11 * factor)), 0, (34 * factor));

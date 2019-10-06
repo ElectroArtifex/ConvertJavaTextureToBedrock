@@ -35,7 +35,7 @@ class SpriteConverter extends AbstractConverter {
 					if (image === null) {
 						this.log.log(`Create sprite ${to}`);
 
-						image = await Jimp.create((width * factor), (height * factor));
+						image = await this.createImage((width * factor), (height * factor));
 					}
 
 					const image_sprited_scaled = image_sprite.scale(((factor_detect * factor) / image_sprite.getWidth()), Jimp.RESIZE_NEAREST_NEIGHBOR);

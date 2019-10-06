@@ -1,5 +1,4 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class FishHookConverter
@@ -17,7 +16,7 @@ class FishHookConverter extends AbstractConverter {
 
 				const factor = (image_from.getWidth() / 8);
 
-				const image = await Jimp.create((24 * factor), (3 * factor));
+				const image = await this.createImage((24 * factor), (3 * factor));
 
 				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), factor), 0, 0);
 				image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), 0, factor);
