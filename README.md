@@ -5,7 +5,7 @@ It supports currently the follow Minecraft versions:
 | Minecraft | Version             |
 |-----------|---------------------|
 | Java      | v1.13.x or v1.14.x  |
-| Bedrock   | v1.12.x             |
+| Bedrock   | v1.13.x             |
 
 Currently it supports to convert blocks, items, entities, paintings, particles, map icons and mob effects textures
 

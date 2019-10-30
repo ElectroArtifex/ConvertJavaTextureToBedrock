@@ -261,6 +261,11 @@ class RenameConverter extends AbstractConverter {
 			["textures/blocks/dead_fire_coral_fan.png", "textures/blocks/coral_fan_red_dead.png"],
 			["textures/blocks/dead_horn_coral_fan.png", "textures/blocks/coral_fan_yellow_dead.png"],
 			["textures/blocks/dead_tube_coral_fan.png", "textures/blocks/coral_fan_blue_dead.png"],
+			["textures/blocks/dead_brain_coral.png", "textures/blocks/coral_plant_pink_dead.png"],
+			["textures/blocks/dead_bubble_coral.png", "textures/blocks/coral_plant_purple_dead.png"],
+			["textures/blocks/dead_fire_coral.png", "textures/blocks/coral_plant_red_dead.png"],
+			["textures/blocks/dead_horn_coral.png", "textures/blocks/coral_plant_yellow_dead.png"],
+			["textures/blocks/dead_tube_coral.png", "textures/blocks/coral_plant_blue_dead.png"],
 
 			// Cow
 			["textures/entity/cow/red_mooshroom.png", "textures/entity/cow/mooshroom.png"],
@@ -414,6 +419,10 @@ class RenameConverter extends AbstractConverter {
 			["textures/blocks/sunflower_top.png", "textures/blocks/double_plant_sunflower_top.png"],
 			["textures/blocks/white_tulip.png", "textures/blocks/flower_tulip_white.png"],
 			["textures/blocks/wither_rose.png", "textures/blocks/flower_wither_rose.png"],
+
+			// Fox
+			["textures/entity/fox/snow_fox.png", "textures/entity/fox/arctic_fox.png"],
+			["textures/entity/fox", "textures/entity/fox_"],
 
 			// Furnace
 			["textures/blocks/blast_furnace_front.png", "textures/blocks/blast_furnace_front_off.png"],
@@ -620,7 +629,7 @@ class RenameConverter extends AbstractConverter {
 			["textures/mob_effect/water_breathing.png", "textures/ui/water_breathing_effect.png"],
 			["textures/mob_effect/weakness.png", "textures/ui/weakness_effect.png"],
 			["textures/mob_effect/wither.png", "textures/ui/wither_effect.png"],
-				
+
 			// Mushroom
 			["textures/blocks/brown_mushroom.png", "textures/blocks/mushroom_brown.png"],
 			["textures/blocks/red_mushroom.png", "textures/blocks/mushroom_red.png"],
