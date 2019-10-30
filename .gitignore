@@ -3,3 +3,4 @@ dist
 /input
 node_modules
 /output
+*.log
