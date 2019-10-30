@@ -422,7 +422,8 @@ class RenameConverter extends AbstractConverter {
 
 			// Fox
 			["textures/entity/fox/snow_fox.png", "textures/entity/fox/arctic_fox.png"],
-			["textures/entity/fox", "textures/entity/fox_"],
+            ["textures/entity/fox/snow_fox_sleep.png", "textures/entity/fox/arctic_fox_sleep.png"],
+			["textures/entity/fox/", "textures/entity/fox_/"],
 
 			// Furnace
 			["textures/blocks/blast_furnace_front.png", "textures/blocks/blast_furnace_front_off.png"],
