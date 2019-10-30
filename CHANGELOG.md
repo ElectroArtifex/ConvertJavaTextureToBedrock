@@ -1,7 +1,8 @@
 # Changelog
 
-## [x]
+## [1.12.0]
 - Add debug webapp
+- Fix bedrock v1.13.x
 
 ## [1.11.2]
 - Title image convert
