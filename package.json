@@ -56,7 +56,7 @@
     "ConvertMinecraftJavaTextureToBedrock": "dist/cli.js"
   },
   "scripts": {
-    "build": "yarn build --config ./webpack.config.cli.js && yarn build --config ./webpack.config.webapp.js",
+    "build": "webpack --config ./webpack.config.cli.js && webpack --config ./webpack.config.webapp.js",
     "cli": "node ./dist/cli.js",
     "debug:cli": "webpack --mode=development --config ./webpack.config.cli.js && yarn cli",
     "debug:webapp": "webpack-dev-server --config ./webpack.config.webapp.js",
