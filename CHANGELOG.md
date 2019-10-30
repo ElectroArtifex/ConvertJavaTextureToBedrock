@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.12.1]
+- Fix pillager and ravager spawn eggs
+
 ## [1.12.0]
 - Add debug webapp
 - Fix bedrock v1.13.x
