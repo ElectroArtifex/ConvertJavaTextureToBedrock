@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.13.0]
+- Convert foxes
+
 ## [1.12.1]
 - Fix pillager and ravager spawn eggs
 
