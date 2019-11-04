@@ -10,6 +10,7 @@ import {DeleteConverter} from "./DeleteConverter";
 import {DrownedConverter} from "./DrownedConverter";
 import {FishHookConverter} from "./FishingConverter";
 import {FireworksConverter} from "./FireworksConverter";
+import {FoxConverter} from "./FoxConverter";
 import {HorseConverter} from "./HorseConverter";
 import {MapIconsConverter} from "./MapIconsConverter";
 import {MetadataConverter} from "./MetadataConverter";
@@ -43,6 +44,7 @@ const converters = [
 	new DrownedConverter(),
 	new FireworksConverter(),
 	new FishHookConverter(),
+	new FoxConverter(),
 	new HorseConverter(),
 	new MapIconsConverter(),
 	new PistonArmConverter(),

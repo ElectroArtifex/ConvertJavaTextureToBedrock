@@ -192,6 +192,7 @@ class ColorizeOverlayConverter extends AbstractConverter {
 			[[["textures/items/spawn_egg.png", [19, 19, 19]], ["textures/items/spawn_egg_overlay.png", [97, 97, 97]]], "textures/items/egg_endermite.png"],
 			[[["textures/items/spawn_egg.png", [128, 133, 133]], ["textures/items/spawn_egg_overlay.png", [27, 25, 23]]], "textures/items/egg_evoker.png"],
 			[[["textures/items/spawn_egg.png", [166, 143, 91]], ["textures/items/spawn_egg_overlay.png", [203, 174, 123]]], "textures/items/egg_fish.png"],
+			[[["textures/items/spawn_egg.png", [183, 156, 137]], ["textures/items/spawn_egg_overlay.png", [181, 93, 28]]], "textures/items/egg_fox.png"],
 			[[["textures/items/spawn_egg.png", [214, 214, 214]], ["textures/items/spawn_egg_overlay.png", [167, 167, 167]]], "textures/items/egg_ghast.png"],
 			[[["textures/items/spawn_egg.png", [77, 112, 98]], ["textures/items/spawn_egg_overlay.png", [214, 111, 43]]], "textures/items/egg_guardian.png"],
 			[[["textures/items/spawn_egg.png", [165, 136, 107]], ["textures/items/spawn_egg_overlay.png", [211, 203, 0]]], "textures/items/egg_horse.png"],
