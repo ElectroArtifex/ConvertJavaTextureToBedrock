@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.13.1]
+- Fix destroy stage
+
 ## [1.13.0]
 - Convert foxes
 
