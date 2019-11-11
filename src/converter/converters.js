@@ -7,6 +7,7 @@ import {ChestSideConverter} from "./ChestSideConverter";
 import {ColorizeOverlayConverter} from "./ColorizeOverlayConverter";
 import {CopyConverter} from "./CopyConverter";
 import {DeleteConverter} from "./DeleteConverter";
+import {DestroyStageConverter} from "./DestroyStageConverter";
 import {DrownedConverter} from "./DrownedConverter";
 import {FishHookConverter} from "./FishingConverter";
 import {FireworksConverter} from "./FireworksConverter";
@@ -61,6 +62,7 @@ const converters = [
 	new SideRotateConverter(),
 	new Particles1_13Converter(),
 	new SpriteConverter(),
+	new DestroyStageConverter(),
 	new PngToTgaConverter(),
 	new CopyConverter(),
 	new DeleteConverter()
