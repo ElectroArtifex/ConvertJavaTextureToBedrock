@@ -2,7 +2,11 @@ THIS PROJECT IS NO OFFICIAL [MINECRAFT](https://minecraft.net/) PRODUCT - NOT AU
 
 ---
 
-Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
+# Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
+
+Look at https://ozelot379.github.io/ConvertMinecraftJavaTextureToBedrock
+
+It works directly in your browser
 
 It supports currently the follow Minecraft versions:
 
@@ -13,19 +17,16 @@ It supports currently the follow Minecraft versions:
 
 Currently it supports to convert blocks, items, entities, paintings, particles, map icons and mob effects textures
 
-Supported formats are zip archives or folders
+Some conversions of HD texture packs may takes a while
 
 This project is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
 
-# Usage
-
-## GUI
-Look at https://ozelot379.github.io/ConvertMinecraftJavaTextureToBedrock in your browser
-
 ## CLI
+As an alternative you can also use the cli version
+
 First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)
 
-Then install it global
+Then install this global so you can use the binary
 
 ```bash
 yarn global add @ozelot379/convert-minecraft-java-texture-to-bedrock
@@ -59,7 +60,7 @@ For instance for textures, that can not be converted or are not converted correc
 
 This files are applied additionally before output
 
-## Debug and build
+# Debug and build
 First clone this repo and install the dependencies
 
 ```bash
@@ -85,17 +86,16 @@ yarn build
 ```
 
 # How this work
+This project uses the follow main features or external libraries:
 
-This project uses the follow main external libraries:
-
+- [Web Worker](https://developer.mozilla.org/de/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the gui
 - [jszip](https://www.npmjs.com/package/jszip) for read, modify and write zip files
 - [jimp](https://www.npmjs.com/package/jimp) for graphic manipulation
-- [file-saver](https://www.npmjs.com/package/file-saver) for deliver the generated as download
+- [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
 - [webpack](https://www.npmjs.com/package/webpack) for bundle the dist code
 - [gh-pages](https://www.npmjs.com/package/gh-pages) for publish a new version to the github static page
 
-
-## Use it direct in your code
+# Use it direct in your code
 Add it as a dependency to your `package.json`
 
 ```bash
@@ -125,14 +125,14 @@ or self handle the `Promise`
 new ConvertMinecraftJavaTextureToBedrock(input, output, log).convert().then((output) => {}).catch((err) => {});
 ```
 
-### Input
+## Input
 | Import          | Description |
 |-----------------|-------------|
 | `Input`         | The input consists on one input entry (Common) |
 | `ArrayInput`    | The input consists on multiple input entries (For instance a selected folder with multiple `FileInputEntry`) |
 | `AbstractInput` | Base input  |
 
-### Input entry
+## Input entry
 | Import                  | For type           |
 |-------------------------|--------------------|
 | `BufferInputEntry`      | <ul><li>`ArrayBuffer`</li><li>`Blob`</li><li>`Buffer`</li><li>`Uint8Array`</li></ul> |
@@ -141,7 +141,7 @@ new ConvertMinecraftJavaTextureToBedrock(input, output, log).convert().then((out
 | `LocalFolderInputEntry` | Local folder       |
 | `AbstractInputEntry`    | Base input entry   |
 
-### Output
+## Output
 | Import              | For type      |
 |---------------------|---------------|
 | `ArrayBufferOutput` | `ArrayBuffer` |
@@ -153,14 +153,14 @@ new ConvertMinecraftJavaTextureToBedrock(input, output, log).convert().then((out
 | `Uint8ArrayOutput`  | `Uint8Array`  |
 | `AbstractOutput`    | Base output   |
 
-### Log
+## Log
 | Import        | Description    |
 |---------------|----------------|
 | `ConsoleLog`  | Log to console |
 | `SlientLog`   | Disable log    |
 | `AbstractLog` | Base log       |
 
-### Example
+## Example
 ```javascript
 import ConvertMinecraftJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock";
 
