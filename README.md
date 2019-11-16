@@ -1,3 +1,7 @@
+THIS PROJECT IS NO OFFICIAL [MINECRAFT](https://minecraft.net/) PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY [MOJANG](https://mojang.com/)
+
+---
+
 Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
 
 It supports currently the follow Minecraft versions:
@@ -11,11 +15,7 @@ Currently it supports to convert blocks, items, entities, paintings, particles, 
 
 Supported formats are zip archives or folders
 
-This library is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
-
-This library is written in NodeJS, with [webpack features](https://www.npmjs.com/package/webpack)
-
-For the graphic manipulation, it uses the [jimp library](https://www.npmjs.com/package/jimp)
+This project is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
 
 # Usage
 
@@ -43,7 +43,59 @@ ConvertMinecraftJavaTextureToBedrock -i input/java_texture_pack.zip -o output/be
 | -o (Required) | Output folder or zip path |
 | -l            | Show log (Default `true`)     |
 
-## Direct in your code
+## Known issues
+- Convert horse textures is very tricky and may buggy
+- Convert weather textures (rain and snow) may not works (seems to be an other format as the default)
+
+# Extras (for texture pack creators)
+
+## UUID
+You can create the `bedrock_uuid_header` and `bedrock_uuid_module` files in your input, to keep the same uuid on repeating conversions - otherwise, random uuids are generated each time and you need to reselect the texture pack again in the game
+
+## Custom textures
+You can put custom textures in a `bedrock_textures` folder in your input
+
+For instance for textures, that can not be converted or are not converted correctly
+
+This files are applied additionally before output
+
+## Debug and build
+First clone this repo and install the dependencies
+
+```bash
+yarn
+```
+
+Then you can start the debug
+
+cli:
+```bash
+yarn debug:cli
+```
+
+webapp:
+```bash
+yarn debug:webapp
+```
+
+You can create a build
+
+```bash
+yarn build
+```
+
+# How this work
+
+This project uses the follow main external libraries:
+
+- [jszip](https://www.npmjs.com/package/jszip) for read, modify and write zip files
+- [jimp](https://www.npmjs.com/package/jimp) for graphic manipulation
+- [file-saver](https://www.npmjs.com/package/file-saver) for deliver the generated as download
+- [webpack](https://www.npmjs.com/package/webpack) for bundle the dist code
+- [gh-pages](https://www.npmjs.com/package/gh-pages) for publish a new version to the github static page
+
+
+## Use it direct in your code
 Add it as a dependency to your `package.json`
 
 ```bash
@@ -126,49 +178,3 @@ import ConvertMinecraftJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputE
     console.log(`Output: ${output}`);
 })();
 ```
-
-## Known issues
-- Convert horse textures is very tricky and may buggy
-- Convert weather textures (rain and snow) may not works (seems to be an other format as the default)
-
-# Extras (for texture pack creators)
-
-## UUID
-You can create the `bedrock_uuid_header` and `bedrock_uuid_module` files in your input, to keep the same uuid on repeating conversions - otherwise, random uuids are generated each time and you need to reselect the texture pack again in the game
-
-## Custom textures
-You can put custom textures in a `bedrock_textures` folder in your input
-
-For instance for textures, that can not be converted or are not converted correctly
-
-This files are applied additionally before output
-
-## Debug and build
-First clone this repo and install the dependencies
-
-```bash
-yarn
-```
-
-Then you can start the debug
-
-cli:
-```bash
-yarn debug:cli
-```
-
-webapp:
-```bash
-yarn debug:webapp
-```
-
-You can create a build
-
-```bash
-yarn build
-```
-
-# License
-The Minecraft Java and Bedrock products are &copy; by [Mojang](https://mojang.com/)
-
-This library for the conversation is published by the [GPL license](https://www.gnu.org/licenses/gpl-3.0.txt)
