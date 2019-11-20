@@ -88,7 +88,7 @@ yarn build
 # How this work
 This project uses the follow main features or external libraries:
 
-- [Web Worker](https://developer.mozilla.org/de/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the gui
+- [Web Worker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the gui
 - [jszip](https://www.npmjs.com/package/jszip) for read, modify and write zip files
 - [jimp](https://www.npmjs.com/package/jimp) for graphic manipulation
 - [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
