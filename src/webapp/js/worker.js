@@ -1,4 +1,4 @@
-import ConvertMinecraftJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, FileOutput} from "./../..";
+import ConvertJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, FileOutput} from "./../..";
 
 addEventListener("message", async (e) => {
 	const files = e.data;
@@ -6,7 +6,7 @@ addEventListener("message", async (e) => {
 	let output;
 	try {
 		output = {
-			output: await new ConvertMinecraftJavaTextureToBedrock(
+			output: await new ConvertJavaTextureToBedrock(
 				new ArrayInput(Array.prototype.map.call(files, file => new FileInputEntry(file))),
 				new FileOutput(),
 				new class extends AbstractLog {

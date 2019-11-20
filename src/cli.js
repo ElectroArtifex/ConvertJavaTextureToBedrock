@@ -1,4 +1,4 @@
-import ConvertMinecraftJavaTextureToBedrock, {
+import ConvertJavaTextureToBedrock, {
 	ConsoleLog,
 	Input,
 	LocalFileInputEntry,
@@ -38,7 +38,7 @@ import yargs from "yargs";
 		.argv;
 
 	try {
-		return new ConvertMinecraftJavaTextureToBedrock(
+		return new ConvertJavaTextureToBedrock(
 			new Input(fs.statSync(argv.input).isDirectory() ? new LocalFolderInputEntry(argv.input) : new LocalFileInputEntry(argv.input)),
 			(argv.output.includes(".") ? new LocalFileOutput(argv.output) : new LocalFolderOutput(argv.output)),
 			(argv.log ? new ConsoleLog() : new SilentLog())
