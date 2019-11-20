@@ -4,11 +4,11 @@ import {AbstractLog} from "./log";
 import {AbstractOutput} from "./output";
 
 /**
- * Class ConvertMinecraftJavaTextureToBedrock
+ * Class ConvertJavaTextureToBedrock
  */
-class ConvertMinecraftJavaTextureToBedrock {
+class ConvertJavaTextureToBedrock {
 	/**
-	 * ConvertMinecraftJavaTextureToBedrock constructor
+	 * ConvertJavaTextureToBedrock constructor
 	 *
 	 * @param {AbstractInput} input
 	 * @param {AbstractOutput} output
@@ -62,7 +62,7 @@ class ConvertMinecraftJavaTextureToBedrock {
 	}
 }
 
-export default ConvertMinecraftJavaTextureToBedrock;
+export default ConvertJavaTextureToBedrock;
 
 //export {AbstractConverter, addAdditionalConverters} from "./converter";
 export {AbstractInput, ArrayInput, Input} from "./input";
