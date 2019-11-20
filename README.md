@@ -29,7 +29,7 @@ First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS 
 Then install this global so you can use the binary
 
 ```bash
-yarn global add @ozelot379/convert-minecraft-java-texture-to-bedrock
+yarn global add @ozelot379/convert-java-texture-to-bedrock
 ```
 
 You can now convert your texture packs like
@@ -99,16 +99,16 @@ This project uses the follow main features or external libraries:
 Add it as a dependency to your `package.json`
 
 ```bash
-yarn add @ozelot379/convert-minecraft-java-texture-to-bedrock
+yarn add @ozelot379/convert-java-texture-to-bedrock
 ```
 
 Import it in your code, if you use webpack
 ```javascript
-import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock";
+import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-java-texture-to-bedrock";
 ```
 or require it if you use native NodeJs
 ```javascript
-const {default: ConvertJavaTextureToBedrock, ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} = require("@ozelot379/convert-minecraft-java-texture-to-bedrock");
+const {default: ConvertJavaTextureToBedrock, ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} = require("@ozelot379/convert-java-texture-to-bedrock");
 ```
 
 You can now convert your texture packs in an `async function`
@@ -162,7 +162,7 @@ new ConvertJavaTextureToBedrock(input, output, log).convert().then((output) => {
 
 ## Example
 ```javascript
-import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock";
+import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-java-texture-to-bedrock";
 
 (async () => {
     let output;
