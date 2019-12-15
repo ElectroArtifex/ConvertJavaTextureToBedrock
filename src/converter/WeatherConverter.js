@@ -1,54 +1,56 @@
 import {AbstractConverter} from "./AbstractConverter";
 import {DeleteConverter} from "./DeleteConverter";
-import Jimp from "jimp";
+import Jimp from "@ozelot379/jimp-plugins";
 
 /**
  * Class WeatherConverter
  */
 class WeatherConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		const to_delete = [];
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [snow, rain, to] = this.data;
 
-		for await (const [snow, rain, to] of this.getData()) {
-			if (await this.output.exists(snow) && await this.output.exists(rain)) {
-				this.log.log(`Convert weather`);
+        const to_delete = [];
 
-				const snow_image = await this.readImage(snow);
+        if (!(await this.output.exists(snow) && await this.output.exists(rain))) {
+            return to_delete;
+        }
 
-				const rain_image = await this.readImage(rain);
+        this.log.log(`Convert weather`);
 
-				const factor = (snow_image.getWidth() / 64);
+        const snow_image = await this.readImage(snow);
 
-				const image = await this.createImage((32 * factor), (32 * factor));
+        const rain_image = await this.readImage(rain);
 
-				// Snow
-				image.composite(snow_image.clone().crop(0, 0, snow_image.getWidth(), (3 * factor)).cover(image.getWidth(), (3 * factor), undefined, Jimp.RESIZE_NEAREST_NEIGHBOR), 0, 0);
+        const factor = (snow_image.getWidth() / 64);
 
-				to_delete.push(snow);
+        const image = await this.createImage((32 * factor), (32 * factor));
 
-				// Rain
-				image.composite(rain_image.clone().crop(0, 0, rain_image.getWidth(), (5 * factor)).cover(image.getWidth(), (5 * factor), undefined, Jimp.RESIZE_NEAREST_NEIGHBOR), 0, (5*factor));
+        // Snow
+        image.composite(snow_image.clone().crop(0, 0, snow_image.getWidth(), (3 * factor)).cover(image.getWidth(), (3 * factor), undefined, Jimp.RESIZE_NEAREST_NEIGHBOR), 0, 0);
 
-				to_delete.push(rain);
+        to_delete.push(new DeleteConverter(snow));
 
-				await this.writeImage(to, image);
-			}
-		}
+        // Rain
+        image.composite(rain_image.clone().crop(0, 0, rain_image.getWidth(), (5 * factor)).cover(image.getWidth(), (5 * factor), undefined, Jimp.RESIZE_NEAREST_NEIGHBOR), 0, (5 * factor));
 
-		return [new DeleteConverter(to_delete)];
-	}
+        await this.writeImage(to, image);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/environment/snow.png", "textures/environment/rain.png", "textures/environment/weather.png"]
-		];
-	}
+        to_delete.push(new DeleteConverter(rain));
+
+        return to_delete;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/environment/snow.png", "textures/environment/rain.png", "textures/environment/weather.png"]
+        ];
+    }
 }
 
 export {WeatherConverter};

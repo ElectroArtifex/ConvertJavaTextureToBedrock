@@ -5,50 +5,52 @@ import {DeleteConverter} from "./DeleteConverter";
  * Class AtlasConverter
  */
 class AtlasConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		const to_delete = [];
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [base, count, to] = this.data;
 
-		for await (const [base, count, to] of this.getData()) {
-			let image = null;
+        const to_delete = [];
 
-			for (let i = 0; i <= count; i++) {
-				const step = base + (i.toString().padStart(2, "0") + ".png");
+        let image = null;
 
-				if (await this.output.exists(step)) {
-					const image_step = await this.readImage(step);
+        for (let i = 0; i <= count; i++) {
+            const step = base + (i.toString().padStart(2, "0") + ".png");
 
-					if (image === null) {
-						this.log.log(`Create atlas ${to}`);
+            if (!await this.output.exists(step)) {
+                continue;
+            }
 
-						image = await this.createImage(image_step.getWidth(), (image_step.getHeight() * (count + 1)));
-					}
+            const image_step = await this.readImage(step);
 
-					image.composite(image_step, 0, (image_step.getHeight() * i));
+            if (image === null) {
+                this.log.log(`Create atlas ${to}`);
 
-					to_delete.push(step);
-				}
-			}
+                image = await this.createImage(image_step.getWidth(), (image_step.getHeight() * (count + 1)));
+            }
 
-			if (image !== null) {
-				await this.writeImage(to, image);
-			}
-		}
+            image.composite(image_step, 0, (image_step.getHeight() * i));
 
-		return [new DeleteConverter(to_delete)];
-	}
+            to_delete.push(new DeleteConverter(step));
+        }
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/items/clock_", 63, "textures/items/watch_atlas.png"],
-			["textures/items/compass_", 31, "textures/items/compass_atlas.png"]
-		];
-	}
+        if (image !== null) {
+            await this.writeImage(to, image);
+        }
+
+        return to_delete;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/items/clock_", 63, "textures/items/watch_atlas.png"],
+            ["textures/items/compass_", 31, "textures/items/compass_atlas.png"]
+        ];
+    }
 }
 
 export {AtlasConverter};

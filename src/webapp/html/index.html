@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Convert Minecraft Java texture packs to Minecraft Bedrock texture packs</title>
-	<meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta charset="UTF-8">
+    <title>Convert Minecraft Java texture packs to Bedrock texture packs</title>
+    <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
 <header>
-	<nav class="nav-extended brown">
-		<div class="nav-content">
-			<span class="nav-title">Convert Minecraft Java texture packs to Minecraft Bedrock texture packs</span>
-		</div>
-	</nav>
+    <nav class="nav-extended brown">
+        <div class="nav-content">
+            <span class="nav-title">Convert Minecraft Java texture packs to Bedrock texture packs</span>
+        </div>
+    </nav>
 </header>
 <main>
-	<span>Select&nbsp;</span>
-	<label class="btn green"><input accept=".zip" id="selectInputFileButton" title="Select zip file" type="file">Zip file</label>
-	<label>&nbsp;</label>
-	<label class="btn green disabled"><input id="selectInputFolderButton" title="Select folder" type="file" webkitdirectory>Folder</label>
-	<span>&nbsp;or drag'n'drop</span>
+    <span>Select&nbsp;</span>
+    <label class="btn green"><input accept=".zip" id="selectInputFileButton" title="Select zip file" type="file">Zip file</label>
+    <label>&nbsp;</label>
+    <label class="btn green disabled"><input id="selectInputFolderButton" title="Select folder" type="file" webkitdirectory>Folder</label>
+    <span>&nbsp;or drag'n'drop</span>
 </main>
 <footer class="page-footer brown">
-	<div class="footer-copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col l6">
-					<div>Works directly in your browser</div>
-					<div>Some conversions of HD texture packs may takes a while</div>
-				</div>
-				<div class="col l6">
-					<div>
-						THIS PROJECT IS NO OFFICIAL <a class="green-text" href="https://minecraft.net/" target="_blank">MINECRAFT</a> PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY <a class="green-text" href="https://mojang.com/" target="_blank">MOJANG</a>
-					</div>
-					<div>&nbsp;</div>
-					<div>
-						Version: <%= require("./../../../package").version %>
-					</div>
-					<div>
-						<a class="green-text" href="https://github.com/ozelot379/ConvertJavaTextureToBedrock" target="_blank">Source</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col l6">
+                    <div>Works directly in your browser</div>
+                    <div>Some conversions of HD texture packs may takes a while</div>
+                </div>
+                <div class="col l6">
+                    <div>
+                        THIS PROJECT IS NO OFFICIAL MINECRAFT PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
+                    </div>
+                    <div>&nbsp;</div>
+                    <div>
+                        Version: <%= require("./../../../package").version %>
+                    </div>
+                    <div>
+                        <a class="green-text" href="https://github.com/ozelot379/ConvertJavaTextureToBedrock" target="_blank">Source</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 </body>
 </html>

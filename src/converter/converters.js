@@ -1,12 +1,18 @@
 import {AbstractConverter} from "./AbstractConverter";
+import {ArrowConverter} from "./ArrowConverter";
 import {AtlasConverter} from "./AtlasConverter";
 import {BannerPatternConverter} from "./BannerPatternConverter";
+import {BarConverter} from "./BarConverter";
 import {BedConverter} from "./BedConverter";
+import {BeeConverter} from "./BeeConverter";
+import {ButtonConverter} from "./ButtonConverter";
 import {ChestFrontConverter} from "./ChestFrontConverter";
+import {ChestLeftRightDoubleConverter} from "./ChestLeftRightDoubleConverter";
 import {ChestSideConverter} from "./ChestSideConverter";
 import {ColorizeOverlayConverter} from "./ColorizeOverlayConverter";
 import {CopyConverter} from "./CopyConverter";
 import {DeleteConverter} from "./DeleteConverter";
+import {DespriteConverter} from "./DespriteConverter";
 import {DestroyStageConverter} from "./DestroyStageConverter";
 import {DrownedConverter} from "./DrownedConverter";
 import {FishHookConverter} from "./FishingConverter";
@@ -36,38 +42,44 @@ import {WeatherConverter} from "./WeatherConverter";
  * @type {AbstractConverter[]}
  */
 const converters = [
-	new MetadataConverter(),
-	new RenameConverter(),
-	new AtlasConverter(),
-	new BannerPatternConverter(),
-	new BedConverter(),
-	new ChestFrontConverter(),
-	new ChestSideConverter(),
-	new DrownedConverter(),
-	new FireworksConverter(),
-	new FishHookConverter(),
-	new FoxConverter(),
-	new HorseConverter(),
-	new MapIconsConverter(),
-	new PistonArmConverter(),
-	new RedstoneDustConverter(),
-	new SheepConverter(),
-	new VillagerConverter(),
-	new TurtleConverter(),
-	new WeatherConverter(),
-	new OpaqueConverter(),
-	new WaterConverter(),
-	new TitleConverter(),
-	new OverlayToTranslateConverter(),
-	new ColorizeOverlayConverter(),
-	new PlaceholderConverter(),
-	new SideRotateConverter(),
-	new Particles1_13Converter(),
-	new SpriteConverter(),
-	new DestroyStageConverter(),
-	new PngToTgaConverter(),
-	new CopyConverter(),
-	new DeleteConverter()
+    ...MetadataConverter.getDefaultConverters(),
+    ...RenameConverter.getDefaultConverters(),
+    ...AtlasConverter.getDefaultConverters(),
+    ...BannerPatternConverter.getDefaultConverters(),
+    ...BedConverter.getDefaultConverters(),
+    ...ChestLeftRightDoubleConverter.getDefaultConverters(),
+    ...ChestFrontConverter.getDefaultConverters(),
+    ...ChestSideConverter.getDefaultConverters(),
+    ...DrownedConverter.getDefaultConverters(),
+    ...FireworksConverter.getDefaultConverters(),
+    ...FishHookConverter.getDefaultConverters(),
+    ...FoxConverter.getDefaultConverters(),
+    ...HorseConverter.getDefaultConverters(),
+    ...MapIconsConverter.getDefaultConverters(),
+    ...PistonArmConverter.getDefaultConverters(),
+    ...RedstoneDustConverter.getDefaultConverters(),
+    ...SheepConverter.getDefaultConverters(),
+    ...VillagerConverter.getDefaultConverters(),
+    ...TurtleConverter.getDefaultConverters(),
+    ...WeatherConverter.getDefaultConverters(),
+    ...OpaqueConverter.getDefaultConverters(),
+    ...WaterConverter.getDefaultConverters(),
+    ...BeeConverter.getDefaultConverters(),
+    ...TitleConverter.getDefaultConverters(),
+    ...DespriteConverter.getDefaultConverters(),
+    ...BarConverter.getDefaultConverters(),
+    ...ButtonConverter.getDefaultConverters(),
+    ...OverlayToTranslateConverter.getDefaultConverters(),
+    ...ColorizeOverlayConverter.getDefaultConverters(),
+    ...PlaceholderConverter.getDefaultConverters(),
+    ...SideRotateConverter.getDefaultConverters(),
+    ...ArrowConverter.getDefaultConverters(),
+    ...Particles1_13Converter.getDefaultConverters(),
+    ...SpriteConverter.getDefaultConverters(),
+    ...DestroyStageConverter.getDefaultConverters(),
+    ...PngToTgaConverter.getDefaultConverters(),
+    ...CopyConverter.getDefaultConverters(),
+    ...DeleteConverter.getDefaultConverters()
 ];
 
 export {converters};

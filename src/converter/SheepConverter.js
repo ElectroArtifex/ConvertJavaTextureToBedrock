@@ -5,48 +5,50 @@ import {DeleteConverter} from "./DeleteConverter";
  * Class SheepConverter
  */
 class SheepConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		const to_delete = [];
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [sheep, sheep_fur] = this.data;
 
-		for await (const [sheep, sheep_fur] of this.getData()) {
-			if (await this.output.exists(sheep) && await this.output.exists(sheep_fur)) {
-				this.log.log(`Convert sheep`);
+        const to_delete = [];
 
-				const image_sheep = await this.readImage(sheep);
-				const image_fur = await this.readImage(sheep_fur);
+        if (!(await this.output.exists(sheep) && await this.output.exists(sheep_fur))) {
+            return to_delete;
+        }
 
-				const image = await this.createImage(image_sheep.getWidth(), image_sheep.getHeight() + image_fur.getHeight());
+        this.log.log(`Convert sheep`);
 
-				image.composite(image_sheep, 0, 0);
+        const image_sheep = await this.readImage(sheep);
+        const image_fur = await this.readImage(sheep_fur);
 
-				image.composite(image_fur, 0, image_sheep.getHeight());
+        const image = await this.createImage(image_sheep.getWidth(), (image_sheep.getHeight() + image_fur.getHeight()));
 
-				image.scan(0, 0, image.getWidth(), image_sheep.getHeight(), (x, y, idx) => {
-					if (image.bitmap.data[idx + 3] === 255) {
-						image.bitmap.data[idx + 3] = 1;
-					}
-				});
+        image.composite(image_sheep, 0, 0);
 
-				await this.writeImage(sheep, image);
-			}
+        image.composite(image_fur, 0, image_sheep.getHeight());
 
-			to_delete.push(sheep_fur);
-		}
+        image.scan(0, 0, image.getWidth(), image_sheep.getHeight(), (x, y, idx) => {
+            if (image.bitmap.data[idx + 3] === 255) {
+                image.bitmap.data[idx + 3] = 1;
+            }
+        });
 
-		return [new DeleteConverter(to_delete)];
-	}
+        await this.writeImage(sheep, image);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/entity/sheep/sheep.png", "textures/entity/sheep/sheep_fur.png"]
-		];
-	}
+        to_delete.push(new DeleteConverter(sheep_fur));
+
+        return to_delete;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/entity/sheep/sheep.png", "textures/entity/sheep/sheep_fur.png"]
+        ];
+    }
 }
 
 export {SheepConverter};

@@ -4,33 +4,35 @@ import {AbstractConverter} from "./AbstractConverter";
  * Class Particles1_13Converter
  */
 class Particles1_13Converter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const [from, to] of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Convert particles ${from}`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [from, to] = this.data;
 
-				const image = await this.readImage(from);
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-				image.crop(0, 0, (image.getWidth() / 2), (image.getHeight() / 2)); // Bedrock only uses the first 25% of the image (Rest is transparent on Java)
+        this.log.log(`Convert particles ${from}`);
 
-				await this.writeImage(to, image);
-			}
-		}
+        const image = await this.readImage(from);
 
-		return [];
-	}
+        image.crop(0, 0, (image.getWidth() / 2), (image.getHeight() / 2)); // Bedrock only uses the first 25% of the image (Rest is transparent on Java)
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/particle/particles.png", "textures/particle/particles.png"]
-		];
-	}
+        await this.writeImage(to, image);
+
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/particle/particles.png", "textures/particle/particles.png"]
+        ];
+    }
 }
 
 export {Particles1_13Converter};

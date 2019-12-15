@@ -1,8 +1,8 @@
-THIS PROJECT IS NO OFFICIAL [MINECRAFT](https://minecraft.net/) PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY [MOJANG](https://mojang.com/)
+THIS PROJECT IS NO OFFICIAL MINECRAFT] PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
 
 ---
 
-# Convert Minecraft Java texture packs to Minecraft Bedrock texture packs
+# Convert Minecraft Java texture packs to Bedrock texture packs
 
 Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
 
@@ -10,12 +10,12 @@ It works directly in your browser
 
 It supports currently the follow Minecraft versions:
 
-| Minecraft | Version             |
-|-----------|---------------------|
-| Java      | v1.13.x or v1.14.x  |
-| Bedrock   | v1.13.x             |
+| Minecraft | Version |
+|-----------|---------|
+| Java | v1.13.x, v1.14.x or v1.15.x |
+| Bedrock | v1.14.x |
 
-Currently it supports to convert blocks, items, entities, paintings, particles, map icons and mob effects textures
+Currently it supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some basic ui textures
 
 Some conversions of HD texture packs may takes a while
 
@@ -38,11 +38,11 @@ You can now convert your texture packs like
 ConvertJavaTextureToBedrock -i input/java_texture_pack.zip -o output/bedrock_texture_pack.mcpack
 ```
 
-| Parameter     | Description                   |
-|---------------|-------------------------------|
-| -i (Required) | Input folder or zip path  |
+| Parameter | Description |
+|-----------|-------------|
+| -i (Required) | Input folder or zip path |
 | -o (Required) | Output folder or zip path |
-| -l            | Show log (Default `true`)     |
+| -l | Show log (Default `true`) |
 
 ## Known issues
 - Convert horse textures is very tricky and may buggy
@@ -60,35 +60,32 @@ For instance for textures, that can not be converted or are not converted correc
 
 This files are applied additionally before output
 
-# Debug and build
-First clone this repo and install the dependencies
+# Debug
+First clone this repo
+```bash
+git clone https://github.com/ozelot379/ConvertJavaTextureToBedrock
+cd ConvertJavaTextureToBedrock
+```
 
+Then install the dependencies
 ```bash
 yarn
 ```
 
-Then you can start the debug
-
-cli:
+## WebApp
 ```bash
-yarn debug:cli
+NODE_ENV=development yarn debug:webapp
 ```
 
-webapp:
+## CLI
 ```bash
-yarn debug:webapp
-```
-
-You can create a build
-
-```bash
-yarn build
+NODE_ENV=development yarn debug:cli
 ```
 
 # How this work
 This project uses the follow main features or external libraries:
 
-- [Web Worker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the gui
+- [Web Worker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the ui
 - [jszip](https://www.npmjs.com/package/jszip) for read, modify and write zip files
 - [jimp](https://www.npmjs.com/package/jimp) for graphic manipulation
 - [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
@@ -106,12 +103,8 @@ Import it in your code, if you use webpack
 ```javascript
 import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock";
 ```
-or require it if you use native NodeJs
-```javascript
-const {default: ConvertJavaTextureToBedrock, ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} = require("@ozelot379/convert-minecraft-java-texture-to-bedrock");
-```
 
-You can now convert your texture packs in an `async function`
+You can now convert your texture packs
 ```javascript
 let output;
 try {
@@ -120,45 +113,41 @@ try {
 
 }
 ```
-or self handle the `Promise`
-```javascript
-new ConvertJavaTextureToBedrock(input, output, log).convert().then((output) => {}).catch((err) => {});
-```
 
 ## Input
-| Import          | Description |
-|-----------------|-------------|
-| `Input`         | The input consists on one input entry (Common) |
-| `ArrayInput`    | The input consists on multiple input entries (For instance a selected folder with multiple `FileInputEntry`) |
-| `AbstractInput` | Base input  |
+| Import | Description |
+|--------|-------------|
+| `Input` | The input consists on one input entry (Common) |
+| `ArrayInput` | The input consists on multiple input entries (For instance a selected folder with multiple `FileInputEntry`) |
+| `AbstractInput` | Base input |
 
 ## Input entry
-| Import                  | For type           |
-|-------------------------|--------------------|
-| `BufferInputEntry`      | <ul><li>`ArrayBuffer`</li><li>`Blob`</li><li>`Buffer`</li><li>`Uint8Array`</li></ul> |
-| `FileInputEntry`        | `File`             |
-| `LocalFileInputEntry`   | Local file         |
-| `LocalFolderInputEntry` | Local folder       |
-| `AbstractInputEntry`    | Base input entry   |
+| Import | For type |
+|--------|----------|
+| `BufferInputEntry` | - `ArrayBuffer`<br>- `Blob`<br>- `Buffer`<br>- `Uint8Array` |
+| `FileInputEntry` | `File` |
+| `LocalFileInputEntry` | Local file |
+| `LocalFolderInputEntry` | Local folder |
+| `AbstractInputEntry` | Base input entry |
 
 ## Output
-| Import              | For type      |
-|---------------------|---------------|
+| Import | For type |
+|--------|----------|
 | `ArrayBufferOutput` | `ArrayBuffer` |
-| `BlobOutput`        | `Blob`        |
-| `BufferOutput`      | `Buffer`      |
-| `FileBlobOutput`    | `File`        |
-| `LocalFileOutput`   | Local file    |
-| `LocalFolderOutput` | Local folder  |
-| `Uint8ArrayOutput`  | `Uint8Array`  |
-| `AbstractOutput`    | Base output   |
+| `BlobOutput` | `Blob` |
+| `BufferOutput` | `Buffer` |
+| `FileBlobOutput` | `File` |
+| `LocalFileOutput` | Local file |
+| `LocalFolderOutput` | Local folder |
+| `Uint8ArrayOutput` | `Uint8Array` |
+| `AbstractOutput` | Base output |
 
 ## Log
-| Import        | Description    |
-|---------------|----------------|
-| `ConsoleLog`  | Log to console |
-| `SlientLog`   | Disable log    |
-| `AbstractLog` | Base log       |
+| Import | Description |
+|--------|-------------|
+| `ConsoleLog` | Log to console |
+| `SlientLog` | Disable log |
+| `AbstractLog` | Base log |
 
 ## Example
 ```javascript

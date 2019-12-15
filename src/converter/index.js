@@ -7,9 +7,9 @@ import {converters} from "./converters";
  * @throws {Error}
  */
 async function* getConverters() {
-	for (const converter of converters) {
-		yield converter;
-	}
+    for (const converter of converters) {
+        yield converter;
+    }
 }
 
 /**
@@ -18,9 +18,9 @@ async function* getConverters() {
  * @returns {Promise<>}
  */
 async function addAdditionalConverters(...additional_converters) {
-	for (const additional_converter of additional_converters) {
-		converters.push(additional_converter);
-	}
+    for (const additional_converter of additional_converters) {
+        converters.push(additional_converter);
+    }
 }
 
 export {AbstractConverter} from "./AbstractConverter";

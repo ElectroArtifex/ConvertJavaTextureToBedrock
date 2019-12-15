@@ -5,47 +5,49 @@ import {DeleteConverter} from "./DeleteConverter";
  * Class DrownedConverter
  */
 class DrownedConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		const to_delete = [];
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [from, overlay, to] = this.data;
 
-		for await (const [from, overlay, to] of this.getData()) {
-			if (await this.output.exists(from) && await this.output.exists(overlay)) {
-				this.log.log(`Convert drowned`);
+        const to_delete = [];
 
-				const image = await this.readImage(from);
+        if (!(await this.output.exists(from) && await this.output.exists(overlay))) {
+            return to_delete;
+        }
 
-				const image_overlay = await this.readImage(overlay);
+        this.log.log(`Convert drowned`);
 
-				const factor = (image.getWidth() / 64);
+        const image = await this.readImage(from);
 
-				image.composite(image_overlay.clone().crop(0, 0, (32 * factor), (16 * factor)), (32 * factor), 0);
+        const image_overlay = await this.readImage(overlay);
 
-				image.composite(image_overlay.clone().crop(0, (16 * factor), (64 * factor), (16 * factor)), 0, (32 * factor));
+        const factor = (image.getWidth() / 64);
 
-				image.composite(image_overlay.clone().crop((16 * factor), (48 * factor), (16 * factor), (16 * factor)), 0, (48 * factor));
+        image.composite(image_overlay.clone().crop(0, 0, (32 * factor), (16 * factor)), (32 * factor), 0);
 
-				image.composite(image_overlay.clone().crop((32 * factor), (48 * factor), (16 * factor), (16 * factor)), (48 * factor), (48 * factor));
+        image.composite(image_overlay.clone().crop(0, (16 * factor), (64 * factor), (16 * factor)), 0, (32 * factor));
 
-				await this.writeImage(to, image);
-			}
+        image.composite(image_overlay.clone().crop((16 * factor), (48 * factor), (16 * factor), (16 * factor)), 0, (48 * factor));
 
-			to_delete.push(overlay);
-		}
+        image.composite(image_overlay.clone().crop((32 * factor), (48 * factor), (16 * factor), (16 * factor)), (48 * factor), (48 * factor));
 
-		return [new DeleteConverter(to_delete)];
-	}
+        await this.writeImage(to, image);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "textures/entity/zombie/drowned.png"]
-		];
-	}
+        to_delete.push(new DeleteConverter(overlay));
+
+        return to_delete;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/entity/zombie/drowned.png", "textures/entity/zombie/drowned_outer_layer.png", "textures/entity/zombie/drowned.png"]
+        ];
+    }
 }
 
 export {DrownedConverter};

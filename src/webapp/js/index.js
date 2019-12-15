@@ -106,6 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Allow select same file again
+        selectInputFileButton.value = selectInputFolderButton.value = "";
+
         if (err) {
             swal({
                 title: "Conversion was failed",

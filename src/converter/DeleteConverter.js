@@ -4,39 +4,41 @@ import {AbstractConverter} from "./AbstractConverter";
  * Class DeleteConverter
  */
 class DeleteConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const from of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Delete ${from}`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const from = this.data;
 
-				await this.output.delete(from);
-			}
-		}
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-		return [];
-	}
+        this.log.log(`Delete ${from}`);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			"textures/blocks/conduit.png",
-			"textures/entity/conduit/break_particle.png",
+        await this.output.delete(from);
 
-			"textures/blocks/dried_kelp_bottom.png",
-			"textures/blocks/water_overlay.png",
+        return [];
+    }
 
-			"textures/entity/cat/cat_collar.png",
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            "textures/blocks/conduit.png",
+            "textures/entity/conduit/break_particle.png",
 
-			"textures/entity/wolf/wolf_collar.png",
+            "textures/blocks/dried_kelp_bottom.png",
+            "textures/blocks/water_overlay.png",
 
-			"bedrock_textures/"
-		];
-	}
+            "textures/entity/cat/cat_collar.png",
+
+            "textures/entity/wolf/wolf_collar.png",
+
+            "bedrock_textures/"
+        ];
+    }
 }
 
 export {DeleteConverter};

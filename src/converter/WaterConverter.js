@@ -1,42 +1,45 @@
 import {AbstractConverter} from "./AbstractConverter";
-import Jimp from "jimp";
 
 /**
  * Class WaterConverter
  */
 class WaterConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const [from, to, to_small_size] of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Convert water ${from}`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [from, to, mind_width, grayscale] = this.data;
 
-				const image = await this.readImage(from);
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-				image.grayscale(); // Fix cauldron water (Some texture packs still using a colored water texture but it's just a grayscale texture)
+        this.log.log(`Convert water ${from}`);
 
-				if (image.getWidth() === to_small_size) {
-					image.scale(2, Jimp.RESIZE_NEAREST_NEIGHBOR); // Bedrock version has doubled pixels as the Java version
-				}
+        const image = await this.readImage(from);
 
-				await this.writeImage(to, image);
-			}
-		}
+        if (grayscale) {
+            image.grayscale(); // Fix cauldron water (Some texture packs still using a colored water texture but it's just a grayscale texture)
+        }
 
-		return [];
-	}
+        image.ensureMinWidth(mind_width); // Bedrock version has doubled pixels as the Java version
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/blocks/water_flow_grey.png", "textures/blocks/water_flow_grey.png", 16],
-			["textures/blocks/water_still_grey.png", "textures/blocks/water_still_grey.png", 8]
-		];
-	}
+        await this.writeImage(to, image);
+
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/blocks/lava_flow.png", "textures/blocks/lava_flow.png", 32],
+            ["textures/blocks/lava_still.png", "textures/blocks/lava_still.png", 16],
+            ["textures/blocks/water_flow_grey.png", "textures/blocks/water_flow_grey.png", 32, true],
+            ["textures/blocks/water_still_grey.png", "textures/blocks/water_still_grey.png", 16, true]
+        ];
+    }
 }
 
 export {WaterConverter};

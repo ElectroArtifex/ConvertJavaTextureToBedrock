@@ -1,7 +1,7 @@
 import {AbstractInput} from "./../input"
 import {AbstractLog} from "./../log";
 import {AbstractOutput} from "./../output";
-import Jimp from "jimp";
+import Jimp from "@ozelot379/jimp-plugins";
 
 /**
  * Class AbstractConverter
@@ -9,131 +9,144 @@ import Jimp from "jimp";
  * @abstract
  */
 class AbstractConverter {
-	/**
-	 * AbstractConverter constructor
-	 *
-	 * @param {*[]} data
-	 *
-	 * @throws {Error}
-	 */
-	constructor(data = this.constructor.DATA) {
-		if (this.constructor === AbstractConverter) {
-			throw new Error("Can't instantiate abstract class!");
-		}
+    /**
+     * @returns {AbstractConverter[]}
+     */
+    static getDefaultConverters() {
+        const converters = [];
 
-		/**
-		 * @type {AbstractInput}
-		 *
-		 * @protected
-		 */
-		this.input;
-		/**
-		 * @type {AbstractOutput}
-		 *
-		 * @protected
-		 */
-		this.output;
-		/**
-		 * @type {AbstractLog}
-		 *
-		 * @protected
-		 */
-		this.log;
-		/**
-		 * @type {*[]}
-		 *
-		 * @protected
-		 */
-		this.data = data;
-	}
+        for (const data of this.DEFAULT_CONVERTER_DATA) {
+            converters.push(new this(data));
+        }
 
-	/**
-	 * @param {AbstractInput} input
-	 * @param {AbstractOutput} output
-	 * @param {AbstractLog} log
-	 *
-	 * @returns Promise<>
-	 */
-	async _init(input, output, log) {
-		this.input = input;
-		this.output = output;
-		this.log = log;
-	}
+        return converters;
+    }
 
-	/**
-	 * @param {number} width
-	 * @param {number} height
-	 *
-	 * @returns {Promise<Jimp>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @protected
-	 */
-	async createImage(width, height) {
-		return Jimp.create(width, height);
-	}
+    /**
+     * @returns {*[]}
+     *
+     * @protected
+     *
+     * @abstract
+     */
+    static get DEFAULT_CONVERTER_DATA() {
 
-	/**
-	 * @param {string} file
-	 *
-	 * @returns {Promise<Jimp>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @protected
-	 */
-	async readImage(file) {
-		return Jimp.read(await this.output.read(file));
-	}
+    }
 
-	/**
-	 * @param {string} file
-	 * @param {Jimp} image
-	 * @param {string} mime
-	 *
-	 * @returns {Promise<>}
-	 *
-	 * @protected
-	 */
-	async writeImage(file, image, mime = Jimp.MIME_PNG) {
-		return this.output.write(file, await image.getBufferAsync(mime));
-	}
+    /**
+     * AbstractConverter constructor
+     *
+     * @param {*} data
+     *
+     * @throws {Error}
+     */
+    constructor(data) {
+        if (this.constructor === AbstractConverter) {
+            throw new Error("Can't instantiate abstract class!");
+        }
 
-	/**
-	 * @returns {AsyncIterableIterator<*>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @protected
-	 */
-	async* getData() {
-		for (const date of this.data) {
-			yield date;
-		}
-	}
+        /**
+         * @type {AbstractInput}
+         *
+         * @protected
+         */
+        this.input;
+        /**
+         * @type {AbstractOutput}
+         *
+         * @protected
+         */
+        this.output;
+        /**
+         * @type {AbstractLog}
+         *
+         * @protected
+         */
+        this.log;
+        /**
+         * @type {*}
+         *
+         * @protected
+         */
+        this.data = data;
+    }
 
-	/**
-	 * @returns {*[]}
-	 *
-	 * @protected
-	 *
-	 * @abstract
-	 */
-	static get DATA() {
+    /**
+     * @param {AbstractInput} input
+     * @param {AbstractOutput} output
+     * @param {AbstractLog} log
+     *
+     * @returns Promise<>
+     */
+    async _init(input, output, log) {
+        this.input = input;
+        this.output = output;
+        this.log = log;
+    }
 
-	}
+    /**
+     * @param {number} width
+     * @param {number} height
+     * @param {string|number} background
+     *
+     * @returns {Promise<Jimp>}
+     *
+     * @throws {Error}
+     *
+     * @protected
+     */
+    async createImage(width, height, background = 0) {
+        return Jimp.create(width, height, background);
+    }
 
-	/**
-	 * @returns {Promise<AbstractConverter[]>}
-	 *
-	 * @throws {Error}
-	 *
-	 * @abstract
-	 */
-	async convert() {
+    /**
+     * @param {string} file
+     *
+     * @returns {Promise<Jimp>}
+     *
+     * @throws {Error}
+     *
+     * @protected
+     */
+    async readImage(file) {
+        return Jimp.read(await this.output.read(file));
+    }
 
-	}
+    /**
+     * @param {string} file
+     * @param {Jimp} image
+     * @param {string} mime
+     *
+     * @returns {Promise<>}
+     *
+     * @protected
+     */
+    async writeImage(file, image, mime = Jimp.MIME_PNG) {
+        return this.output.write(file, await image.getBufferAsync(mime));
+    }
+
+    /**
+     * @param {string} file
+     * @param {*} json
+     *
+     * @returns {Promise<>}
+     *
+     * @protected
+     */
+    async writeJson(file, json) {
+        return this.output.write(file, Buffer.from(JSON.stringify(json, null, 2)));
+    }
+
+    /**
+     * @returns {Promise<AbstractConverter[]>}
+     *
+     * @throws {Error}
+     *
+     * @abstract
+     */
+    async convert() {
+
+    }
 }
 
 export {AbstractConverter};

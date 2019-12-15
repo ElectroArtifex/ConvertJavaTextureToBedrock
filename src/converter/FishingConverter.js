@@ -4,55 +4,65 @@ import {AbstractConverter} from "./AbstractConverter";
  * Class FishHookConverter
  */
 class FishHookConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const [from, to] of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Convert fishhook`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [from, to] = this.data;
 
-				const image_from = await this.readImage(from);
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-				const factor = (image_from.getWidth() / 8);
+        this.log.log(`Convert fishhook`);
 
-				const image = await this.createImage((24 * factor), (3 * factor));
+        const image_from = await this.readImage(from);
 
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), factor), 0, 0);
-				image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), 0, factor);
-				image.composite(image_from.clone().crop((2 * factor), (6 * factor), factor, factor), factor, factor);
-				image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), (2 * factor), factor);
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), factor), 0, (2 * factor));
+        const factor = (image_from.getWidth() / 8);
 
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), factor), (3 * factor), 0);
-				image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), (3 * factor), factor);
-				image.composite(image_from.clone().crop((2 * factor), (6 * factor), factor, factor), (4 * factor), factor);
-				image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), (5 * factor), factor);
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), factor), (3 * factor), (2 * factor));
+        const image = await this.createImage((24 * factor), (3 * factor));
 
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (6 * factor), 0);
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (9 * factor), 0);
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (12 * factor), 0);
-				image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (15 * factor), 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), 0, 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), (2 * factor), 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), (2 * factor), (2 * factor));
+        image.composite(image_from.clone().crop((3 * factor), factor, factor, factor), 0, (2 * factor));
+        image.composite(image_from.clone().crop((4 * factor), factor, factor, factor), factor, 0);
+        image.composite(image_from.clone().crop((4 * factor), factor, factor, factor), (2 * factor), factor);
+        image.composite(image_from.clone().crop((4 * factor), factor, factor, factor), factor, (2 * factor));
+        image.composite(image_from.clone().crop((4 * factor), factor, factor, factor), 0, factor);
+        image.composite(image_from.clone().crop((4 * factor), (4 * factor), factor, factor), factor, factor);
 
-				image.composite(image_from.clone().crop((2 * factor), (5 * factor), (3 * factor), (3 * factor)), (18 * factor), 0);
-				image.composite(image_from.clone().crop((2 * factor), (6 * factor), factor, factor), (22 * factor), (2 * factor));
+        image.composite(image_from.clone().crop((5 * factor), (3 * factor), factor, factor), (3 * factor), 0);
+        image.composite(image_from.clone().crop((5 * factor), (3 * factor), factor, factor), (5 * factor), 0);
+        image.composite(image_from.clone().crop((5 * factor), (3 * factor), factor, factor), (5 * factor), (2 * factor));
+        image.composite(image_from.clone().crop((5 * factor), (3 * factor), factor, factor), (3 * factor), (2 * factor));
+        image.composite(image_from.clone().crop((4 * factor), (3 * factor), factor, factor), (4 * factor), 0);
+        image.composite(image_from.clone().crop((4 * factor), (3 * factor), factor, factor), (5 * factor), factor);
+        image.composite(image_from.clone().crop((4 * factor), (3 * factor), factor, factor), (4 * factor), (2 * factor));
+        image.composite(image_from.clone().crop((4 * factor), (3 * factor), factor, factor), (3 * factor), factor);
+        image.composite(image_from.clone().crop((4 * factor), (4 * factor), factor, factor), (4 * factor), factor);
 
-				await this.writeImage(to, image);
-			}
-		}
+        image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (6 * factor), 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (9 * factor), 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (12 * factor), 0);
+        image.composite(image_from.clone().crop((3 * factor), factor, (3 * factor), (3 * factor)), (15 * factor), 0);
 
-		return [];
-	}
+        image.composite(image_from.clone().crop((2 * factor), (5 * factor), (3 * factor), (3 * factor)), (18 * factor), 0);
+        image.composite(image_from.clone().crop((4 * factor), (4 * factor), factor, factor), (22 * factor), (2 * factor));
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/entity/fishhook.png", "textures/entity/fishhook.png"]
-		];
-	}
+        await this.writeImage(to, image);
+
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/entity/fishhook.png", "textures/entity/fishhook.png"]
+        ];
+    }
 }
 
 export {FishHookConverter};
