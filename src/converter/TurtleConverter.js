@@ -4,37 +4,39 @@ import {AbstractConverter} from "./AbstractConverter";
  * Class TurtleConverter
  */
 class TurtleConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const from of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Convert turtle ${from}`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const from = this.data;
 
-				const from_image = await this.readImage(from);
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-				const factor = (from_image.getWidth() / 128);
+        this.log.log(`Convert turtle ${from}`);
 
-				const image = await this.createImage(from_image.getWidth(), from_image.getHeight());
+        const from_image = await this.readImage(from);
 
-				image.composite(from_image.crop(factor, 0, (from_image.getWidth() - factor), from_image.getHeight()), 0, 0);
+        const factor = (from_image.getWidth() / 128);
 
-				await this.writeImage(from, image);
-			}
-		}
+        const image = await this.createImage(from_image.getWidth(), from_image.getHeight());
 
-		return [];
-	}
+        image.composite(from_image.crop(factor, 0, (from_image.getWidth() - factor), from_image.getHeight()), 0, 0);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			"textures/entity/sea_turtle.png"
-		];
-	}
+        await this.writeImage(from, image);
+
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            "textures/entity/sea_turtle.png"
+        ];
+    }
 }
 
 export {TurtleConverter};

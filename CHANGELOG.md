@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.0.0]
+- Support java v1.15 and bedrock v1.14
+- Convert hotbar, bars, buttons and tabs ui and inventory icons
+- Possible bugs fixed in:
+    - Fix arrow entity
+    - Fix bed feeds
+    - Fix chest item
+    - Fix fireworks entity
+    - Fix fishing hook entity
+    - Fix lava block
+    - Fix opaque leaves block
+    - Fix piston arm entity
+    - Fix redstone dust block
+    - Fix title image
+
 ## [1.13.5]
 - Fixes
 

@@ -5,34 +5,34 @@ import fs from "fs-extra";
  * Class LocalFileOutput
  */
 class LocalFileOutput extends BufferOutput {
-	/**
-	 * @inheritDoc
-	 *
-	 * @param {string} path
-	 */
-	constructor(path) {
-		super();
+    /**
+     * @inheritDoc
+     *
+     * @param {string} path
+     */
+    constructor(path) {
+        super();
 
-		/**
-		 * @type {string}
-		 *
-		 * @protected
-		 */
-		this.path = path;
-	}
+        /**
+         * @type {string}
+         *
+         * @protected
+         */
+        this.path = path;
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	async generate() {
-		const data = await super.generate();
+    /**
+     * @inheritDoc
+     */
+    async generate() {
+        const data = await super.generate();
 
-		this.log.log(`Write ${this.path}`);
+        this.log.log(`Write ${this.path}`);
 
-		await fs.outputFile(this.path, data);
+        await fs.outputFile(this.path, data);
 
-		return this.path;
-	}
+        return this.path;
+    }
 }
 
 export {LocalFileOutput};

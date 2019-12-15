@@ -7,63 +7,63 @@ import JSZip from "jszip";
  * @abstract
  */
 class AbstractInputEntry {
-	/**
-	 * AbstractInputEntry constructor
-	 *
-	 * @throws {Error}
-	 */
-	constructor() {
-		if (this.constructor === AbstractInputEntry) {
-			throw new Error("Can't instantiate abstract class!");
-		}
+    /**
+     * AbstractInputEntry constructor
+     *
+     * @throws {Error}
+     */
+    constructor() {
+        if (this.constructor === AbstractInputEntry) {
+            throw new Error("Can't instantiate abstract class!");
+        }
 
-		/**
-		 * @type {AbstractLog}
-		 *
-		 * @protected
-		 */
-		this.log;
-	}
+        /**
+         * @type {AbstractLog}
+         *
+         * @protected
+         */
+        this.log;
+    }
 
-	/**
-	 * @param {AbstractLog} log
-	 *
-	 * @returns Promise<>
-	 */
-	async _init(log) {
-		this.log = log;
-	}
+    /**
+     * @param {AbstractLog} log
+     *
+     * @returns Promise<>
+     */
+    async _init(log) {
+        this.log = log;
+    }
 
-	/**
-	 * @param {string} folder
-	 *
-	 * @returns {Promise<>}
-	 *
-	 * @abstract
-	 */
-	async applyToFolder(folder) {
+    /**
+     * @param {string} folder
+     *
+     * @returns {Promise<>}
+     *
+     * @abstract
+     */
+    async applyToFolder(folder) {
 
-	}
+    }
 
-	/**
-	 * @param {JSZip} zip
-	 *
-	 * @returns {Promise<>}
-	 *
-	 * @abstract
-	 */
-	async applyToZip(zip) {
+    /**
+     * @param {JSZip} zip
+     *
+     * @returns {Promise<>}
+     *
+     * @abstract
+     */
+    async applyToZip(zip) {
 
-	}
+    }
 
-	/**
-	 * @returns {Promise<string>}
-	 *
-	 * @abstract
-	 */
-	async getName() {
+    /**
+     * @returns {Promise<string>}
+     *
+     * @abstract
+     */
+    async getName() {
 
-	}
+    }
 }
 
 export {AbstractInputEntry};

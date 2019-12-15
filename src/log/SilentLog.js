@@ -4,26 +4,26 @@ import {AbstractLog} from "./AbstractLog";
  * Class SilentLog
  */
 class SilentLog extends AbstractLog {
-	/**
-	 * @inheritDoc
-	 */
-	log(log) {
+    /**
+     * @inheritDoc
+     */
+    log(log) {
 
-	}
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	warn(log) {
+    /**
+     * @inheritDoc
+     */
+    warn(log) {
 
-	}
+    }
 
-	/**
-	 * @inheritDoc
-	 */
-	error(log) {
+    /**
+     * @inheritDoc
+     */
+    error(log) {
 
-	}
+    }
 }
 
 export {SilentLog};

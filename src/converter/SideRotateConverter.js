@@ -4,35 +4,37 @@ import {AbstractConverter} from "./AbstractConverter";
  * Class SideRotateConverter
  */
 class SideRotateConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		for await (const [from, to] of this.getData()) {
-			if (await this.output.exists(from)) {
-				this.log.log(`Create side rotate ${to}`);
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [from, to] = this.data;
 
-				const image = await this.readImage(from);
+        if (!await this.output.exists(from)) {
+            return [];
+        }
 
-				image.flip(true, false);
+        this.log.log(`Create side rotate ${to}`);
 
-				await this.writeImage(to, image);
-			}
-		}
+        const image = await this.readImage(from);
 
-		return [];
-	}
+        image.flip(true, false);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/blocks/dried_kelp_side_a.png", "textures/blocks/dried_kelp_side_b.png"],
-			["textures/blocks/seagrass_doubletall_top_a.png", "textures/blocks/seagrass_doubletall_top_b.png"],
-			["textures/blocks/seagrass_doubletall_bottom_a.png", "textures/blocks/seagrass_doubletall_bottom_b.png"]
-		];
-	}
+        await this.writeImage(to, image);
+
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/blocks/dried_kelp_side_a.png", "textures/blocks/dried_kelp_side_b.png"],
+            ["textures/blocks/seagrass_doubletall_top_a.png", "textures/blocks/seagrass_doubletall_top_b.png"],
+            ["textures/blocks/seagrass_doubletall_bottom_a.png", "textures/blocks/seagrass_doubletall_bottom_b.png"]
+        ];
+    }
 }
 
 export {SideRotateConverter};

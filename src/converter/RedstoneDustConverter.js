@@ -5,45 +5,47 @@ import {DeleteConverter} from "./DeleteConverter";
  * Class RedstoneDustConverter
  */
 class RedstoneDustConverter extends AbstractConverter {
-	/**
-	 * @inheritDoc
-	 */
-	async convert() {
-		const to_delete = [];
+    /**
+     * @inheritDoc
+     */
+    async convert() {
+        const [dot, line_0, line_1, to_cross, to_line] = this.data;
 
-		for await (const [dot, line_0, line_1, to_cross, to_line] of this.getData()) {
-			if (await this.output.exists(dot) && await this.output.exists(line_0) && await this.output.exists(line_1)) {
-				this.log.log(`Convert redstone dust`);
+        const to_delete = [];
 
-				const image = await this.readImage(line_0);
+        if (!(await this.output.exists(dot) && await this.output.exists(line_0) && await this.output.exists(line_1))) {
+            return to_delete;
+        }
 
-				image.rotate(90).crop(0, 0, (image.getWidth() - 2), (image.getHeight() - 2)); // TODO: Why the rotated image is 2px to large in both sides?
+        this.log.log(`Convert redstone dust`);
 
-				await this.writeImage(to_line, image);
+        const image = await this.readImage(line_0);
 
-				image.composite(await this.readImage(line_1), 0, 0);
+        image.rotateSimple(90);
 
-				image.composite(await this.readImage(dot), 0, 0);
+        await this.writeImage(to_line, image);
 
-				await this.writeImage(to_cross, image);
-			}
+        image.composite(await this.readImage(line_1), 0, 0);
 
-			to_delete.push(dot);
-			to_delete.push(line_0);
-			to_delete.push(line_1);
-		}
+        image.composite(await this.readImage(dot), 0, 0);
 
-		return [new DeleteConverter(to_delete)];
-	}
+        await this.writeImage(to_cross, image);
 
-	/**
-	 * @inheritDoc
-	 */
-	static get DATA() {
-		return [
-			["textures/blocks/redstone_dust_dot.png", "textures/blocks/redstone_dust_line0.png", "textures/blocks/redstone_dust_line1.png", "textures/blocks/redstone_dust_cross.png", "textures/blocks/redstone_dust_line.png"]
-		];
-	}
+        to_delete.push(new DeleteConverter(dot));
+        to_delete.push(new DeleteConverter(line_0));
+        to_delete.push(new DeleteConverter(line_1));
+
+        return to_delete;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    static get DEFAULT_CONVERTER_DATA() {
+        return [
+            ["textures/blocks/redstone_dust_dot.png", "textures/blocks/redstone_dust_line0.png", "textures/blocks/redstone_dust_line1.png", "textures/blocks/redstone_dust_cross.png", "textures/blocks/redstone_dust_line.png"]
+        ];
+    }
 }
 
 export {RedstoneDustConverter};

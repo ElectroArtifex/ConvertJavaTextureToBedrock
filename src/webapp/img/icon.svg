@@ -1,4 +1,4 @@
 <svg height="1024" width="1024" xmlns="http://www.w3.org/2000/svg">
-	<rect fill="#795548" height="256" width="1024" x="0" y="0" />
-	<rect fill="#4CAF50" height="768" width="1024" x="0" y="256" />
+    <rect fill="#795548" height="256" width="1024" x="0" y="0"/>
+    <rect fill="#4CAF50" height="768" width="1024" x="0" y="256"/>
 </svg>
