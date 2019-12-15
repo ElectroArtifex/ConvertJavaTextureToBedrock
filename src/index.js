@@ -68,7 +68,7 @@ export default ConvertJavaTextureToBedrock;
 export {AbstractInput, ArrayInput, Input} from "./input";
 export {
     AbstractInputEntry, BufferInputEntry, FileInputEntry, LocalFileInputEntry, LocalFolderInputEntry
-}from "./input";
+} from "./input";
 export {AbstractLog, ConsoleLog, SilentLog} from "./log";
 export {
     AbstractOutput,
