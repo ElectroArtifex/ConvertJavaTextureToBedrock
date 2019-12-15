@@ -8,6 +8,7 @@ import {BeeConverter} from "./BeeConverter";
 import {ButtonConverter} from "./ButtonConverter";
 import {ChestFrontConverter} from "./ChestFrontConverter";
 import {ChestLeftRightDoubleConverter} from "./ChestLeftRightDoubleConverter";
+import {ChestNormalConverter} from "./ChestNormalConverter";
 import {ChestSideConverter} from "./ChestSideConverter";
 import {ColorizeOverlayConverter} from "./ColorizeOverlayConverter";
 import {CopyConverter} from "./CopyConverter";
@@ -47,6 +48,7 @@ const converters = [
     ...AtlasConverter.getDefaultConverters(),
     ...BannerPatternConverter.getDefaultConverters(),
     ...BedConverter.getDefaultConverters(),
+    ...ChestNormalConverter.getDefaultConverters(),
     ...ChestLeftRightDoubleConverter.getDefaultConverters(),
     ...ChestFrontConverter.getDefaultConverters(),
     ...ChestSideConverter.getDefaultConverters(),

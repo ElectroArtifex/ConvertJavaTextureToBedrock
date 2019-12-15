@@ -38,16 +38,16 @@ class MetadataConverter extends AbstractConverter {
             uuid_module = uuid();
         }
 
-        const mcmeta = JSON.parse((await this.output.read(from)).toString("utf8").trim()); // trim it to supports UF8 files with 'BOOM' at the beginning
+        MetadataConverter.mcmeta = JSON.parse((await this.output.read(from)).toString("utf8").trim()); // trim it to supports UF8 files with 'BOOM' at the beginning
 
-        if (mcmeta.pack.pack_format !== 4 && mcmeta.pack.pack_format !== 5) {
-            throw new Error("Only supports pack_format 4 (v1.13, v1.14 or v1.15)!");
+        if (MetadataConverter.mcmeta.pack.pack_format !== 4 && MetadataConverter.mcmeta.pack.pack_format !== 5) {
+            throw new Error("Only supports pack_format 4 (v1.13 and v1.14) or 5 (v1.15)!");
         }
 
         const manifest = {
             "format_version": 1,
             "header": {
-                "description": mcmeta.pack.description,
+                "description": MetadataConverter.mcmeta.pack.description,
                 "name": await this.input.getName(),
                 "platform_locked": false,
                 "uuid": uuid_header,
@@ -55,7 +55,7 @@ class MetadataConverter extends AbstractConverter {
             },
             "modules": [
                 {
-                    "description": mcmeta.pack.description,
+                    "description": MetadataConverter.mcmeta.pack.description,
                     "type": "resources",
                     "uuid": uuid_module,
                     "version": [0, 0, 1]
@@ -79,5 +79,10 @@ class MetadataConverter extends AbstractConverter {
         ];
     }
 }
+
+/**
+ * @type {Object|null}
+ */
+MetadataConverter.mcmeta = null;
 
 export {MetadataConverter};
