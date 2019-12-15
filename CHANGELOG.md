@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.0.1]
+- Fix
+
 ## [2.0.0]
 - Support java v1.15 and bedrock v1.14
 - Convert hotbar, bars, buttons and tabs ui and inventory icons
