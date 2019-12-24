@@ -67,9 +67,9 @@ class LocalFolderOutput extends AbstractOutput {
      * @inheritDoc
      */
     async rename(from, to) {
-        await fs.ensureDir(this.p(path.dirname(to)));
-
-        return fs.rename(this.p(from), this.p(to));
+        return fs.move(this.p(from), this.p(to), {
+            overwrite: true
+        });
     }
 
     /**
