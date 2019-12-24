@@ -8,7 +8,7 @@ class DespriteConverter extends AbstractConverter {
      * @inheritDoc
      */
     async convert() {
-        const [input, factory_detect, sprites] = this.data;
+        const [input, factor_detect, sprites] = this.data;
 
         if (!await this.output.exists(input)) {
             return [];
@@ -16,7 +16,7 @@ class DespriteConverter extends AbstractConverter {
 
         const image_from = await this.readImage(input);
 
-        const factor = (image_from.getWidth() / factory_detect);
+        const factor = (image_from.getWidth() / factor_detect);
 
         for (const [x, y, width, height, to] of sprites) {
             this.log.log(`Desprite ${to}`);
