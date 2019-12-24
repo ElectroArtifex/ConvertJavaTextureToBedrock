@@ -1,7 +1,12 @@
 # Changelog
 
 ## [x]
-- Fix enchanted item glint
+- Convert dialog ui
+- Possible bugs fixed in:
+    - Fix dye
+    - Fix enchanted item glint
+    - Fix grass block
+    - Fix sheep
 
 ## [2.0.2]
 - Support java v1.15 and bedrock v1.14

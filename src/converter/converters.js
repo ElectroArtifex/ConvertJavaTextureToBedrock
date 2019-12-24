@@ -15,6 +15,7 @@ import {CopyConverter} from "./CopyConverter";
 import {DeleteConverter} from "./DeleteConverter";
 import {DespriteConverter} from "./DespriteConverter";
 import {DestroyStageConverter} from "./DestroyStageConverter";
+import {DialogConverter} from "./DialogConverter";
 import {DrownedConverter} from "./DrownedConverter";
 import {EnchantedItemGlintConverter} from "./EnchantedItemGlintConverter";
 import {FishHookConverter} from "./FishingConverter";
@@ -72,6 +73,7 @@ const converters = [
     ...DespriteConverter.getDefaultConverters(),
     ...BarConverter.getDefaultConverters(),
     ...ButtonConverter.getDefaultConverters(),
+    ...DialogConverter.getDefaultConverters(),
     ...OverlayToTranslateConverter.getDefaultConverters(),
     ...ColorizeOverlayConverter.getDefaultConverters(),
     ...PlaceholderConverter.getDefaultConverters(),
