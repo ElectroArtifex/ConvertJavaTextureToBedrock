@@ -330,6 +330,9 @@ class RenameConverter extends AbstractConverter {
             ["textures/blocks/dropper_front.png", "textures/blocks/dropper_front_horizontal.png"],
 
             // Dye
+            ["textures/items/cactus_green.png", "textures/items/dye_powder_green.png"], // 1.13
+            ["textures/items/dandelion_yellow.png", "textures/items/dye_powder_yellow.png"], // 1.13
+            ["textures/items/rose_red.png", "textures/items/dye_powder_red.png"], // 1.13
             ["textures/items/black_dye.png", "textures/items/dye_powder_black_new.png"],
             ["textures/items/blue_dye.png", "textures/items/dye_powder_blue_new.png"],
             ["textures/items/brown_dye.png", "textures/items/dye_powder_brown_new.png"],
@@ -346,9 +349,6 @@ class RenameConverter extends AbstractConverter {
             ["textures/items/red_dye.png", "textures/items/dye_powder_red.png"],
             ["textures/items/white_dye.png", "textures/items/dye_powder_white_new.png"],
             ["textures/items/yellow_dye.png", "textures/items/dye_powder_yellow.png"],
-            ["textures/items/cactus_green.png", "textures/items/dye_powder_green.png"], // 1.13
-            ["textures/items/dandelion_yellow.png", "textures/items/dye_powder_yellow.png"], // 1.13
-            ["textures/items/rose_red.png", "textures/items/dye_powder_red.png"], // 1.13
 
             // End crystal
             ["textures/entity/end_crystal/", "textures/entity/endercrystal/"],
