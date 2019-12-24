@@ -16,6 +16,7 @@ import {DeleteConverter} from "./DeleteConverter";
 import {DespriteConverter} from "./DespriteConverter";
 import {DestroyStageConverter} from "./DestroyStageConverter";
 import {DrownedConverter} from "./DrownedConverter";
+import {EnchantedItemGlintConverter} from "./EnchantedItemGlintConverter";
 import {FishHookConverter} from "./FishingConverter";
 import {FireworksConverter} from "./FireworksConverter";
 import {FoxConverter} from "./FoxConverter";
@@ -79,6 +80,7 @@ const converters = [
     ...Particles1_13Converter.getDefaultConverters(),
     ...SpriteConverter.getDefaultConverters(),
     ...DestroyStageConverter.getDefaultConverters(),
+    ...EnchantedItemGlintConverter.getDefaultConverters(),
     ...PngToTgaConverter.getDefaultConverters(),
     ...CopyConverter.getDefaultConverters(),
     ...DeleteConverter.getDefaultConverters()
