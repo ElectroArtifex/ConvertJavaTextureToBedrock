@@ -18,6 +18,8 @@ class PlaceholderConverter extends AbstractConverter {
 
         let image = await this.readImage(from);
 
+        image.ensureMinWidth(factor_detect);
+
         const factor = (image.getWidth() / factor_detect);
 
         image.crop((x * factor), (y * factor), (width * factor), (height * factor));

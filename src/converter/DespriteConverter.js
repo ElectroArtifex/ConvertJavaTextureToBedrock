@@ -16,6 +16,8 @@ class DespriteConverter extends AbstractConverter {
 
         const image_from = await this.readImage(input);
 
+        image_from.ensureMinWidth(factor_detect);
+
         const factor = (image_from.getWidth() / factor_detect);
 
         for (const [x, y, width, height, to] of sprites) {

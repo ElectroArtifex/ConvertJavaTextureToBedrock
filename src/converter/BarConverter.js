@@ -8,22 +8,22 @@ class BarConverter extends AbstractConverter {
      * @inheritDoc
      */
     async convert() {
-        const [icons, bars, nubs] = this.data;
+        const [from, factor_detect, bars, nubs] = this.data;
 
-        if (!await this.output.exists(icons)) {
+        if (!await this.output.exists(from)) {
             return [];
         }
 
-        const icons_image = await this.readImage(icons);
+        const image_from = await this.readImage(from);
 
-        const factor = (icons_image.getWidth() / 256);
+        const factor = (image_from.getWidth() / factor_detect);
 
         for (const [y, tos] of bars) {
-            const image = icons_image.clone().crop(0, (y * factor), (182 * factor), (5 * factor));
+            const image = image_from.clone().crop(0, (y * factor), (182 * factor), (5 * factor));
 
             const metadata = {
-                nineslice_size: [factor, 0, factor, 0],
-                base_size: [image.getWidth(), image.getHeight()]
+                nineslice_size: [1, 0, 1, 0],
+                base_size: [182, 5]
             };
 
             for (const [to, colorize] of tos) {
@@ -52,6 +52,7 @@ class BarConverter extends AbstractConverter {
         return [
             [
                 "textures/gui/icons.png",
+                256,
                 [
                     [64, [
                         ["textures/gui/achievements/hotdogempty"],
