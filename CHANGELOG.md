@@ -1,7 +1,7 @@
 # Changelog
 
 ## [x]
-- Convert dialog ui
+- Convert dialog, inventory and recipe book ui
 - Possible bugs fixed in:
     - Fix dye
     - Fix enchanted item glint

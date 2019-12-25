@@ -48,7 +48,6 @@ class DespriteConverter extends AbstractConverter {
             ["textures/gui/widgets.png", 256, [
                 [0, 0, 1, 22, "textures/ui/hotbar_start_cap.png"],
                 [1, 0, 20, 22, "textures/ui/hotbar_0.png"],
-                [1, 0, 20, 22, "textures/ui/pocket_ui_highlight_slot.png"],
                 [21, 0, 20, 22, "textures/ui/hotbar_1.png"],
                 [41, 0, 20, 22, "textures/ui/hotbar_2.png"],
                 [61, 0, 20, 22, "textures/ui/hotbar_3.png"],
@@ -58,8 +57,9 @@ class DespriteConverter extends AbstractConverter {
                 [141, 0, 20, 22, "textures/ui/hotbar_7.png"],
                 [161, 0, 20, 22, "textures/ui/hotbar_8.png"],
                 [181, 0, 1, 22, "textures/ui/hotbar_end_cap.png"],
-                [0, 22, 24, 24, "textures/ui/selected_hotbar_slot.png"],
-                [0, 22, 24, 24, "textures/ui/pocket_ui_highlight_selected_slot.png"]
+                [0, 22, 24, 24, "textures/ui/pocket_ui_highlight_selected_slot.png"],
+                [0, 22, 24, 24, "textures/ui/pocket_ui_highlight_slot.png"],
+                [0, 22, 24, 24, "textures/ui/selected_hotbar_slot.png"]
             ]],
 
             // Mob effect background
