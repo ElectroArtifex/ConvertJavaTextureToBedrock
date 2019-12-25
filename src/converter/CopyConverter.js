@@ -64,16 +64,16 @@ class CopyConverter extends AbstractConverter {
             // UI
             ["textures/blocks/brick.png", "textures/ui/icon_recipe_construction.png"],
             ["textures/blocks/chest_front.png", "textures/ui/inventory_icon.png"],
-            ["textures/blocks/empty_armor_slot_boots.png", "textures/ui/empty_armor_slot_boots.png"],
-            ["textures/blocks/empty_armor_slot_chestplate.png", "textures/ui/empty_armor_slot_chestplate.png"],
-            ["textures/blocks/empty_armor_slot_helmet.png", "textures/ui/empty_armor_slot_helmet.png"],
-            ["textures/blocks/empty_armor_slot_leggings.png", "textures/ui/empty_armor_slot_leggings.png"],
-            ["textures/blocks/empty_armor_slot_shield.png", "textures/ui/empty_armor_slot_shield.png"],
             ["textures/blocks/grass_side_carried.png", "textures/ui/icon_recipe_nature.png"],
             ["textures/items/book_normal.png", "textures/ui/creative_icon.png"],
             ["textures/items/bed_red.png", "textures/ui/icon_recipe_item.png"],
             ["textures/items/compass_item.png", "textures/ui/magnifyingGlass.png"],
             ["textures/items/diamond_sword.png", "textures/ui/icon_recipe_equipment.png"],
+            ["textures/items/empty_armor_slot_boots.png", "textures/ui/empty_armor_slot_boots.png"],
+            ["textures/items/empty_armor_slot_chestplate.png", "textures/ui/empty_armor_slot_chestplate.png"],
+            ["textures/items/empty_armor_slot_helmet.png", "textures/ui/empty_armor_slot_helmet.png"],
+            ["textures/items/empty_armor_slot_leggings.png", "textures/ui/empty_armor_slot_leggings.png"],
+            ["textures/items/empty_armor_slot_shield.png", "textures/ui/empty_armor_slot_shield.png"],
 
             ["bedrock_textures/", "textures/"]
         ];
