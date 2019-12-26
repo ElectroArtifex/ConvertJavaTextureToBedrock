@@ -20,13 +20,13 @@ class ButtonConverter extends AbstractConverter {
 
         const factor = (image_from.getWidth() / factor_detect);
 
-        for (const [x, y, width, height, tos] of buttons) {
+        for (const [x, y, width, height, nineslice_size, tos] of buttons) {
             const image = image_from.clone().crop((x * factor), (y * factor), (width * factor), (height * factor));
 
             image.autoCropTransparent();
 
             const metadata = {
-                nineslice_size: 5,
+                nineslice_size,
                 base_size: [width, height]
             };
 
@@ -64,13 +64,13 @@ class ButtonConverter extends AbstractConverter {
                 "textures/gui/widgets.png",
                 256,
                 [
-                    [0, 46, 200, 20, [
+                    [0, 46, 200, 20, 5, [
                         "textures/ui/button_borderless_darkpressednohover",
                         "textures/ui/button_borderless_lightpressednohover",
                         "textures/ui/disabledButtonNoBorder",
                         "textures/ui/recipe_book_button_borderless_lightpressednohover"
                     ]],
-                    [0, 66, 200, 20, [
+                    [0, 66, 200, 20, 5, [
                         "textures/ui/button_borderless_dark",
                         "textures/ui/button_borderless_light",
                         "textures/ui/pocket_button_default",
@@ -78,7 +78,7 @@ class ButtonConverter extends AbstractConverter {
                         "textures/ui/recipe_book_dark_button",
                         "textures/ui/recipe_book_light_button"
                     ]],
-                    [0, 86, 200, 20, [
+                    [0, 86, 200, 20, 5, [
                         "textures/ui/button_borderless_darkhover",
                         "textures/ui/button_borderless_darkpressed",
                         "textures/ui/button_borderless_lighthover",
@@ -101,7 +101,7 @@ class ButtonConverter extends AbstractConverter {
                 "textures/gui/container/creative_inventory/tabs.png",
                 256,
                 [
-                    [0, 0, 28, 32, [
+                    [0, 0, 28, 32, 5, [
                         "textures/ui/pocket_tab_left_side",
                         "textures/ui/recipe_book_side_toggle_dark",
                         "textures/ui/TabLeftBack",
@@ -109,12 +109,12 @@ class ButtonConverter extends AbstractConverter {
                         "textures/ui/TabLeftBackTopMost",
                         "textures/ui/TabTopBackLeftMost"
                     ]],
-                    [28, 0, 28, 32, [
+                    [28, 0, 28, 32, 5, [
                         "textures/ui/recipe_back_panel",
                         "textures/ui/TabTopBack",
                         "textures/ui/toolbar_background"
                     ]],
-                    [140, 0, 28, 32, [
+                    [140, 0, 28, 32, 5, [
                         "textures/ui/pocket_tab_right_side",
                         "textures/ui/TabRightBack",
                         "textures/ui/TabRightBackBottomMost",
@@ -123,17 +123,17 @@ class ButtonConverter extends AbstractConverter {
                         "textures/ui/TabTopBackRightMostDark",
                         "textures/ui/XTab"
                     ]],
-                    [0, 32, 28, 32, [
+                    [0, 32, 28, 32, 5, [
                         "textures/ui/recipe_book_side_toggle_dark_hover",
                         "textures/ui/TabLeftFront",
                         "textures/ui/TabLeftFrontBottomMost",
                         "textures/ui/TabLeftFrontTopMost",
                         "textures/ui/TabTopFrontLeftMost"
                     ]],
-                    [28, 32, 28, 32, [
+                    [28, 32, 28, 32, 5, [
                         "textures/ui/TabTopFront"
                     ]],
-                    [140, 32, 28, 32, [
+                    [140, 32, 28, 32, 5, [
                         "textures/ui/TabRightFront",
                         "textures/ui/TabRightFrontBottomMost",
                         "textures/ui/TabRightFrontTopMost",
@@ -147,9 +147,19 @@ class ButtonConverter extends AbstractConverter {
                 "textures/gui/container/generic_54.png",
                 256,
                 [
-                    [7, 17, 18, 18, [
+                    [7, 17, 18, 18, 5, [
                         "textures/ui/cell_image",
                         "textures/ui/recipe_book_item_bg"
+                    ]],
+                    [2, 2, 1, 1, 0, [
+                        "textures/ui/dialog_divider",
+                        "textures/ui/divider",
+                        "textures/ui/divider2",
+                        "textures/ui/divider3",
+                        "textures/ui/HowToPlayDivider",
+                        "textures/ui/list_item_divider_line_light",
+                        "textures/ui/StoreTopBar",
+                        "textures/ui/StoreTopBarFiller"
                     ]]
                 ],
                 [
@@ -161,7 +171,7 @@ class ButtonConverter extends AbstractConverter {
                 "textures/gui/container/creative_inventory/tab_item_search.png",
                 256,
                 [
-                    [79, 3, 92, 14, [
+                    [79, 3, 92, 14, 5, [
                         "textures/ui/edit_box_indent",
                         "textures/ui/edit_box_indent_hover"
                     ]]
