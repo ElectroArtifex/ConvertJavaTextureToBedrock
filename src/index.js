@@ -39,26 +39,21 @@ class ConvertJavaTextureToBedrock {
      * @returns {Promise<*>}
      */
     async convert() {
-        try {
-            await this.output._init(this.input, this.log);
+        await this.output._init(this.input, this.log);
 
-            for await (const entry of this.input.getEntries()) {
-                await entry._init(this.log);
+        for await (const entry of this.input.getEntries()) {
+            await entry._init(this.log);
 
-                await this.output.applyInputEntry(entry);
-            }
-
-            for await (const converter of getConverters()) {
-                await converter._init(this.input, this.output, this.log);
-
-                await addAdditionalConverters(...await converter.convert());
-            }
-
-            return await this.output.generate();
-        } catch (err) {
-            this.log.error(err.message);
-            throw err;
+            await this.output.applyInputEntry(entry);
         }
+
+        for await (const converter of getConverters()) {
+            await converter._init(this.input, this.output, this.log);
+
+            await addAdditionalConverters(...await converter.convert());
+        }
+
+        return await this.output.generate();
     }
 }
 

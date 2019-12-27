@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const worker = new Worker();
     worker.addEventListener("message", afterConvert);
+    worker.addEventListener("error", errorConvert);
 
     const logs = document.createElement("ul");
     logs.classList.add("log");
@@ -109,17 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Allow select same file again
         selectInputFileButton.value = selectInputFolderButton.value = "";
 
-        if (err) {
-            swal({
-                title: "Conversion was failed",
-                content: logs,
-                icon: "error"
-            });
-
-            _log("Conversion failed");
-            return;
-        }
-
         const savePopup = swal({
             title: "Conversion was successfully",
             content: logs,
@@ -137,6 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 fileSaver(output.data, output.name);
             }
         }
+    }
+
+    /**
+     * @param {Error} err
+     */
+    function errorConvert(err) {
+        _log(`ERROR: ${err.message}`);
+
+        swal({
+            title: "Conversion was failed",
+            content: logs,
+            icon: "error"
+        });
+
+        _log("Conversion failed");
     }
 
     /**

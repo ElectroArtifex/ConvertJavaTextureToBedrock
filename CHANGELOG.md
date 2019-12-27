@@ -2,6 +2,7 @@
 
 ## [x]
 - Convert dialog, inventory and recipe book ui
+- Improve error handling
 - Possible bugs fixed in:
     - Fix dye
     - Fix enchanted item glint

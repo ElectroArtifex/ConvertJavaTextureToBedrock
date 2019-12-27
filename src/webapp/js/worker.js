@@ -1,11 +1,10 @@
 import ConvertJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, FileOutput} from "./../..";
 
 addEventListener("message", async (e) => {
-    const files = e.data;
-
-    let output;
     try {
-        output = {
+        const files = e.data;
+
+        const output = {
             output: await new ConvertJavaTextureToBedrock(
                 new ArrayInput(Array.prototype.map.call(files, file => new FileInputEntry(file))),
                 new FileOutput(),
@@ -23,21 +22,15 @@ addEventListener("message", async (e) => {
                     warn(log) {
                         this.log(`WARNING: ${log}`);
                     }
-
-                    /**
-                     * @inheritDoc
-                     */
-                    error(log) {
-                        this.log(`ERROR: ${log}`);
-                    }
                 }()
             ).convert()
         };
-    } catch (err) {
-        output = {
-            err: err.message,
-        };
-    }
 
-    postMessage(output);
+        postMessage(output);
+    } catch (err) {
+        // https://stackoverflow.com/questions/39992417/how-to-bubble-a-web-worker-error-in-a-promise-via-worker-onerror#answer-40081158
+        setTimeout(() => {
+            throw err;
+        })
+    }
 });
