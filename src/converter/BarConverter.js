@@ -76,7 +76,7 @@ class BarConverter extends AbstractConverter {
                 [
                     "textures/gui/achievements/nub.png",
                     "textures/ui/experiencenub.png",
-                    "textures/ui/experience_bar_nub_blue.png",
+                    "textures/ui/experience_bar_nub_blue.png"
                 ]
             ]
         ];

@@ -5,7 +5,6 @@ import {BannerPatternConverter} from "./BannerPatternConverter";
 import {BarConverter} from "./BarConverter";
 import {BedConverter} from "./BedConverter";
 import {BeeConverter} from "./BeeConverter";
-import {ButtonConverter} from "./ButtonConverter";
 import {ChestFrontConverter} from "./ChestFrontConverter";
 import {ChestLeftRightDoubleConverter} from "./ChestLeftRightDoubleConverter";
 import {ChestNormalConverter} from "./ChestNormalConverter";
@@ -24,6 +23,7 @@ import {FoxConverter} from "./FoxConverter";
 import {HorseConverter} from "./HorseConverter";
 import {MapIconsConverter} from "./MapIconsConverter";
 import {MetadataConverter} from "./MetadataConverter";
+import {NineSliceConverter} from "./NineSliceConverter";
 import {OpaqueConverter} from "./OpaqueConverter";
 import {OverlayToTranslateConverter} from "./OverlayToTranslateConverter";
 import {Particles1_13Converter} from "./Particles1_13Converter";
@@ -72,7 +72,7 @@ const converters = [
     ...TitleConverter.getDefaultConverters(),
     ...DespriteConverter.getDefaultConverters(),
     ...BarConverter.getDefaultConverters(),
-    ...ButtonConverter.getDefaultConverters(),
+    ...NineSliceConverter.getDefaultConverters(),
     ...DialogConverter.getDefaultConverters(),
     ...OverlayToTranslateConverter.getDefaultConverters(),
     ...ColorizeOverlayConverter.getDefaultConverters(),

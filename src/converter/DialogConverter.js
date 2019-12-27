@@ -78,7 +78,8 @@ class DialogConverter extends AbstractConverter {
                         ["textures/ui/dialog_background_hollow_8", [8, 8, 33, 33]],
                         ["textures/ui/dialog_background_opaque", [4, 4, 4, 4]],
                         ["textures/ui/dialog_background_opaque_overlap_bottom", [4, 4, 4, 4]],
-                        ["textures/ui/thin_dialog", [6, 6, 6, 6]]
+                        ["textures/ui/menubackground", [4, 4, 4, 4]],
+                        ["textures/ui/thin_dialog", [5, 5, 5, 5]]
                     ]]
                 ]]
         ];

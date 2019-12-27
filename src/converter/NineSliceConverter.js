@@ -1,9 +1,9 @@
 import {AbstractConverter} from "./AbstractConverter";
 
 /**
- * Class ButtonConverter
+ * Class NineSliceConverter
  */
-class ButtonConverter extends AbstractConverter {
+class NineSliceConverter extends AbstractConverter {
     /**
      * @inheritDoc
      */
@@ -94,8 +94,57 @@ class ButtonConverter extends AbstractConverter {
                 [
                     "textures/ui/focus_border_selected",
                     "textures/ui/focus_border_white",
+                    "textures/ui/pack_borders",
+                    "textures/ui/pause_screen_border",
+                    "textures/ui/square_image_border_white",
                     "textures/ui/world_screenshot_focus_border"
                 ]
+            ],
+            [
+                "textures/gui/container/generic_54.png",
+                256,
+                [
+                    [7, 17, 18, 18, 5, [
+                        "textures/ui/cell_image",
+                        "textures/ui/recipe_book_item_bg"
+                    ]],
+                    [2, 2, 1, 1, 0, [
+                        "textures/ui/dialog_divider",
+                        "textures/ui/divider",
+                        "textures/ui/divider2",
+                        "textures/ui/divider3",
+                        "textures/ui/HowToPlayDivider",
+                        "textures/ui/lightgreybars",
+                        "textures/ui/list_item_divider_line_light",
+                        "textures/ui/StoreTopBar",
+                        "textures/ui/StoreTopBarFiller"
+                    ]]
+                ],
+                [
+                    "textures/ui/recipe_book_pane_bg",
+                    "textures/ui/recipe_book_touch_cell_selected"
+                ]
+            ],
+            [
+                "textures/gui/container/inventory.png",
+                256,
+                [
+                    [25, 7, 51, 72, 5, [
+                        "textures/ui/player_preview_border"
+                    ]]
+                ],
+                []
+            ],
+            [
+                "textures/gui/container/creative_inventory/tab_item_search.png",
+                256,
+                [
+                    [80, 4, 90, 12, 5, [
+                        "textures/ui/edit_box_indent",
+                        "textures/ui/edit_box_indent_hover"
+                    ]]
+                ],
+                []
             ],
             [
                 "textures/gui/container/creative_inventory/tabs.png",
@@ -142,44 +191,9 @@ class ButtonConverter extends AbstractConverter {
                     ]]
                 ],
                 []
-            ],
-            [
-                "textures/gui/container/generic_54.png",
-                256,
-                [
-                    [7, 17, 18, 18, 5, [
-                        "textures/ui/cell_image",
-                        "textures/ui/recipe_book_item_bg"
-                    ]],
-                    [2, 2, 1, 1, 0, [
-                        "textures/ui/dialog_divider",
-                        "textures/ui/divider",
-                        "textures/ui/divider2",
-                        "textures/ui/divider3",
-                        "textures/ui/HowToPlayDivider",
-                        "textures/ui/list_item_divider_line_light",
-                        "textures/ui/StoreTopBar",
-                        "textures/ui/StoreTopBarFiller"
-                    ]]
-                ],
-                [
-                    "textures/ui/recipe_book_pane_bg",
-                    "textures/ui/recipe_book_touch_cell_selected"
-                ]
-            ],
-            [
-                "textures/gui/container/creative_inventory/tab_item_search.png",
-                256,
-                [
-                    [79, 3, 92, 14, 5, [
-                        "textures/ui/edit_box_indent",
-                        "textures/ui/edit_box_indent_hover"
-                    ]]
-                ],
-                []
             ]
         ];
     }
 }
 
-export {ButtonConverter};
+export {NineSliceConverter};
