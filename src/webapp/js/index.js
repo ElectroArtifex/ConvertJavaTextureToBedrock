@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         document.querySelector(".swal-button--loading").disabled = true;
 
+        _log("Start conversion");
+
         if (worker !== null) {
             worker.terminate();
             worker = null;
@@ -120,6 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
             buttons: "Save"
         });
 
+        _log("Conversion finished");
+
         if (await savePopup) {
             if (output instanceof File) {
                 fileSaver(output);
@@ -137,13 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Allow select same file again
         selectInputFileButton.value = selectInputFolderButton.value = "";
 
-        _log(`ERROR: ${err.message}`);
-
         swal({
             title: "Conversion was failed",
             content: logs,
             icon: "error"
         });
+
+        _log(`ERROR: ${err.message}`);
     }
 
     /**
