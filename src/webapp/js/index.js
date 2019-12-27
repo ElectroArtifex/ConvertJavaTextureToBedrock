@@ -19,9 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     main.addEventListener("dragover", startConvertDrop);
     main.addEventListener("drop", startConvertDrop);
 
-    const worker = new Worker();
-    worker.addEventListener("message", afterConvert);
-    worker.addEventListener("error", errorConvert);
+    let worker = null;
 
     const logs = document.createElement("ul");
     logs.classList.add("log");
@@ -52,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logs.innerHTML = "";
 
         swal({
-            title: "Conversion",
+            title: "Conversion in progress",
             content: logs,
             buttons: {
                 save: {
@@ -65,8 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         document.querySelector(".swal-button--loading").disabled = true;
 
-        _log("Start conversion");
-
+        if (worker !== null) {
+            worker.terminate();
+            worker = null;
+        }
+        worker = new Worker();
+        worker.addEventListener("message", afterConvert);
+        worker.addEventListener("error", errorConvert);
         worker.postMessage(input);
     }
 
@@ -100,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {Promise<>}
      */
     async function afterConvert(e) {
-        const {log, err, output} = e.data;
+        const {log, output} = e.data;
 
         if (log) {
             _log(log);
@@ -117,8 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
             buttons: "Save"
         });
 
-        _log("Conversion finished");
-
         if (await savePopup) {
             if (output instanceof File) {
                 fileSaver(output);
@@ -130,9 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * @param {Error} err
+     * @param {ErrorEvent} err
      */
     function errorConvert(err) {
+        // Allow select same file again
+        selectInputFileButton.value = selectInputFolderButton.value = "";
+
         _log(`ERROR: ${err.message}`);
 
         swal({
@@ -140,8 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
             content: logs,
             icon: "error"
         });
-
-        _log("Conversion failed");
     }
 
     /**

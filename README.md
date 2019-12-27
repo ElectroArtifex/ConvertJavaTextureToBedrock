@@ -82,6 +82,11 @@ NODE_ENV=development yarn debug:webapp
 NODE_ENV=development yarn debug:cli
 ```
 
+## Build
+```bash
+yarn build
+```
+
 # How this work
 This project uses the follow main features or external libraries:
 

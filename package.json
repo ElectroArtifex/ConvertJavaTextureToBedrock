@@ -57,8 +57,9 @@
     "ConvertJavaTextureToBedrock": "dist/cli.js"
   },
   "scripts": {
+    "build": "webpack --config ./webpack.config.cli.js && webpack --config ./webpack.config.webapp.js",
     "debug:cli": "webpack --config ./webpack.config.cli.js && node ./dist/cli.js",
     "debug:webapp": "webpack-dev-server --config ./webpack.config.webapp.js",
-    "prepublishOnly": "webpack --config ./webpack.config.cli.js && webpack --config ./webpack.config.webapp.js && gh-pages -d ./dist/webapp"
+    "prepublishOnly": "yarn build && gh-pages -d ./dist/webapp"
   }
 }
