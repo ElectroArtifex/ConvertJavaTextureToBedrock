@@ -1,6 +1,6 @@
 ---
 name: Issue
-about: ''
+about: Report issue
 title: ''
 labels: ''
 assignees: ''
