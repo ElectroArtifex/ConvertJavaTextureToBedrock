@@ -41,7 +41,7 @@ class ConvertJavaTextureToBedrock {
          * @protected
          */
         this.options = {
-            Options,
+            ...new Options(),
             ...options
         };
     }
