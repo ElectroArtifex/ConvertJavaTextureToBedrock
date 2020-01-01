@@ -1,5 +1,6 @@
 import {AbstractLog} from "./../../log";
 import JSZip from "jszip";
+import {Options} from "./../../Options";
 
 /**
  * Class AbstractInputEntry
@@ -23,15 +24,23 @@ class AbstractInputEntry {
          * @protected
          */
         this.log;
+        /**
+         * @type {Object}
+         *
+         * @protected
+         */
+        this.options;
     }
 
     /**
      * @param {AbstractLog} log
+     * @param {Options} options
      *
      * @returns Promise<>
      */
-    async _init(log) {
+    async _init(log, options) {
         this.log = log;
+        this.options = options;
     }
 
     /**

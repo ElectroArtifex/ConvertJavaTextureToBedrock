@@ -11,11 +11,11 @@ assignees: ''
 A clear and concise description of what the issue is.
 
 **Context**
-WebApp or CLI?
+Web app or CLI?
 
 **System info**
 System OS: 
-Browser (If WebApp): 
+Browser (If web app): 
 NodeJS (If CLI): 
 
 **Texture pack**

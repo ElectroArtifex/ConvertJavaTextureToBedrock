@@ -1,7 +1,8 @@
 # Changelog
 
 ## [x]
-- Convert dialog, inventory and recipe book ui
+- Most ui conversions are now experimental and need to enabled (if you want to try)
+- Convert dialog and inventory ui (Experimental)
 - Improve error handling
 - Possible bugs fixed in:
     - Fix crosshair

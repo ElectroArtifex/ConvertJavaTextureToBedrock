@@ -13,6 +13,7 @@ import {ColorizeOverlayConverter} from "./ColorizeOverlayConverter";
 import {CopyConverter} from "./CopyConverter";
 import {DeleteConverter} from "./DeleteConverter";
 import {DespriteConverter} from "./DespriteConverter";
+import {DespriteExperimentalConverter} from "./DespriteExperimentalConverter";
 import {DestroyStageConverter} from "./DestroyStageConverter";
 import {DialogConverter} from "./DialogConverter";
 import {DrownedConverter} from "./DrownedConverter";
@@ -73,6 +74,7 @@ const converters = [
     ...BeeConverter.getDefaultConverters(),
     ...TitleConverter.getDefaultConverters(),
     ...DespriteConverter.getDefaultConverters(),
+    ...DespriteExperimentalConverter.getDefaultConverters(),
     ...BarConverter.getDefaultConverters(),
     ...NineSliceConverter.getDefaultConverters(),
     ...DialogConverter.getDefaultConverters(),

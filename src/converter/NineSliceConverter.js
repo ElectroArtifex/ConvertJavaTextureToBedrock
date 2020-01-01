@@ -2,12 +2,18 @@ import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class NineSliceConverter
+ *
+ * @experimental
  */
 class NineSliceConverter extends AbstractConverter {
     /**
      * @inheritDoc
      */
     async convert() {
+        if (!this.options.experimental) {
+            return [];
+        }
+
         const [from, factor_detect, buttons, borders] = this.data;
 
         if (!await this.output.exists(from)) {
@@ -32,7 +38,7 @@ class NineSliceConverter extends AbstractConverter {
 
             for (const to of tos) {
                 const to_png = to + ".png";
-                this.log.log(`Convert button ${to_png}`);
+                this.log.log(`Convert button ${to_png} (Experimental)`);
                 await this.writeImage(to_png, image);
 
                 await this.writeJson(to + ".json", metadata);
@@ -46,7 +52,7 @@ class NineSliceConverter extends AbstractConverter {
         };
         for (const to of borders) {
             const to_png = to + ".png";
-            this.log.log(`Convert button ${to_png}`);
+            this.log.log(`Convert button ${to_png} (Experimental)`);
             await this.writeImage(to_png, transparent_image);
 
             await this.writeJson(to + ".json", transparent_image_metadata);

@@ -2,12 +2,18 @@ import {AbstractConverter} from "./AbstractConverter";
 
 /**
  * Class DialogConverter
+ *
+ * @experimental
  */
 class DialogConverter extends AbstractConverter {
     /**
      * @inheritDoc
      */
     async convert() {
+        if (!this.options.experimental) {
+            return [];
+        }
+
         const [from, factor_detect, dialogs] = this.data;
 
         if (!await this.output.exists(from)) {
@@ -48,7 +54,7 @@ class DialogConverter extends AbstractConverter {
                 };
 
                 const to_png = to + ".png";
-                this.log.log(`Convert dialog ${to_png}`);
+                this.log.log(`Convert dialog ${to_png} (Experimental)`);
                 await this.writeImage(to_png, to_image);
 
                 await this.writeJson(to + ".json", metadata);

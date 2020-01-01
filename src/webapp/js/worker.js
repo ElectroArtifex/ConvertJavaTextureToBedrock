@@ -2,7 +2,7 @@ import ConvertJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, Fi
 
 addEventListener("message", async (e) => {
     try {
-        const files = e.data;
+        const {files, options} = e.data;
 
         const output = {
             output: await new ConvertJavaTextureToBedrock(
@@ -22,7 +22,8 @@ addEventListener("message", async (e) => {
                     warn(log) {
                         this.log(`WARNING: ${log}`);
                     }
-                }()
+                }(),
+                options
             ).convert()
         };
 

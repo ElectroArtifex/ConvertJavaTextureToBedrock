@@ -58,8 +58,6 @@ class DespriteConverter extends AbstractConverter {
                     [141, 0, 20, 22, "textures/ui/hotbar_7.png"],
                     [161, 0, 20, 22, "textures/ui/hotbar_8.png"],
                     [181, 0, 1, 22, "textures/ui/hotbar_end_cap.png"],
-                    [0, 22, 24, 24, "textures/ui/pocket_ui_highlight_selected_slot.png"],
-                    [0, 22, 24, 24, "textures/ui/pocket_ui_highlight_slot.png"],
                     [0, 22, 24, 24, "textures/ui/selected_hotbar_slot.png"]
                 ]
             ],
@@ -74,19 +72,9 @@ class DespriteConverter extends AbstractConverter {
                 ]
             ],
             [
-                "textures/gui/container/horse.png",
-                256,
-                [
-                    [1, 221, 16, 16, "textures/ui/empty_horse_slot_armor.png"],
-                    [19, 221, 16, 16, "textures/ui/empty_horse_slot_saddle.png"],
-                    [37, 221, 16, 16, "textures/ui/empty_llama_slot_carpet.png"]
-                ]
-            ],
-            [
                 "textures/gui/container/inventory.png",
                 256,
                 [
-                    [135, 29, 16, 13, "textures/ui/arrow.png"],
                     [141, 166, 24, 24, "textures/ui/hud_mob_effect_background.png"]
                 ]
             ]

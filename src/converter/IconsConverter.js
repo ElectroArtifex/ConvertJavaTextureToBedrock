@@ -20,6 +20,7 @@ class IconsConverter extends AbstractConverter {
 
         image.scan(0, 0, image.getWidth(), image.getHeight(), (x, y, idx) => {
             if (image.bitmap.data[idx + 3] === 0) {
+                // (255 values)
                 image.bitmap.data[idx] = 0;
                 image.bitmap.data[idx + 1] = 0;
                 image.bitmap.data[idx + 2] = 0;

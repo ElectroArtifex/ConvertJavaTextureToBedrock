@@ -31,6 +31,12 @@ import yargs from "yargs";
                 default: true,
                 describe: "Log",
                 type: "boolean"
+            },
+            e: {
+                alias: "experimental",
+                default: false,
+                describe: "Experimental features",
+                type: "boolean"
             }
         })
         .help("help").alias("h", "help")
@@ -41,7 +47,10 @@ import yargs from "yargs";
         return new ConvertJavaTextureToBedrock(
             new Input(fs.statSync(argv.input).isDirectory() ? new LocalFolderInputEntry(argv.input) : new LocalFileInputEntry(argv.input)),
             (argv.output.includes(".") ? new LocalFileOutput(argv.output) : new LocalFolderOutput(argv.output)),
-            (argv.log ? new ConsoleLog() : new SilentLog())
+            (argv.log ? new ConsoleLog() : new SilentLog()),
+            {
+                experimental: argv.experimental
+            }
         ).convert();
     } catch (err) {
         console.error(err.message);

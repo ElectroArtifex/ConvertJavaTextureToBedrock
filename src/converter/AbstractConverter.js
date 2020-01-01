@@ -2,6 +2,7 @@ import {AbstractInput} from "./../input"
 import {AbstractLog} from "./../log";
 import {AbstractOutput} from "./../output";
 import Jimp from "@ozelot379/jimp-plugins";
+import {Options} from "./../Options";
 
 /**
  * Class AbstractConverter
@@ -64,6 +65,12 @@ class AbstractConverter {
          */
         this.log;
         /**
+         * @type {Object}
+         *
+         * @protected
+         */
+        this.options;
+        /**
          * @type {*}
          *
          * @protected
@@ -75,13 +82,15 @@ class AbstractConverter {
      * @param {AbstractInput} input
      * @param {AbstractOutput} output
      * @param {AbstractLog} log
+     * @param {Options} options
      *
      * @returns Promise<>
      */
-    async _init(input, output, log) {
+    async _init(input, output, log, options) {
         this.input = input;
         this.output = output;
         this.log = log;
+        this.options = options;
     }
 
     /**

@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         selectInputFolderButton.addEventListener("change", startConvert);
     }
 
+    const experimentalSwitch = document.getElementById("experimentalSwitch");
+
     const main = document.querySelector("main");
     main.addEventListener("dragenter", startConvertDrop);
     main.addEventListener("dragleave", startConvertDrop);
@@ -41,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {Promise<>}
      */
     async function startConvert() {
-        const input = this.files;
+        const files = this.files;
 
-        if (input.length === 0) {
+        if (files.length === 0) {
             return;
         }
 
@@ -72,7 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
         worker = new Worker();
         worker.addEventListener("message", afterConvert);
         worker.addEventListener("error", errorConvert);
-        worker.postMessage(input);
+        worker.postMessage({
+            files,
+            options: {
+                experimental: experimentalSwitch.checked
+            }
+        });
     }
 
     /**

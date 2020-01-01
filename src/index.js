@@ -2,6 +2,7 @@ import {addAdditionalConverters, getConverters} from "./converter";
 import {AbstractInput} from "./input";
 import {AbstractLog} from "./log";
 import {AbstractOutput} from "./output";
+import {Options} from "./Options";
 
 /**
  * Class ConvertJavaTextureToBedrock
@@ -13,8 +14,9 @@ class ConvertJavaTextureToBedrock {
      * @param {AbstractInput} input
      * @param {AbstractOutput} output
      * @param {AbstractLog} log
+     * @param {Options} options
      */
-    constructor(input, output, log) {
+    constructor(input, output, log, options = {}) {
         /**
          * @type {AbstractInput}
          *
@@ -33,22 +35,35 @@ class ConvertJavaTextureToBedrock {
          * @protected
          */
         this.log = log;
+        /**
+         * @type {Options}
+         *
+         * @protected
+         */
+        this.options = {
+            Options,
+            ...options
+        };
     }
 
     /**
      * @returns {Promise<*>}
      */
     async convert() {
-        await this.output._init(this.input, this.log);
+        if (this.options.experimental) {
+            this.log.warn(`EXPERIMENTAL FEATURES ENABLED!`)
+        }
+
+        await this.output._init(this.input, this.log, this.options);
 
         for await (const entry of this.input.getEntries()) {
-            await entry._init(this.log);
+            await entry._init(this.log, this.options);
 
             await this.output.applyInputEntry(entry);
         }
 
         for await (const converter of getConverters()) {
-            await converter._init(this.input, this.output, this.log);
+            await converter._init(this.input, this.output, this.log, this.options);
 
             await addAdditionalConverters(...await converter.convert());
         }
