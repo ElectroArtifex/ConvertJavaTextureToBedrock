@@ -32,15 +32,6 @@ class AbstractLog {
     warn(log) {
 
     }
-
-    /**
-     * @param {string} log
-     *
-     * @abstract
-     */
-    error(log) {
-
-    }
 }
 
 export {AbstractLog};

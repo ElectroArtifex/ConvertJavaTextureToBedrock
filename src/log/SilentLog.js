@@ -17,13 +17,6 @@ class SilentLog extends AbstractLog {
     warn(log) {
 
     }
-
-    /**
-     * @inheritDoc
-     */
-    error(log) {
-
-    }
 }
 
 export {SilentLog};

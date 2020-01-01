@@ -1,28 +1,35 @@
-THIS PROJECT IS NO OFFICIAL MINECRAFT] PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
+THIS PROJECT IS NO OFFICIAL MINECRAFT PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
 
 ---
 
 # Convert Minecraft Java texture packs to Bedrock texture packs
-
-Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
-
-It works directly in your browser
-
-It supports currently the follow Minecraft versions:
+It supports the follow Minecraft versions:
 
 | Minecraft | Version |
 |-----------|---------|
 | Java | v1.13.x, v1.14.x or v1.15.x |
 | Bedrock | v1.14.x |
 
-Currently it supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some basic ui textures
-
 Some conversions of HD texture packs may takes a while
 
 This project is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
 
+It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some more basic ui textures (hotbar)
+
+Some experimental features are disabled by default, but can be enabled if you want to try:
+- UI
+    - Buttons
+    - Tabs
+    - Dialogs
+    - Inventory
+
+## Web app
+Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
+
+Works directly in your browser - no upload
+
 ## CLI
-As an alternative you can also use the cli version
+As an alternative you can also use the cli version on your computer
 
 First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)
 
@@ -43,10 +50,10 @@ ConvertJavaTextureToBedrock -i input/java_texture_pack.zip -o output/bedrock_tex
 | -i (Required) | Input folder or zip path |
 | -o (Required) | Output folder or zip path |
 | -l | Show log (Default `true`) |
+| -e | Experimental features (Default `false`) |
 
-## Known issues
-- Convert horse textures is very tricky and may buggy
-- Convert weather textures (rain and snow) may not works (seems to be an other format as the default)
+## Report issue
+Use github repo issues (https://github.com/ozelot379/ConvertJavaTextureToBedrock/issues/new/choose)
 
 # Extras (for texture pack creators)
 
@@ -72,7 +79,7 @@ Then install the dependencies
 yarn
 ```
 
-## WebApp
+## Web app
 ```bash
 NODE_ENV=development yarn debug:webapp
 ```
@@ -80,6 +87,11 @@ NODE_ENV=development yarn debug:webapp
 ## CLI
 ```bash
 NODE_ENV=development yarn debug:cli
+```
+
+## Build
+```bash
+yarn build
 ```
 
 # How this work
@@ -108,7 +120,7 @@ You can now convert your texture packs
 ```javascript
 let output;
 try {
-    output = await new ConvertJavaTextureToBedrock(input, output, log).convert();
+    output = await new ConvertJavaTextureToBedrock(input, output, log, options).convert();
 } catch (err) {
 
 }
@@ -148,6 +160,11 @@ try {
 | `ConsoleLog` | Log to console |
 | `SlientLog` | Disable log |
 | `AbstractLog` | Base log |
+
+## Options
+| Key | Description |
+|-----|-------------|
+| `experimental` | Experimental features |
 
 ## Example
 ```javascript

@@ -24,7 +24,7 @@ class OverlayToTranslateConverter extends AbstractConverter {
         const image_overlay = await this.readImage(overlay);
 
         image.scan(0, 0, image.getWidth(), image.getHeight(), (x, y, idx) => {
-            if (reverse_method ? (image_overlay.bitmap.data[idx + 3] === 255) : (image.bitmap.data[idx + 3] === 0)) {
+            if (reverse_method ? (image_overlay.bitmap.data[idx + 3] > 0) : (image.bitmap.data[idx + 3] < 255)) {
                 image.bitmap.data[idx] = image_overlay.bitmap.data[idx];
                 image.bitmap.data[idx + 1] = image_overlay.bitmap.data[idx + 1];
                 image.bitmap.data[idx + 2] = image_overlay.bitmap.data[idx + 2];

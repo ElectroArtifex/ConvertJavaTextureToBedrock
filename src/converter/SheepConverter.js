@@ -22,6 +22,10 @@ class SheepConverter extends AbstractConverter {
         const image_sheep = await this.readImage(sheep);
         const image_fur = await this.readImage(sheep_fur);
 
+        const width = Math.max(image_sheep.getWidth(), image_fur.getWidth());
+        image_sheep.ensureMinWidth(width);
+        image_fur.ensureMinWidth(width);
+
         const image = await this.createImage(image_sheep.getWidth(), (image_sheep.getHeight() + image_fur.getHeight()));
 
         image.composite(image_sheep, 0, 0);

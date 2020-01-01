@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Convert Minecraft Java texture packs to Bedrock texture packs</title>
+    <title><%= require("./../../../package").productName %></title>
     <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
 <header>
     <nav class="nav-extended brown">
         <div class="nav-content">
-            <span class="nav-title">Convert Minecraft Java texture packs to Bedrock texture packs</span>
+            <span class="nav-title"><%= require("./../../../package").productName %></span>
         </div>
     </nav>
 </header>
@@ -23,12 +23,21 @@
     <span>&nbsp;or drag'n'drop</span>
 </main>
 <footer class="page-footer brown">
+    <div class="switch">
+        <label>
+            <input id="experimentalSwitch" type="checkbox">
+            <span class="lever"></span>
+            Experimental features
+        </label>
+    </div>
     <div class="footer-copyright">
         <div class="container">
             <div class="row">
                 <div class="col l6">
-                    <div>Works directly in your browser</div>
-                    <div>Some conversions of HD texture packs may takes a while</div>
+                    <div>Works directly in your browser - no upload</div>
+                    <div>More infos in the <a class="green-text"
+                                              href="https://github.com/ozelot379/ConvertJavaTextureToBedrock/blob/master/README.md"
+                                              target="_blank">readme</a></div>
                 </div>
                 <div class="col l6">
                     <div>
@@ -41,6 +50,10 @@
                     <div>
                         <a class="green-text" href="https://github.com/ozelot379/ConvertJavaTextureToBedrock"
                            target="_blank">Source</a>
+                        &nbsp;-&nbsp;
+                        <a class="green-text"
+                           href="https://github.com/ozelot379/ConvertJavaTextureToBedrock/issues/new/choose"
+                           target="_blank">Report issue</a>
                     </div>
                 </div>
             </div>

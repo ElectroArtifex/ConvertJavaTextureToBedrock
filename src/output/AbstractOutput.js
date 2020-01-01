@@ -1,5 +1,6 @@
 import {AbstractInput, AbstractInputEntry} from "./../input";
 import {AbstractLog} from "./../log";
+import {Options} from "./../Options";
 
 /**
  * Class AbstractOutput
@@ -29,17 +30,25 @@ class AbstractOutput {
          * @protected
          */
         this.log;
+        /**
+         * @type {Object}
+         *
+         * @protected
+         */
+        this.options;
     }
 
     /**
      * @param {AbstractInput} input
      * @param {AbstractLog} log
+     * @param {Options} options
      *
      * @returns Promise<>
      */
-    async _init(input, log) {
+    async _init(input, log, options) {
         this.input = input;
         this.log = log;
+        this.options = options;
     }
 
     /**

@@ -19,7 +19,7 @@ module.exports = {
             raw: true,
             exclude: "*",
             include: "cli.js"
-        }),
+        })
     ],
     target: "node"
 };

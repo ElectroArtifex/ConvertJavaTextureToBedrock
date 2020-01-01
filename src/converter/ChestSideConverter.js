@@ -39,7 +39,7 @@ class ChestSideConverter extends AbstractConverter {
     static get DEFAULT_CONVERTER_DATA() {
         return [
             ["textures/entity/chest/normal.png", "textures/blocks/chest_side.png"],
-            ["textures/entity/chest/ender.png", "textures/blocks/ender_chest_side.png"],
+            ["textures/entity/chest/ender.png", "textures/blocks/ender_chest_side.png"]
         ];
     }
 }

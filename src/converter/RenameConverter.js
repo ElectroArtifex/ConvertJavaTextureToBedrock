@@ -330,6 +330,9 @@ class RenameConverter extends AbstractConverter {
             ["textures/blocks/dropper_front.png", "textures/blocks/dropper_front_horizontal.png"],
 
             // Dye
+            ["textures/items/cactus_green.png", "textures/items/dye_powder_green.png"], // 1.13
+            ["textures/items/dandelion_yellow.png", "textures/items/dye_powder_yellow.png"], // 1.13
+            ["textures/items/rose_red.png", "textures/items/dye_powder_red.png"], // 1.13
             ["textures/items/black_dye.png", "textures/items/dye_powder_black_new.png"],
             ["textures/items/blue_dye.png", "textures/items/dye_powder_blue_new.png"],
             ["textures/items/brown_dye.png", "textures/items/dye_powder_brown_new.png"],
@@ -346,9 +349,6 @@ class RenameConverter extends AbstractConverter {
             ["textures/items/red_dye.png", "textures/items/dye_powder_red.png"],
             ["textures/items/white_dye.png", "textures/items/dye_powder_white_new.png"],
             ["textures/items/yellow_dye.png", "textures/items/dye_powder_yellow.png"],
-            ["textures/items/cactus_green.png", "textures/items/dye_powder_green.png"], // 1.13
-            ["textures/items/dandelion_yellow.png", "textures/items/dye_powder_yellow.png"], // 1.13
-            ["textures/items/rose_red.png", "textures/items/dye_powder_red.png"], // 1.13
 
             // End crystal
             ["textures/entity/end_crystal/", "textures/entity/endercrystal/"],
@@ -821,22 +821,7 @@ class RenameConverter extends AbstractConverter {
             ["textures/blocks/white_shulker_box.png", "textures/blocks/shulker_top_white.png"],
             ["textures/blocks/yellow_shulker_box.png", "textures/blocks/shulker_top_yellow.png"],
             ["textures/entity/shulker/shulker.png", "textures/entity/shulker/shulker_undyed.png"],
-            ["textures/entity/shulker/shulker_black.png", "textures/entity/shulker/shulker_black.png"],
-            ["textures/entity/shulker/shulker_blue.png", "textures/entity/shulker/shulker_blue.png"],
-            ["textures/entity/shulker/shulker_brown.png", "textures/entity/shulker/shulker_brown.png"],
-            ["textures/entity/shulker/shulker_cyan.png", "textures/entity/shulker/shulker_cyan.png"],
-            ["textures/entity/shulker/shulker_gray.png", "textures/entity/shulker/shulker_gray.png"],
-            ["textures/entity/shulker/shulker_green.png", "textures/entity/shulker/shulker_green.png"],
-            ["textures/entity/shulker/shulker_light_blue.png", "textures/entity/shulker/shulker_light_blue.png"],
             ["textures/entity/shulker/shulker_light_gray.png", "textures/entity/shulker/shulker_silver.png"],
-            ["textures/entity/shulker/shulker_lime.png", "textures/entity/shulker/shulker_lime.png"],
-            ["textures/entity/shulker/shulker_magenta.png", "textures/entity/shulker/shulker_magenta.png"],
-            ["textures/entity/shulker/shulker_orange.png", "textures/entity/shulker/shulker_orange.png"],
-            ["textures/entity/shulker/shulker_pink.png", "textures/entity/shulker/shulker_pink.png"],
-            ["textures/entity/shulker/shulker_purple.png", "textures/entity/shulker/shulker_purple.png"],
-            ["textures/entity/shulker/shulker_red.png", "textures/entity/shulker/shulker_red.png"],
-            ["textures/entity/shulker/shulker_white.png", "textures/entity/shulker/shulker_white.png"],
-            ["textures/entity/shulker/shulker_yellow.png", "textures/entity/shulker/shulker_yellow.png"],
 
             // Sign
             ["textures/entity/signs/acacia.png", "textures/entity/sign_acacia.png"],

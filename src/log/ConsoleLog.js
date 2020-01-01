@@ -15,14 +15,7 @@ class ConsoleLog extends AbstractLog {
      * @inheritDoc
      */
     warn(log) {
-        console.warn(log);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    error(log) {
-        console.error(log);
+        console.warn(`WARNING: ${log}`);
     }
 }
 

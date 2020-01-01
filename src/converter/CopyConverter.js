@@ -69,6 +69,11 @@ class CopyConverter extends AbstractConverter {
             ["textures/items/bed_red.png", "textures/ui/icon_recipe_item.png"],
             ["textures/items/compass_item.png", "textures/ui/magnifyingGlass.png"],
             ["textures/items/diamond_sword.png", "textures/ui/icon_recipe_equipment.png"],
+            ["textures/items/empty_armor_slot_boots.png", "textures/ui/empty_armor_slot_boots.png"],
+            ["textures/items/empty_armor_slot_chestplate.png", "textures/ui/empty_armor_slot_chestplate.png"],
+            ["textures/items/empty_armor_slot_helmet.png", "textures/ui/empty_armor_slot_helmet.png"],
+            ["textures/items/empty_armor_slot_leggings.png", "textures/ui/empty_armor_slot_leggings.png"],
+            ["textures/items/empty_armor_slot_shield.png", "textures/ui/empty_armor_slot_shield.png"],
 
             ["bedrock_textures/", "textures/"]
         ];

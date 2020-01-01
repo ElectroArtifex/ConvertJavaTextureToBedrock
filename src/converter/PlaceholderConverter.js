@@ -18,6 +18,8 @@ class PlaceholderConverter extends AbstractConverter {
 
         let image = await this.readImage(from);
 
+        image.ensureMinWidth(factor_detect);
+
         const factor = (image.getWidth() / factor_detect);
 
         image.crop((x * factor), (y * factor), (width * factor), (height * factor));
@@ -105,7 +107,7 @@ class PlaceholderConverter extends AbstractConverter {
             // Zombie
             ["textures/entity/pig/pigzombie.png", 0, 0, 64, 32, 64, "textures/entity/pig/pigzombie.png", true],
             ["textures/entity/zombie/husk.png", 0, 0, 64, 32, 64, "textures/entity/zombie/husk.png", true],
-            ["textures/entity/zombie/zombie.png", 0, 0, 64, 32, 64, "textures/entity/zombie/zombie.png", true],
+            ["textures/entity/zombie/zombie.png", 0, 0, 64, 32, 64, "textures/entity/zombie/zombie.png", true]
         ];
     }
 }

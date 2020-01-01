@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0]
+- Most ui conversions are now experimental and need to enabled (if you want to try)
+- Convert dialog and inventory ui (Experimental)
+- Improve error handling
+- Possible bugs fixed in:
+    - Fix crosshair
+    - Fix dye
+    - Fix enchanted item glint
+    - Fix grass block
+    - Fix sheep
+
 ## [2.0.2]
 - Support java v1.15 and bedrock v1.14
 - Convert hotbar, bars, buttons and tabs ui and inventory icons

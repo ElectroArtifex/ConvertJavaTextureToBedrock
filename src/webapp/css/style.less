@@ -40,3 +40,23 @@ input[type="file"] {
   height: 150px;
   overflow: auto;
 }
+
+footer {
+  padding-top: 0 !important;
+
+  .switch {
+    label {
+      .yellow-text;
+
+      input[type=checkbox]:checked + .lever,
+      input[type=checkbox]:checked + .lever:after {
+        .yellow;
+      }
+
+      :active:before {
+        background-color: transparent !important;
+        transition: none !important;
+      }
+    }
+  }
+}

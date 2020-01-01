@@ -41,7 +41,7 @@ class ChestFrontConverter extends AbstractConverter {
         return [
             ["textures/entity/chest/normal.png", "textures/blocks/chest_front.png"],
             ["textures/entity/chest/trapped.png", "textures/blocks/trapped_chest_front.png"],
-            ["textures/entity/chest/ender.png", "textures/blocks/ender_chest_front.png"],
+            ["textures/entity/chest/ender.png", "textures/blocks/ender_chest_front.png"]
         ];
     }
 }

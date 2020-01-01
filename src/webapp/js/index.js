@@ -13,14 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
         selectInputFolderButton.addEventListener("change", startConvert);
     }
 
+    const experimentalSwitch = document.getElementById("experimentalSwitch");
+
     const main = document.querySelector("main");
     main.addEventListener("dragenter", startConvertDrop);
     main.addEventListener("dragleave", startConvertDrop);
     main.addEventListener("dragover", startConvertDrop);
     main.addEventListener("drop", startConvertDrop);
 
-    const worker = new Worker();
-    worker.addEventListener("message", afterConvert);
+    let worker = null;
 
     const logs = document.createElement("ul");
     logs.classList.add("log");
@@ -42,16 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {Promise<>}
      */
     async function startConvert() {
-        const input = this.files;
+        const files = this.files;
 
-        if (input.length === 0) {
+        if (files.length === 0) {
             return;
         }
 
         logs.innerHTML = "";
 
         swal({
-            title: "Conversion",
+            title: "Conversion in progress",
             content: logs,
             buttons: {
                 save: {
@@ -66,7 +67,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         _log("Start conversion");
 
-        worker.postMessage(input);
+        if (worker !== null) {
+            worker.terminate();
+            worker = null;
+        }
+        worker = new Worker();
+        worker.addEventListener("message", afterConvert);
+        worker.addEventListener("error", errorConvert);
+        worker.postMessage({
+            files,
+            options: {
+                experimental: experimentalSwitch.checked
+            }
+        });
     }
 
     /**
@@ -99,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {Promise<>}
      */
     async function afterConvert(e) {
-        const {log, err, output} = e.data;
+        const {log, output} = e.data;
 
         if (log) {
             _log(log);
@@ -108,17 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Allow select same file again
         selectInputFileButton.value = selectInputFolderButton.value = "";
-
-        if (err) {
-            swal({
-                title: "Conversion was failed",
-                content: logs,
-                icon: "error"
-            });
-
-            _log("Conversion failed");
-            return;
-        }
 
         const savePopup = swal({
             title: "Conversion was successfully",
@@ -137,6 +139,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 fileSaver(output.data, output.name);
             }
         }
+    }
+
+    /**
+     * @param {ErrorEvent} err
+     */
+    function errorConvert(err) {
+        // Allow select same file again
+        selectInputFileButton.value = selectInputFolderButton.value = "";
+
+        swal({
+            title: "Conversion was failed",
+            content: logs,
+            icon: "error"
+        });
+
+        _log(`ERROR: ${err.message}`);
     }
 
     /**

@@ -17,7 +17,7 @@ class MetadataConverter extends AbstractConverter {
         this.log.log(`Create metadata ${to}`);
 
         if (!await this.output.exists(from)) {
-            throw new Error(`Missing ${from}!`);
+            throw new Error(`Missing ${from}! Is this really a java texture pack?`);
         }
 
         let uuid_header = "";
