@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [3.0.0]
 - Most ui conversions are now experimental and need to enabled (if you want to try)
 - Convert dialog and inventory ui (Experimental)
 - Improve error handling
