@@ -44,8 +44,19 @@ input[type="file"] {
 footer {
   padding-top: 0 !important;
 
-  .switch label input[type=checkbox]:checked + .lever,
-  .switch label input[type=checkbox]:checked + .lever:after {
-    .red
+  .switch {
+    label {
+      .yellow-text;
+
+      input[type=checkbox]:checked + .lever,
+      input[type=checkbox]:checked + .lever:after {
+        .yellow;
+      }
+
+      :active:before {
+        background-color: transparent !important;
+        transition: none !important;
+      }
+    }
   }
 }

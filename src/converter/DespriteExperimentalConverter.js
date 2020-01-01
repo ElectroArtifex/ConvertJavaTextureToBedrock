@@ -51,6 +51,23 @@ class DespriteExperimentalConverter extends AbstractConverter {
                 ]
             ],
             [
+                "textures/gui/container/anvil.png",
+                256,
+                [
+                    [102, 48, 22, 15, "textures/ui/arrow_large.png"],
+                    [17, 7, 30, 30, "textures/ui/anvil_icon.png"],
+                    [53, 49, 13, 13, "textures/ui/anvil-plus.png"]
+                ]
+            ],
+            [
+                "textures/gui/container/furnace.png",
+                256,
+                [
+                    [80, 35, 22, 15, "textures/ui/arrow_inactive.png"],
+                    [177, 14, 22, 15, "textures/ui/arrow_active.png"]
+                ]
+            ],
+            [
                 "textures/gui/container/horse.png",
                 256,
                 [

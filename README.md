@@ -1,4 +1,4 @@
-THIS PROJECT IS NO OFFICIAL MINECRAFT] PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
+THIS PROJECT IS NO OFFICIAL MINECRAFT PRODUCT - NOT AUTHORIZED OR ASSOCIATED BY MOJANG
 
 ---
 
@@ -16,7 +16,7 @@ This project is inspired by the no longer continued [PCTexture2PE](https://githu
 
 It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some more basic ui textures (hotbar)
 
-Some features are disabled by default, but can be enabled if you want to try:
+Some experimental features are disabled by default, but can be enabled if you want to try:
 - UI
     - Buttons
     - Tabs
@@ -26,10 +26,10 @@ Some features are disabled by default, but can be enabled if you want to try:
 ## Web app
 Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
 
-It works directly in your browser
+Works directly in your browser - no upload
 
 ## CLI
-As an alternative you can also use the cli version
+As an alternative you can also use the cli version on your computer
 
 First be sure you have installed [NodeJS](https://nodejs.org) (At least the LTS version) and install [Yarn](https://yarnpkg.com/en/docs/install)
 
