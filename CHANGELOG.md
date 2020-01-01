@@ -4,6 +4,7 @@
 - Convert dialog, inventory and recipe book ui
 - Improve error handling
 - Possible bugs fixed in:
+    - Fix crosshair
     - Fix dye
     - Fix enchanted item glint
     - Fix grass block

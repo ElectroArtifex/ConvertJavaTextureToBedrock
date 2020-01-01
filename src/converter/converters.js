@@ -21,6 +21,7 @@ import {FishHookConverter} from "./FishingConverter";
 import {FireworksConverter} from "./FireworksConverter";
 import {FoxConverter} from "./FoxConverter";
 import {HorseConverter} from "./HorseConverter";
+import {IconsConverter} from "./IconsConverter";
 import {MapIconsConverter} from "./MapIconsConverter";
 import {MetadataConverter} from "./MetadataConverter";
 import {NineSliceConverter} from "./NineSliceConverter";
@@ -59,6 +60,7 @@ const converters = [
     ...FishHookConverter.getDefaultConverters(),
     ...FoxConverter.getDefaultConverters(),
     ...HorseConverter.getDefaultConverters(),
+    ...IconsConverter.getDefaultConverters(),
     ...MapIconsConverter.getDefaultConverters(),
     ...PistonArmConverter.getDefaultConverters(),
     ...RedstoneDustConverter.getDefaultConverters(),
