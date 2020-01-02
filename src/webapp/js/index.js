@@ -65,21 +65,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         document.querySelector(".swal-button--loading").disabled = true;
 
-        _log("Start conversion");
-
-        if (worker !== null) {
-            worker.terminate();
-            worker = null;
-        }
-        worker = new Worker();
-        worker.addEventListener("message", afterConvert);
-        worker.addEventListener("error", errorConvert);
-        worker.postMessage({
-            files,
-            options: {
-                experimental: experimentalSwitch.checked
+        try {
+            if (worker !== null) {
+                worker.terminate();
+                worker = null;
             }
-        });
+            worker = new Worker();
+            worker.addEventListener("message", afterConvert);
+            worker.addEventListener("error", errorConvert);
+            worker.postMessage({
+                files,
+                options: {
+                    experimental: experimentalSwitch.checked
+                }
+            });
+        } catch (err) {
+            errorConvert(err);
+        }
     }
 
     /**
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             buttons: "Save"
         });
 
-        _log("Conversion finished");
+        _log();
 
         if (await savePopup) {
             if (output instanceof File) {
@@ -158,14 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * @param {string} log
+     * @param {string|undefined} log
      */
-    function _log(log) {
-        const li = document.createElement("li");
+    function _log(log = undefined) {
+        if (log) {
+            const li = document.createElement("li");
 
-        li.innerText = log;
+            li.innerText = log;
 
-        logs.appendChild(li);
+            logs.appendChild(li);
+        }
 
         logs.scrollTop = logs.scrollHeight; // Scroll to bottom
     }

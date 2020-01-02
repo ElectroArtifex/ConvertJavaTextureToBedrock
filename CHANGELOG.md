@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.3]
+- Improve error handling
+
 ## [3.0.2]
 - Fix title
 
