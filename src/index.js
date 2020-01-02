@@ -50,6 +50,8 @@ class ConvertJavaTextureToBedrock {
      * @returns {Promise<*>}
      */
     async convert() {
+        this.log.log("Start conversion");
+
         if (this.options.experimental) {
             this.log.warn(`EXPERIMENTAL CONVERSIONS ENABLED!`)
         }
@@ -68,7 +70,11 @@ class ConvertJavaTextureToBedrock {
             await addAdditionalConverters(...await converter.convert());
         }
 
-        return await this.output.generate();
+        const output = await this.output.generate();
+
+        this.log.log("Conversion finished");
+
+        return output;
     }
 }
 
