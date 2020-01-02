@@ -51,7 +51,7 @@ class ConvertJavaTextureToBedrock {
      */
     async convert() {
         if (this.options.experimental) {
-            this.log.warn(`EXPERIMENTAL FEATURES ENABLED!`)
+            this.log.warn(`EXPERIMENTAL CONVERSIONS ENABLED!`)
         }
 
         await this.output._init(this.input, this.log, this.options);

@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.1]
+- Fix browser cache
+
 ## [3.0.0]
 - Most ui conversions are now experimental and need to enabled (if you want to try)
 - Convert dialog and inventory ui (Experimental)

@@ -1,3 +1,4 @@
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -28,7 +29,7 @@ module.exports = {
                 test: /worker\.js$/,
                 loader: "worker-loader",
                 options: {
-                    name: "[name].[ext]"
+                    name: "[name].[contenthash].[ext]"
                 }
             }
         ]
@@ -37,11 +38,12 @@ module.exports = {
         minimizer: (isDebug ? [] : [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin()]),
     },
     output: {
-        filename: "index.js",
+        filename: "[name].[contenthash].js",
         path: __dirname + "/dist/webapp",
         globalObject: "this" // Fix worker
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             minify: (isDebug ? false : {
                 collapseWhitespace: true,
@@ -53,7 +55,9 @@ module.exports = {
             }),
             template: "./src/webapp/html/index.html"
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "[name].[contenthash].css",
+        }),
         new FaviconsWebpackPlugin({
             devMode: "webapp",
             logo: "./src/webapp/img/icon.svg",
