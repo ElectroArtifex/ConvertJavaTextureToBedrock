@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         } catch (err) {
             errorConvert(err);
+            throw err;
         }
     }
 
