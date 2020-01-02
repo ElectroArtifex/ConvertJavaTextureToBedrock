@@ -16,7 +16,7 @@ This project is inspired by the no longer continued [PCTexture2PE](https://githu
 
 It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some more basic ui textures (hotbar)
 
-Some experimental features are disabled by default, but can be enabled if you want to try:
+Some experimental conversions are disabled by default, but can be enabled if you want to try:
 - UI
     - Buttons
     - Tabs
@@ -49,8 +49,8 @@ ConvertJavaTextureToBedrock -i input/java_texture_pack.zip -o output/bedrock_tex
 |-----------|-------------|
 | -i (Required) | Input folder or zip path |
 | -o (Required) | Output folder or zip path |
-| -l | Show log (Default `true`) |
-| -e | Experimental features (Default `false`) |
+| -l | Show log (Default) |
+| -e | Enable experimental conversions (No default) |
 
 ## Report issue
 Use github repo issues (https://github.com/ozelot379/ConvertJavaTextureToBedrock/issues/new/choose)
@@ -162,9 +162,9 @@ try {
 | `AbstractLog` | Base log |
 
 ## Options
-| Key | Description |
-|-----|-------------|
-| `experimental` | Experimental features |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `experimental` | `bool` | `false` | Enable experimental conversions |
 
 ## Example
 ```javascript

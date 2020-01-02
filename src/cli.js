@@ -35,7 +35,7 @@ import yargs from "yargs";
             e: {
                 alias: "experimental",
                 default: false,
-                describe: "Experimental features",
+                describe: "Experimental conversions",
                 type: "boolean"
             }
         })
