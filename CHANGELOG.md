@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.2]
+- Fix title
+
 ## [3.0.1]
 - Fix browser cache
 
