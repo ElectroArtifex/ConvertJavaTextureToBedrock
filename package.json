@@ -46,7 +46,6 @@
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.2",
-    "webpack-pwa-manifest": "^4.0.0",
     "worker-loader": "^2.0.0",
     "yargs": "^14.0.0"
   },
