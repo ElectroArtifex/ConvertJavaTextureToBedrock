@@ -29,7 +29,7 @@ module.exports = {
                 test: /worker\.js$/,
                 loader: "worker-loader",
                 options: {
-                    name: "[name].[contenthash].[ext]"
+                    name: "[name].[ext]?h=[contenthash]"
                 }
             }
         ]
@@ -38,7 +38,7 @@ module.exports = {
         minimizer: (isDebug ? [] : [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin()]),
     },
     output: {
-        filename: "[name].[contenthash].js",
+        filename: "[name].js?h=[contenthash]",
         path: __dirname + "/dist/webapp",
         globalObject: "this" // Fix worker
     },
@@ -56,7 +56,7 @@ module.exports = {
             template: "./src/webapp/html/index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css",
+            filename: "[name].css?h=[contenthash]",
         }),
         new FaviconsWebpackPlugin({
             devMode: "webapp",
