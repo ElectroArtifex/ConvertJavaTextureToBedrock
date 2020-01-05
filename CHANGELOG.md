@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.0]
+- Possible speed up texture pack loading
+- First sounds support
+- Improve dialog ui (Experimental)
+- More table icons (Experimental)
+
 ## [3.0.4]
 - Improve error handling
 

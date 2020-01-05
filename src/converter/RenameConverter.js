@@ -31,6 +31,7 @@ class RenameConverter extends AbstractConverter {
 
             // Base folder
             ["assets/minecraft/textures/", "textures/"],
+            ["assets/minecraft/sounds/", "sounds/"],
 
             // Folder
             ["textures/block/", "textures/blocks/"],
