@@ -1,4 +1,5 @@
 import {AbstractConverter} from "./AbstractConverter";
+import Jimp from "jimp";
 
 /**
  * Class DialogConverter
@@ -41,7 +42,7 @@ class DialogConverter extends AbstractConverter {
                 to_image.composite(await image.clone().crop((image.getWidth() - base_nineslice_size[2]), 0, base_nineslice_size[2], base_nineslice_size[1]).borderImage((2 * factor), (2 * factor), (2 * factor), (2 * factor), to_nineslice_size[2], to_nineslice_size[1]), (to_image.getWidth() - to_nineslice_size[2]), 0);
 
                 to_image.composite(await image.clone().crop(0, base_nineslice_size[1], base_nineslice_size[0], (image.getHeight() - base_nineslice_size[1] - base_nineslice_size[3])).borderImage((2 * factor), (2 * factor), (2 * factor), (2 * factor), to_nineslice_size[0], (to_image.getHeight() - to_nineslice_size[1] - to_nineslice_size[3])), 0, to_nineslice_size[1]);
-                to_image.composite(await image.clone().crop(base_nineslice_size[0], base_nineslice_size[1], (image.getWidth() - base_nineslice_size[0] - base_nineslice_size[2]), (image.getHeight() - base_nineslice_size[1] - base_nineslice_size[3])).borderImage((2 * factor), (2 * factor), (2 * factor), (2 * factor), (to_image.getWidth() - to_nineslice_size[0] - to_nineslice_size[2]), (to_image.getHeight() - to_nineslice_size[1] - to_nineslice_size[3])), to_nineslice_size[0], to_nineslice_size[1]);
+                to_image.composite(await image.clone().crop(base_nineslice_size[0], base_nineslice_size[1], (image.getWidth() - base_nineslice_size[0] - base_nineslice_size[2]), (image.getHeight() - base_nineslice_size[1] - base_nineslice_size[3])).resize(1, 1, Jimp.RESIZE_NEAREST_NEIGHBOR).resize((to_image.getWidth() - to_nineslice_size[0] - to_nineslice_size[2]), (to_image.getHeight() - to_nineslice_size[1] - to_nineslice_size[3]), Jimp.RESIZE_NEAREST_NEIGHBOR), to_nineslice_size[0], to_nineslice_size[1]);
                 to_image.composite(await image.clone().crop((image.getWidth() - base_nineslice_size[2]), base_nineslice_size[1], base_nineslice_size[2], (image.getHeight() - base_nineslice_size[1] - base_nineslice_size[3])).borderImage((2 * factor), (2 * factor), (2 * factor), (2 * factor), to_nineslice_size[2], (to_image.getHeight() - to_nineslice_size[1] - to_nineslice_size[3])), (to_image.getWidth() - to_nineslice_size[2]), to_nineslice_size[1]);
 
                 to_image.composite(await image.clone().crop(0, (image.getHeight() - base_nineslice_size[3]), base_nineslice_size[0], base_nineslice_size[2]).borderImage((2 * factor), (2 * factor), (2 * factor), (2 * factor), to_nineslice_size[0], to_nineslice_size[3]), 0, (to_image.getHeight() - to_nineslice_size[3]));

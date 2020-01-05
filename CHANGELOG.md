@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Improve dialog ui (Experimental)
+
 ## [3.0.4]
 - Improve error handling
 
