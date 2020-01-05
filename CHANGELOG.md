@@ -1,6 +1,7 @@
 # Changelog
 
 ## [x]
+- Possible speed up texture pack loading
 - Improve dialog ui (Experimental)
 
 ## [3.0.4]

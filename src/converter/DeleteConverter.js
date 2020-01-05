@@ -26,6 +26,8 @@ class DeleteConverter extends AbstractConverter {
      */
     static get DEFAULT_CONVERTER_DATA() {
         return [
+            "assets/", // Speed up loading
+
             "textures/blocks/conduit.png",
             "textures/entity/conduit/break_particle.png",
 
