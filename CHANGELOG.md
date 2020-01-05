@@ -2,6 +2,7 @@
 
 ## [x]
 - Possible speed up texture pack loading
+- First sounds support
 - Improve dialog ui (Experimental)
 
 ## [3.0.4]
