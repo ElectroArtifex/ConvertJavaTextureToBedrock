@@ -67,6 +67,20 @@ class NineSliceConverter extends AbstractConverter {
     static get DEFAULT_CONVERTER_DATA() {
         return [
             [
+                "textures/gui/recipe_book.png",
+                256,
+                [
+                    [54, 206, 24, 24, 5, [
+                        "textures/ui/cell_image_red",
+                        "textures/ui/recipe_book_red_button",
+                        "textures/ui/recipe_book_red_button_pressed",
+                        "textures/ui/button_trade_red",
+                        "textures/ui/button_trade_red_pressed"
+                    ]]
+                ],
+                []
+            ],
+            [
                 "textures/gui/widgets.png",
                 256,
                 [
@@ -95,6 +109,9 @@ class NineSliceConverter extends AbstractConverter {
                         "textures/ui/recipe_book_button_borderless_lightpressed",
                         "textures/ui/recipe_book_dark_button_pressed",
                         "textures/ui/recipe_book_light_button_pressed"
+                    ]],
+                    [0, 22, 24, 24, 5, [
+                        "textures/ui/cell_image_invert"
                     ]]
                 ],
                 [
@@ -107,11 +124,48 @@ class NineSliceConverter extends AbstractConverter {
                 ]
             ],
             [
+                "textures/gui/container/beacon.png",
+                256,
+                [
+                    [0, 219, 22, 22, 5, [
+                        "textures/ui/beacon_button_default"
+                    ]],
+                    [22, 219, 22, 22, 5, [
+                        "textures/ui/beacon_button_pressed"
+                    ]],
+                    [44, 219, 22, 22, 5, [
+                        "textures/ui/beacon_button_locked"
+                    ]],
+                    [66, 219, 22, 22, 5, [
+                        "textures/ui/beacon_button_hover"
+                    ]]
+                ],
+                []
+            ],
+            [
+                "textures/gui/container/enchanting_table.png",
+                256,
+                [
+                    [0, 166, 108, 19, 5, [
+                        "textures/ui/enchanting_active_background"
+                    ]],
+                    [0, 185, 108, 19, 5, [
+                        "textures/ui/enchanting_dark_background"
+                    ]],
+                    [0, 204, 108, 19, 5, [
+                        "textures/ui/enchanting_active_background_with_hover_text"
+                    ]]
+                ],
+                []
+            ],
+            [
                 "textures/gui/container/generic_54.png",
                 256,
                 [
                     [7, 17, 18, 18, 5, [
                         "textures/ui/cell_image",
+                        "textures/ui/cell_image_normal",
+                        "textures/ui/item_cell",
                         "textures/ui/recipe_book_item_bg"
                     ]],
                     [2, 2, 1, 1, 0, [

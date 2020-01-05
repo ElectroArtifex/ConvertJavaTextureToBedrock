@@ -14,14 +14,15 @@ Some conversions of HD texture packs may takes a while
 
 This project is inspired by the no longer continued [PCTexture2PE](https://github.com/rodrigojxd/PCTexture2PE)
 
-It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and some more basic ui textures (hotbar)
+It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and hotbar
 
-Some experimental conversions are disabled by default, but can be enabled if you want to try:
+Some experimental conversions are disabled by default, but can be enabled if you want to try, but please be warned, it contains many bugs and may are not beautiful and may not usable:
 - UI
     - Buttons
     - Tabs
     - Dialogs
-    - Inventory
+    - Inventory / Recipe book
+    - Tables
 
 ## Web app
 Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
