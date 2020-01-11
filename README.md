@@ -98,7 +98,7 @@ yarn build
 # How this work
 This project uses the follow main features or external libraries:
 
-- [Web Worker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the ui
+- [Web Worker](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) for convert it in the background to not freeze the browser ui (web app)
 - [jszip](https://www.npmjs.com/package/jszip) for read, modify and write zip files
 - [jimp](https://www.npmjs.com/package/jimp) for graphic manipulation
 - [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
@@ -112,7 +112,7 @@ Add it as a dependency to your `package.json`
 yarn add @ozelot379/convert-minecraft-java-texture-to-bedrock
 ```
 
-Import it in your code, if you use webpack
+Import it in your code
 ```javascript
 import ConvertJavaTextureToBedrock, {ConsoleLog, Input, LocalFileInputEntry, LocalFileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock";
 ```
