@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.3]
+- Keep "Experimental conversions" switch state
+
 ## [3.2.2]
 - Offline usage
 

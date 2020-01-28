@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const experimentalSwitch = document.getElementById("experimentalSwitch");
+    experimentalSwitch.checked = localStorage[experimentalSwitch.id];
+    experimentalSwitch.addEventListener("change", () => {
+        localStorage[experimentalSwitch.id] = experimentalSwitch.checked;
+    });
 
     const main = document.querySelector("main");
     main.addEventListener("dragenter", startConvertDrop);
