@@ -97,9 +97,6 @@ module.exports = {
         ...(!isDebug ? [new OfflinePlugin({
             ServiceWorker: {
                 events: true
-            },
-            AppCache: {
-                events: true
             }
         })] : [])
     ],
