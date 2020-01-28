@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.1]
+- Offline usage
+
 ## [3.2.0]
 - Offline usage
 
