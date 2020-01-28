@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.5]
+- Add dark theme
+
 ## [3.2.4]
 - Keep "Experimental conversions" switch state
 
