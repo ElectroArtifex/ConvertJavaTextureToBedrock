@@ -97,7 +97,8 @@ module.exports = {
         ...(!isDebug ? [new OfflinePlugin({
             ServiceWorker: {
                 events: true
-            }
+            },
+            version: PACKAGE.version
         })] : [])
     ],
     resolve: {
