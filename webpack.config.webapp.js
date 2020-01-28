@@ -2,6 +2,7 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OfflinePlugin = require("offline-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const PACKAGE = require("./package");
 const TerserJSPlugin = require("terser-webpack-plugin");
@@ -11,7 +12,7 @@ const isDebug = (process.env.NODE_ENV === "development");
 module.exports = {
     devServer: {
         disableHostCheck: true,
-        host: "0.0.0.0",
+        host: "127.0.0.1",
         open: true,
         port: 8080
     },
@@ -92,7 +93,15 @@ module.exports = {
             },
             prefix: "webapp",
             publicPath: "./"
-        })
+        }),
+        ...(!isDebug ? [new OfflinePlugin({
+            ServiceWorker: {
+                events: true
+            },
+            AppCache: {
+                events: true
+            }
+        })] : [])
     ],
     resolve: {
         alias: {
