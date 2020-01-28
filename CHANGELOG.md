@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.6]
+- Add dark theme
+
 ## [3.2.5]
 - Add dark theme
 

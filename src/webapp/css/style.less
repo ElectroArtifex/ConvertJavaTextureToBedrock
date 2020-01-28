@@ -1,6 +1,8 @@
 @import (less) "~materialize-css/dist/css/materialize.min.css";
 
 html, body {
+  .white;
+  .black-text;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -37,7 +39,7 @@ input[type="file"] {
 
 .log {
   .grey.lighten-3;
-
+  .black-text;
   height: 150px;
   overflow: auto;
 }
@@ -81,6 +83,11 @@ footer {
 }
 
 @media (prefers-color-scheme: dark) {
+  html, body {
+    .grey.darken-4;
+    .white-text;
+  }
+
   main {
     .grey.darken-4;
     .white-text;
@@ -105,5 +112,6 @@ footer {
 
   .log {
     .grey.darken-3;
+    .white-text;
   }
 }
