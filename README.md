@@ -104,7 +104,7 @@ This project uses the follow main features or external libraries:
 - [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
 - [webpack](https://www.npmjs.com/package/webpack) for bundle the dist code
 - [gh-pages](https://www.npmjs.com/package/gh-pages) for publish a new version to the github static page (web app)
-- [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) for offline cache and usage
+- [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) for offline cache and usage (web app)
 
 # Use it direct in your code
 Add it as a dependency to your `package.json`
