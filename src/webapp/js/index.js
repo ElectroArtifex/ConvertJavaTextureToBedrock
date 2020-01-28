@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const experimentalSwitch = document.getElementById("experimentalSwitch");
-    experimentalSwitch.checked = localStorage[experimentalSwitch.id];
+    experimentalSwitch.checked = (localStorage[experimentalSwitch.id] === "true");
     experimentalSwitch.addEventListener("change", () => {
         localStorage[experimentalSwitch.id] = experimentalSwitch.checked;
     });
