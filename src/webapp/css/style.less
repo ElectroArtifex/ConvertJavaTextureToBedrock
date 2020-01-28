@@ -6,6 +6,24 @@ html, body {
   height: 100%;
 }
 
+#toastMessage {
+  cursor: pointer;
+  margin: 0;
+  opacity: 0;
+  position: fixed;
+  right: 20px;
+  top: 50px;
+  transition-duration: 300ms;
+  transition-property: opacity, top, visibility;
+  visibility: hidden;
+
+  &[data-show] {
+    opacity: 1;
+    top: 20px;
+    visibility: visible;
+  }
+}
+
 main {
   .black-text;
   align-items: center;

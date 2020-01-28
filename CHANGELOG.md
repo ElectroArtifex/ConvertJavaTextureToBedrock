@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.0]
+- Offline usage
+
 ## [3.1.0]
 - Possible speed up texture pack loading
 - First sounds support

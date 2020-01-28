@@ -1,9 +1,27 @@
 import fileSaver from "file-saver";
+import OfflinePluginRuntime from "offline-plugin/runtime";
 import swal from "sweetalert";
 import Worker from "./worker";
 import "./../css/style.less";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const toastMessage = document.getElementById("toastMessage");
+    OfflinePluginRuntime.install({
+        onInstalled: () => {
+            showToastMessage("Ready for install and use offline", 5000, () => {
+
+            });
+        },
+        onUpdateReady: () => {
+            OfflinePluginRuntime.applyUpdate();
+        },
+        onUpdated: () => {
+            showToastMessage("Update installed - Reloading ...", 2000, () => {
+                location.reload();
+            });
+        }
+    });
+
     const selectInputFileButton = document.getElementById("selectInputFileButton");
     selectInputFileButton.addEventListener("change", startConvert);
 
@@ -25,6 +43,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const logs = document.createElement("ul");
     logs.classList.add("log");
+
+    /**
+     * @param {string} message
+     * @param {number} duration
+     * @param {function} func
+     */
+    function showToastMessage(message, duration, func) {
+        toastMessage.innerText = message;
+
+        toastMessage.dataset.show = "true";
+
+        toastMessage.addEventListener("click", hide);
+
+        setTimeout(hide, duration);
+
+        function hide() {
+            toastMessage.removeEventListener("click", hide);
+
+            delete toastMessage.dataset.show;
+
+            func();
+        }
+    }
 
     /**
      * @returns {boolean}

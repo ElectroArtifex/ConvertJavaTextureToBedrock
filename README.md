@@ -27,7 +27,7 @@ Some experimental conversions are disabled by default, but can be enabled if you
 ## Web app
 Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
 
-Works directly in your browser - no upload
+Works directly in your browser - no upload and offline
 
 ## CLI
 As an alternative you can also use the cli version on your computer
@@ -104,6 +104,7 @@ This project uses the follow main features or external libraries:
 - [file-saver](https://www.npmjs.com/package/file-saver) for deliver the converted pack to download
 - [webpack](https://www.npmjs.com/package/webpack) for bundle the dist code
 - [gh-pages](https://www.npmjs.com/package/gh-pages) for publish a new version to the github static page (web app)
+- [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) for offline cache and usage
 
 # Use it direct in your code
 Add it as a dependency to your `package.json`
