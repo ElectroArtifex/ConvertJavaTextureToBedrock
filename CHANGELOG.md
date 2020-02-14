@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.8]
+- Fix possible bug in redstone cross
+
 ## [3.2.7]
 - Add dark theme
 
