@@ -16,7 +16,7 @@ This project is inspired by the no longer continued [PCTexture2PE](https://githu
 
 It supports to convert blocks, items, entities, paintings, particles, map icons, mob effects and hotbar
 
-Please reopen Minecraft after selecting the converted texture pack, because in the current version it seems to be a bug to reload the texture cache (Otherwise it's possible that you will have a mix between your previous and new texture pack, which can lead to appearance bugs that would otherwise not occur)
+Please reopen Minecraft after selecting the converted texture pack, because in the current version it seems to be a bug to reload the texture cache (Otherwise it's possible that you will have a mix between your previous and new texture pack, which can lead to appearance bugs that would not occur)
 
 Some experimental conversions are disabled by default, but can be enabled if you want to try, but please be warned, it contains many bugs and may are not beautiful and may not usable:
 - UI
