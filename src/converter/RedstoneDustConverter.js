@@ -20,15 +20,17 @@ class RedstoneDustConverter extends AbstractConverter {
         this.log.log(`Convert redstone dust`);
 
         const image = await this.readImage(line_0);
-
         image.rotateSimple(90);
-
         await this.writeImage(to_line, image);
 
-        image.composite(await this.readImage(line_1), 0, 0);
+        const image_line_1 = await this.readImage(line_1);
+        if (image_line_1.isEmptyArea(0, 0, image_line_1.getWidth(), (image_line_1.getHeight() / 16))) {
+            image_line_1.rotateSimple(90);
+        }
+        image.composite(image_line_1, 0, 0);
 
-        image.composite(await this.readImage(dot), 0, 0);
-
+        const image_dot = await this.readImage(dot);
+        image.composite(image_dot, 0, 0);
         await this.writeImage(to_cross, image);
 
         to_delete.push(new DeleteConverter(dot));
