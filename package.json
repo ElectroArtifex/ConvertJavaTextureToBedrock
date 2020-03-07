@@ -50,7 +50,7 @@
   "scripts": {
     "build": "yarn --cwd=node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock && rm node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock/node_modules/path-browserify -rfd && webpack",
     "debug": "yarn --cwd=node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock && rm node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock/node_modules/path-browserify -rfd && webpack-dev-server",
-    "prepublishOnly": "yarn build && gh-pages -d ./dist"
+    "prepublishOnly": "yarn build && gh-pages -d ./build"
   },
   "private": true
 }
