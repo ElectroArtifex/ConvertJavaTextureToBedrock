@@ -16,8 +16,9 @@ module.exports = {
         open: true,
         port: 8080
     },
+    devtool: false,
     entry: {
-        index: "./src/webapp/js/index.js"
+        index: "./src/js/index.js"
     },
     mode: (isDebug ? "development" : "production"),
     module: {
@@ -30,7 +31,7 @@ module.exports = {
                 test: /worker\.js$/,
                 loader: "worker-loader",
                 options: {
-                    name: "[name].[ext]?h=[contenthash]"
+                    name: "[name].[contenthash].[ext]"
                 }
             }
         ]
@@ -39,9 +40,9 @@ module.exports = {
         minimizer: (isDebug ? [] : [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin()]),
     },
     output: {
-        filename: "[name].js?h=[contenthash]",
-        path: __dirname + "/dist/webapp",
-        globalObject: "this" // Fix worker
+        filename: "[name].[contenthash].js",
+        path: __dirname + "/build",
+        libraryTarget: "umd"
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -54,14 +55,14 @@ module.exports = {
                 removeStyleLinkTypeAttributes: true,
                 useShortDoctype: true
             }),
-            template: "./src/webapp/html/index.html"
+            template: "./src/html/index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css?h=[contenthash]",
+            filename: "[name].[contenthash].css",
         }),
         new FaviconsWebpackPlugin({
             devMode: "webapp",
-            logo: "./src/webapp/img/icon.svg",
+            logo: "./src/img/icon.svg",
             mode: "webapp",
             favicons: {
                 appDescription: PACKAGE.description,

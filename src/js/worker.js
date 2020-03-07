@@ -1,4 +1,4 @@
-import ConvertJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, FileOutput} from "./../..";
+import ConvertJavaTextureToBedrock, {AbstractLog, ArrayInput, FileInputEntry, FileOutput} from "@ozelot379/convert-minecraft-java-texture-to-bedrock/src";
 
 addEventListener("message", async (e) => {
     try {

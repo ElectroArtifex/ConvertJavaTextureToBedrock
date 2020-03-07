@@ -1,8 +1,0 @@
-*
-!dist
-!dist/cli.js
-!dist/index.js
-!CHANGELOG.md
-!package.json
-!README.md
-!yarn.lock
