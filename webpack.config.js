@@ -31,7 +31,7 @@ module.exports = {
                 test: /worker\.js$/,
                 loader: "worker-loader",
                 options: {
-                    name: "[name].[ext]?h=[contenthash]"
+                    name: "[name].[contenthash].[ext]"
                 }
             }
         ]
@@ -40,9 +40,9 @@ module.exports = {
         minimizer: (isDebug ? [] : [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin()]),
     },
     output: {
-        filename: "[name].js?h=[contenthash]",
+        filename: "[name].[contenthash].js",
         path: __dirname + "/build",
-        globalObject: "this" // Fix worker
+        libraryTarget: "umd"
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -58,7 +58,7 @@ module.exports = {
             template: "./src/html/index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].css?h=[contenthash]",
+            filename: "[name].[contenthash].css",
         }),
         new FaviconsWebpackPlugin({
             devMode: "webapp",
