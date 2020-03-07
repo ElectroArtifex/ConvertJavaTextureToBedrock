@@ -49,7 +49,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
-    "debug": "webpack-dev-server --config ./webpack.config.webapp.js",
+    "debug": "webpack-dev-server",
     "prepublishOnly": "yarn build && gh-pages -d ./dist"
   },
   "private": true
