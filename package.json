@@ -23,7 +23,7 @@
   "homepage": "https://github.com/ozelot379/ConvertJavaTextureToBedrock#readme",
   "dependencies": {},
   "devDependencies": {
-    "@ozelot379/convert-minecraft-java-texture-to-bedrock": "latest",
+    "@ozelot379/convert-minecraft-java-texture-to-bedrock": "https://github.com/ozelot379/ConvertJavaTextureToBedrockApi/tarball/master",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "favicons-webpack-plugin": "^1.0.1",
@@ -48,8 +48,8 @@
   },
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack",
-    "debug": "webpack-dev-server",
+    "build": "yarn --cwd=node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock && webpack",
+    "debug": "yarn --cwd=node_modules/@ozelot379/convert-minecraft-java-texture-to-bedrock && webpack-dev-server",
     "prepublishOnly": "yarn build && gh-pages -d ./dist"
   },
   "private": true

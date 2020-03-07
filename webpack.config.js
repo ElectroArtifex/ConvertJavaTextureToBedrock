@@ -107,7 +107,6 @@ module.exports = {
             fs: __dirname + "/src/fs_browser_null.js",
             "fs-extra": __dirname + "/src/fs_browser_null.js",
             "graceful-fs": __dirname + "/src/fs_browser_null.js",
-            net: __dirname + "/src/fs_browser_null.js",
             path: "path-browserify", // Latest version which supports `path.parse`
             readdirp: __dirname + "/src/fs_browser_null.js"
         }
