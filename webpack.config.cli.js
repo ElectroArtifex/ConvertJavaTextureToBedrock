@@ -3,6 +3,7 @@ const {BannerPlugin} = require("webpack");
 const isDebug = (process.env.NODE_ENV === "development");
 
 module.exports = {
+    devtool: false,
     entry: {
         index: "./src/index.js",
         cli: "./src/cli.js"

@@ -16,6 +16,7 @@ module.exports = {
         open: true,
         port: 8080
     },
+    devtool: false,
     entry: {
         index: "./src/webapp/js/index.js"
     },
