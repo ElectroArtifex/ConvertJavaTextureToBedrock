@@ -23,7 +23,7 @@
   "homepage": "https://github.com/ozelot379/ConvertJavaTextureToBedrock#readme",
   "dependencies": {},
   "devDependencies": {
-    "@ozelot379/convert-minecraft-java-texture-to-bedrock": "^3.3.1",
+    "@ozelot379/convert-minecraft-java-texture-to-bedrock": "latest",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "favicons-webpack-plugin": "^1.0.1",
