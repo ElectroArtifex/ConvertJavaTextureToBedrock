@@ -48,7 +48,7 @@
   "scripts": {
     "build": "webpack",
     "debug": "webpack-dev-server",
-    "prepublishOnly": "yarn build && gh-pages -d ./build"
+    "publish": "yarn build && gh-pages -d ./build"
   },
   "private": true
 }
