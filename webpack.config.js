@@ -102,14 +102,5 @@ module.exports = {
             version: PACKAGE.version
         })] : [])
     ],
-    resolve: {
-        alias: {
-            fs: __dirname + "/src/fs_browser_null.js",
-            "fs-extra": __dirname + "/src/fs_browser_null.js",
-            "graceful-fs": __dirname + "/src/fs_browser_null.js",
-            path: "path-browserify", // Latest version which supports `path.parse`
-            readdirp: __dirname + "/src/fs_browser_null.js"
-        }
-    },
     target: "web"
 };

@@ -33,9 +33,6 @@ Look at https://ozelot379.github.io/ConvertJavaTextureToBedrock
 
 Works directly in your browser - no upload and offline
 
-## CLI
-Look at https://github.com/ozelot379/ConvertJavaTextureToBedrockCli
-
 ## API
 Look at https://github.com/ozelot379/ConvertJavaTextureToBedrockApi
 
